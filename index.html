@@ -40,7 +40,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--body
 a{color:var(--cobalt)}
 :focus-visible{outline:3px solid var(--mustard);outline-offset:2px;border-radius:6px}
 
-.hero{max-width:1040px;margin:0 auto;padding:40px 24px 22px;display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between}
+.hero{max-width:1200px;margin:0 auto;padding:40px 24px 22px;display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between}
 .hero h1{font:700 clamp(36px,7vw,72px)/1.0 var(--display);letter-spacing:-0.02em;margin:0;color:var(--cobalt)}
 .hero p{margin:12px 0 0;color:var(--muted);max-width:50ch}
 .script{display:inline-flex;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:4px}
@@ -49,12 +49,34 @@ a{color:var(--cobalt)}
 .script-note{font-size:13px;color:var(--muted);margin-top:6px}
 
 .tabbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
-.tabs{max-width:1040px;margin:0 auto;padding:10px 24px;display:flex;flex-wrap:wrap;gap:6px}
+.tabs{max-width:1200px;margin:0 auto;padding:10px 24px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.tgroup{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.tgroup.main button{font-weight:600}
+.tgroup.extra{width:100%;padding-top:8px;border-top:1px dashed var(--line)}
+.tgroup.extra button{background:transparent;font-size:14px;padding:8px 13px}
+.tg-label{font-size:12px;color:var(--muted);margin-right:4px}
 .tabs button{flex:0 0 auto;font:500 15px/1 var(--body);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:10px 16px;cursor:pointer;white-space:nowrap}
 .tabs button:hover{border-color:var(--cobalt)}
 .tabs button[aria-selected="true"]{background:var(--cobalt);border-color:var(--cobalt);color:var(--paper)}
 
-main{max-width:1040px;margin:0 auto;padding:24px 24px 64px}
+main{max-width:1200px;margin:0 auto;padding:24px 24px 64px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:36px;align-items:start}
+.content{min-width:0}
+.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--tabbar-h,58px) + 16px);max-height:calc(100vh - var(--tabbar-h,58px) - 40px);overflow:auto;padding:2px 4px 12px 0}
+.toc-toggle{display:none}
+.toc-g{display:block;font:600 12px/1.3 var(--body);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:16px 0 4px;padding:0 10px;text-decoration:none}
+.toc-g:first-child{margin-top:0}
+.toc-list a.toc-s{display:block;padding:5px 10px;border-radius:8px;font-size:14px;line-height:1.35;color:var(--ink);text-decoration:none}
+.toc-list a.toc-s:hover{background:var(--cobalt-soft)}
+.toc-list a.toc-s.on{color:var(--cobalt);background:var(--cobalt-soft);font-weight:600}
+section,.grp-h{scroll-margin-top:calc(var(--tabbar-h,58px) + 16px)}
+.grp-h{font:600 13px/1.2 var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:34px 0 12px;display:flex;align-items:center;gap:12px}
+.grp-h::after{content:"";flex:1;height:1px;background:var(--line)}
+.flash{border:1px solid var(--line);border-radius:12px;margin:8px 0;background:var(--paper)}
+.flash summary{cursor:pointer;padding:12px 16px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.flash summary::-webkit-details-marker{display:none}
+.flash summary::after{content:"показать";font-size:13px;color:var(--cobalt);white-space:nowrap}
+.flash[open] summary::after{content:"скрыть"}
+.flash .ans{padding:0 16px 12px}
 .panel[hidden]{display:none}
 .panel > .intro{font-size:19px;max-width:62ch;margin:4px 0 22px}
 .panel > h2{font:700 clamp(26px,4vw,38px)/1.1 var(--display);margin:6px 0 10px;letter-spacing:-0.01em}
@@ -113,8 +135,8 @@ tr:last-child td{border-bottom:0}
 .vb-tag{display:inline-block;margin-left:6px;font:600 11px/1 var(--body);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 6px;vertical-align:2px}
 .vb-dvtag{align-self:center;justify-self:start;margin:0 14px;font-size:12px;color:var(--cobalt);background:var(--cobalt-soft);padding:4px 10px;border-radius:999px}
 .vb-none{color:var(--muted);opacity:.5}
-@media (min-width:1000px){ .vb-switch{display:none} }
-@media (max-width:999px){
+@media (min-width:1300px){ .vb-switch{display:none} }
+@media (max-width:1299px){
   .vb-grid{grid-template-columns:1fr}
   .vb-grid .vb-col{display:none}
   .vb-grid[data-show="i"] .vb-col[data-col="i"],
@@ -124,8 +146,18 @@ tr:last-child td{border-bottom:0}
 }
 
 .vb-title{font:700 clamp(20px,2.6vw,25px)/1.2 var(--display);margin:30px 0 0}
-footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);font-size:14px}
+section.vb-wrap{background:none;border:0;padding:0}
+footer{max-width:1200px;margin:0 auto;padding:0 24px 40px;color:var(--muted);font-size:14px}
 
+@media (max-width: 900px){
+  main{grid-template-columns:1fr;gap:0}
+  .toc{position:static;max-height:none;overflow:visible;padding:0;margin-bottom:14px}
+  .toc-toggle{display:flex;justify-content:space-between;align-items:center;width:100%;font:600 15px/1 var(--body);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:13px 16px;cursor:pointer}
+  .toc-toggle::after{content:"▾";color:var(--muted)}
+  .toc.open .toc-toggle::after{content:"▴"}
+  .toc-list{display:none;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 6px;margin-top:6px}
+  .toc.open .toc-list{display:block}
+}
 @media (max-width: 720px){
   body{font-size:16px}
   .hero{padding:28px 16px 16px}
@@ -142,7 +174,6 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
 <header class="hero">
   <div>
     <h1 data-sr>Srpska gramatika</h1>
-    <p>Шпаргалка для Паши и Ани: правила, объяснения на пальцах и фразы из живой речи.</p>
   </div>
   <div>
     <div class="script" role="group" aria-label="Письменность примеров">
@@ -155,25 +186,379 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
 
 <div class="tabbar">
   <div class="tabs" role="tablist" aria-label="Разделы">
-    <button role="tab" id="t-vremena" aria-controls="panel-vremena" aria-selected="true">Времена</button>
-    <button role="tab" id="t-glagoli" aria-controls="panel-glagoli" aria-selected="false" tabindex="-1">Глаголы</button>
-    <button role="tab" id="t-nacini" aria-controls="panel-nacini" aria-selected="false" tabindex="-1">Наклонения</button>
-    <button role="tab" id="t-padezi" aria-controls="panel-padezi" aria-selected="false" tabindex="-1">Падежи</button>
-    <button role="tab" id="t-zamenice" aria-controls="panel-zamenice" aria-selected="false" tabindex="-1">Местоимения</button>
-    <button role="tab" id="t-poredjenje" aria-controls="panel-poredjenje" aria-selected="false" tabindex="-1">Сравнение</button>
-    <button role="tab" id="t-enklitike" aria-controls="panel-enklitike" aria-selected="false" tabindex="-1">Энклитики</button>
-    <button role="tab" id="t-predlozi" aria-controls="panel-predlozi" aria-selected="false" tabindex="-1">Предлоги</button>
-    <button role="tab" id="t-izuzeci" aria-controls="panel-izuzeci" aria-selected="false" tabindex="-1">Исключения</button>
-    <button role="tab" id="t-reci" aria-controls="panel-reci" aria-selected="false" tabindex="-1">Слова и живая речь</button>
+    <div class="tgroup main" role="presentation">
+      <button role="tab" id="t-padezi" aria-controls="panel-padezi" aria-selected="true">Падежи</button>
+      <button role="tab" id="t-predlozi" aria-controls="panel-predlozi" aria-selected="false" tabindex="-1">Предлоги</button>
+      <button role="tab" id="t-vremena" aria-controls="panel-vremena" aria-selected="false" tabindex="-1">Времена</button>
+      <button role="tab" id="t-zamenice" aria-controls="panel-zamenice" aria-selected="false" tabindex="-1">Местоимения</button>
+      <button role="tab" id="t-poredjenje" aria-controls="panel-poredjenje" aria-selected="false" tabindex="-1">Сравнение</button>
+      <button role="tab" id="t-nacini" aria-controls="panel-nacini" aria-selected="false" tabindex="-1">Наклонения</button>
+    </div>
+    <div class="tgroup extra" role="presentation">
+      <span class="tg-label">Ещё:</span>
+      <button role="tab" id="t-glagoli" aria-controls="panel-glagoli" aria-selected="false" tabindex="-1">Глаголы</button>
+      <button role="tab" id="t-enklitike" aria-controls="panel-enklitike" aria-selected="false" tabindex="-1">Энклитики</button>
+      <button role="tab" id="t-dativ" aria-controls="panel-dativ" aria-selected="false" tabindex="-1">Датив в речи</button>
+      <button role="tab" id="t-izuzeci" aria-controls="panel-izuzeci" aria-selected="false" tabindex="-1">Исключения</button>
+      <button role="tab" id="t-reci" aria-controls="panel-reci" aria-selected="false" tabindex="-1">Живая речь</button>
+    </div>
   </div>
 </div>
 
 <main>
+<nav class="toc" id="toc" aria-label="Содержание раздела"><button type="button" class="toc-toggle" aria-expanded="false">Содержание раздела</button><div class="toc-list" id="toc-list"></div></nav>
+<div class="content">
 
-<div class="panel" id="panel-vremena" role="tabpanel" aria-labelledby="t-vremena">
+<div class="panel" id="panel-padezi" role="tabpanel" aria-labelledby="t-padezi">
+  <h2>Падежи</h2>
+  <p class="intro">Падежей семь: шесть русских плюс звательный (<i class="sr">vokativ</i>). Логика почти та же, что в русском, поэтому полезнее всего запомнить окончания и места, где сербский ведёт себя иначе.</p>
+
+  <div class="grp-h">Обзор</div>
+
+  <section>
+    <h3>Семь падежей коротко</h3>
+    <div class="tbl"><table>
+      <tr><th>Падеж</th><th>Вопрос</th><th>Главное значение</th><th>Пример</th></tr>
+      <tr><td class="sr">nominativ</td><td class="sr">ko? šta?</td><td>подлежащее, словарная форма</td><td class="sr">Ana radi.</td></tr>
+      <tr><td class="sr">genitiv</td><td class="sr">koga? čega?</td><td>чей, сколько, нет чего, откуда</td><td class="sr">kuća moga brata, nema hleba</td></tr>
+      <tr><td class="sr">dativ</td><td class="sr">kome? čemu?</td><td>кому, состояния</td><td class="sr">Daj Ani. Hladno mi je.</td></tr>
+      <tr><td class="sr">akuzativ</td><td class="sr">koga? šta?</td><td>прямое дополнение, куда</td><td class="sr">Vidim Anu. Idem u grad.</td></tr>
+      <tr><td class="sr">vokativ</td><td>—</td><td>обращение</td><td class="sr">Brate! Gospodine!</td></tr>
+      <tr><td class="sr">instrumental</td><td class="sr">s kim? čim?</td><td>с кем, чем, на чём</td><td class="sr">sa Anom, autobusom</td></tr>
+      <tr><td class="sr">lokativ</td><td class="sr">o kome? gde?</td><td>где, о ком (только с предлогом)</td><td class="sr">u gradu, o Ani</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <h3>Окончания существительных</h3>
+    <div class="tbl"><table>
+      <tr><th>Падеж</th><th>м.р.: grad</th><th>ж.р.: žena</th><th>ср.р.: selo</th></tr>
+      <tr><td class="sr">N</td><td class="sr">grad</td><td class="sr">žena</td><td class="sr">selo</td></tr>
+      <tr><td class="sr">G</td><td class="sr">grada</td><td class="sr">žene</td><td class="sr">sela</td></tr>
+      <tr><td class="sr">D</td><td class="sr">gradu</td><td class="sr">ženi</td><td class="sr">selu</td></tr>
+      <tr><td class="sr">A</td><td class="sr">grad / brata</td><td class="sr">ženu</td><td class="sr">selo</td></tr>
+      <tr><td class="sr">V</td><td class="sr">grade / brate</td><td class="sr">ženo</td><td class="sr">selo</td></tr>
+      <tr><td class="sr">I</td><td class="sr">gradom</td><td class="sr">ženom</td><td class="sr">selom</td></tr>
+      <tr><td class="sr">L</td><td class="sr">gradu</td><td class="sr">ženi</td><td class="sr">selu</td></tr>
+    </table></div>
+    <h4>Множественное число</h4>
+    <div class="tbl"><table>
+      <tr><th>Падеж</th><th>м.р.</th><th>ж.р.</th><th>ср.р.</th></tr>
+      <tr><td class="sr">N / V</td><td class="sr">gradovi</td><td class="sr">žene</td><td class="sr">sela</td></tr>
+      <tr><td class="sr">G</td><td class="sr">gradova</td><td class="sr">žena</td><td class="sr">sela</td></tr>
+      <tr><td class="sr">A</td><td class="sr">gradove</td><td class="sr">žene</td><td class="sr">sela</td></tr>
+      <tr><td class="sr">D / I / L</td><td class="sr">gradovima</td><td class="sr">ženama</td><td class="sr">selima</td></tr>
+    </table></div>
+    <p>Датив, инструментал и локатив во множественном числе совпадают: <i class="sr">prijateljima, sa prijateljima, o prijateljima</i>. Односложные мужского рода во множественном получают <i class="sr">-ov- / -ev-</i>: <i class="sr">grad → gradovi, sto → stolovi, muž → muževi</i>.</p>
+    <h4>Две особенности, которые слышны сразу</h4>
+    <ul>
+      <li><b>k, g, h → c, z, s</b> перед -i: <i class="sr">ruka → u ruci, knjiga → u knjizi, majka → majci</i>.</li>
+      <li><b>Беглое a</b>: <i class="sr">Novi Sad → u Novom Sadu</i>, <i class="sr">petak → u petku</i>.</li>
+    </ul>
+  </section>
+
+  <div class="grp-h">Каждый падеж</div>
+
+  <section>
+    <h3>Nominativ</h3>
+    <p class="lead">Словарная форма и подлежащее: тот, кто действует или о ком говорят.</p>
+    <ul>
+      <li><b>Подлежащее</b>: <i class="sr">Ana radi u kancelariji.</i> <i class="sr">Mačak spava.</i></li>
+      <li><b>После «это»</b>: <i class="sr">Ovo je moj stan.</i> <i class="sr">To je Ana.</i></li>
+      <li><b>Кем является</b>: <i class="sr">Ana je dizajnerka.</i> <i class="sr">On je moj komšija.</i> В отличие от русского «работает врачом», после <i class="sr">biti</i> почти всегда номинатив.</li>
+      <li><b>С числом 1</b>: <i class="sr">jedan grad, jedna kafa, dvadeset jedan dan</i>.</li>
+    </ul>
+    <div class="trap"><b>Ловушка</b>По-русски «Он был учителем» (творительный). По-сербски обычно <i class="sr">Bio je učitelj</i> — номинатив. Инструментал (<i class="sr">bio je učiteljem</i>) звучит книжно.</div>
+  </section>
+
+  <section>
+    <h3>Akuzativ</h3>
+    <p class="lead">Прямое дополнение (кого? что?) и направление (куда?).</p>
+    <div class="tbl"><table>
+      <tr><th>Род</th><th>Окончание</th><th>Пример</th></tr>
+      <tr><td>м.р. неодушевлённый</td><td>= номинатив</td><td class="sr">Vidim grad. Kupio sam telefon.</td></tr>
+      <tr><td>м.р. одушевлённый</td><td><span class="sr">-a</span> (= генитив)</td><td class="sr">Vidim brata. Čekam komšiju.</td></tr>
+      <tr><td>ж.р.</td><td><span class="sr">-u</span></td><td class="sr">Volim Anu. Pijem kafu.</td></tr>
+      <tr><td>ср.р.</td><td>= номинатив</td><td class="sr">Vidim selo. Pijem pivo.</td></tr>
+      <tr><td>мн.ч.</td><td><span class="sr">-e</span> (м., ж.), <span class="sr">-a</span> (ср.)</td><td class="sr">Vidim prijatelje, žene, sela.</td></tr>
+    </table></div>
+    <h4>Когда нужен</h4>
+    <ul>
+      <li><b>Что делаем с предметом</b>: <i class="sr">Čitam knjigu. Kuvam ručak. Gledamo film.</i></li>
+      <li><b>Куда</b> — <i class="sr">u / na</i> + аккузатив: <i class="sr">Idem u grad. Idem na posao. Idemo na more.</i></li>
+      <li><b>Когда (дни)</b>: <i class="sr">u ponedeljak, u petak, u subotu.</i></li>
+      <li><b>Сколько длится</b>: <i class="sr">celu noć, ceo dan, svaki dan, nedelju dana.</i></li>
+      <li><b>Через сколько</b>: <i class="sr">za dva dana, za pet minuta.</i></li>
+      <li><b>Для кого</b>: <i class="sr">za tebe, za Anu.</i></li>
+      <li><b>Сходить за чем-то</b>: <i class="sr">Idem po hleb.</i> <i class="sr">Dođi po mene.</i></li>
+    </ul>
+    <div class="trap"><b>Ловушка: «ждать» и «искать»</b>В русском бывает родительный (ждать автобуса, искать помощи). В сербском всегда аккузатив: <i class="sr">Čekam autobus.</i> <i class="sr">Tražim pomoć.</i></div>
+  </section>
+
+  <section>
+    <h3>Genitiv</h3>
+    <p class="lead">Самый «загруженный» падеж: принадлежность, количество, отсутствие и больше всего предлогов.</p>
+    <ul>
+      <li><b>Чей</b>: <i class="sr">stan mog brata, kraj filma, centar grada.</i></li>
+      <li><b>Сколько</b>: <i class="sr">malo vode, mnogo ljudi, čaša vina, kilo jabuka.</i></li>
+      <li><b>Нет чего</b>: <i class="sr">Nema hleba. Nema problema. Nemam vremena.</i></li>
+      <li><b>Даты</b>: <i class="sr">prvog maja, osamnaestog avgusta.</i></li>
+      <li><b>Время с прилагательным</b>: <i class="sr">ove godine, prošle nedelje, sledećeg meseca.</i></li>
+    </ul>
+    <h4>Числительные: 1, 2–4, 5+</h4>
+    <div class="tbl"><table>
+      <tr><th>Число</th><th>Форма</th><th>м.р.</th><th>ж.р.</th></tr>
+      <tr><td>1, 21, 31…</td><td>номинатив ед.ч.</td><td class="sr">jedan grad</td><td class="sr">jedna žena</td></tr>
+      <tr><td>2, 3, 4</td><td>«паукал»</td><td class="sr">dva grada</td><td class="sr">dve žene</td></tr>
+      <tr><td>5 и больше, 11–19</td><td>генитив мн.ч.</td><td class="sr">pet gradova</td><td class="sr">pet žena</td></tr>
+    </table></div>
+    <p>Паукал совпадает с генитивом единственного (<i class="sr">dva brata</i>) у мужского и среднего рода и выглядит как номинатив множественного у женского (<i class="sr">tri sestre</i>). Обратите внимание: <i class="sr">dva</i> (м., ср.) и <i class="sr">dve</i> (ж.).</p>
+    <div class="live"><b>В живой речи</b>
+      <ul class="dlg">
+        <li><i class="sr">Dve kafe i jednu vodu, molim.</i> <span class="ru">Два кофе и одну воду, пожалуйста.</span></li>
+        <li><i class="sr">Ima li još hleba?</i> <span class="ru">Хлеб ещё есть?</span></li>
+        <li><i class="sr">Za pet minuta sam tu.</i> <span class="ru">Буду через пять минут.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h3>Dativ</h3>
+    <p class="lead">Кому и чему. Почти как в русском, плюс очень живые конструкции вроде <i class="sr">Hladno mi je</i> и <i class="sr">Curi mi nos</i> — им посвящена отдельная вкладка «Датив в речи».</p>
+    <ul>
+      <li><b>Кому</b>: <i class="sr">Pišem mami. Pomozi bratu. Daj Ani ključ.</i></li>
+      <li><b>Состояния</b>: <i class="sr">Ani je hladno. Detetu je dosadno.</i></li>
+      <li><b>Нравиться</b>: <i class="sr">Ani se sviđa Novi Sad.</i></li>
+    </ul>
+    <div class="trap"><b>Ловушка: «к врачу», «к маме»</b>Когда идёте к человеку, нужен <i class="sr">kod</i> + генитив: <i class="sr">Idem kod lekara. Idemo kod mame.</i> <i class="sr">ka</i> + датив — это физическое направление: <i class="sr">Pas trči ka meni.</i></div>
+  </section>
+
+  <section>
+    <h3>Instrumental</h3>
+    <p class="lead">С кем и чем. Главное отличие от русского: транспорт и инструменты идут без предлога.</p>
+    <ul>
+      <li><b>С кем</b>: <i class="sr">sa</i> + инструментал: <i class="sr">sa Anom, sa prijateljima, sa mnom.</i></li>
+      <li><b>Чем, на чём</b> — без <i class="sr">sa</i>: <i class="sr">pišem olovkom, idem autobusom, putujemo vozom, vozim se biciklom.</i></li>
+      <li><b>Где</b> с предлогами <i class="sr">pod, nad, pred, za, među</i>: <i class="sr">za stolom, pod stolom, pred zgradom.</i></li>
+      <li><b>Регулярно</b>: <i class="sr">nedeljom</i> — по воскресеньям, <i class="sr">ponedeljkom, noću, danju</i>.</li>
+      <li><b>Чем занимаешься</b>: <i class="sr">Čime se baviš? — Bavim se marketingom.</i></li>
+    </ul>
+    <div class="trap"><b>Ловушка</b>«Еду на велосипеде» — <i class="sr">Idem biciklom</i> (или <i class="sr">Vozim bicikl</i>). <i class="sr">Sa biciklom</i> значит «вместе с велосипедом».</div>
+  </section>
+
+  <section>
+    <h3>Lokativ</h3>
+    <p class="lead">Только с предлогами <i class="sr">u, na, o, po, pri</i>. Отвечает на «где?» и «о ком?».</p>
+    <ul>
+      <li><b>Где</b>: <i class="sr">u gradu, u Novom Sadu, na poslu, na moru.</i></li>
+      <li><b>О ком, о чём</b>: <i class="sr">Pričamo o tebi. Razmišljam o poslu.</i></li>
+      <li><b>По поверхности</b>: <i class="sr">šetamo po gradu, po kiši.</i></li>
+    </ul>
+    <p>Окончания совпадают с дативом: <i class="sr">gradu, ženi, selu</i>.</p>
+  </section>
+
+  <section>
+    <h3>Vokativ</h3>
+    <p class="lead">Звательный падеж в сербском живой: к человеку обращаются именно в нём.</p>
+    <p>Мужской род обычно получает <i class="sr">-e</i> (<i class="sr">brate, gospodine, Petre</i>) или <i class="sr">-u</i> после мягких (<i class="sr">prijatelju</i>), женский на -a — <i class="sr">-o</i> (<i class="sr">dušo, ženo</i>). Многие женские имена в речи не меняются: <i class="sr">Ana!</i></p>
+    <div class="live"><b>В живой речи</b>
+      <ul class="dlg">
+        <li><i class="sr">Brate, šta ima?</i> <span class="ru">Братан, как дела?</span></li>
+        <li><i class="sr">Izvinite, gospodine…</i> <span class="ru">Извините, мужчина…</span></li>
+        <li><i class="sr">Dušo, gde su ključevi?</i> <span class="ru">Дорогая, где ключи?</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="grp-h">Предлоги по падежам</div>
+
+  <section>
+    <h3>Какой предлог требует какого падежа</h3>
+    <div class="tbl"><table>
+      <tr><th>Падеж</th><th>Предлоги</th><th>Примеры</th></tr>
+      <tr><td>Генитив</td><td class="sr">od, do, iz, kod, bez, posle, nakon, pre, oko, blizu, pored, preko, iza, ispred, iznad, ispod, između, zbog, umesto, osim, tokom, s(a) «с чего»</td><td class="sr">iz Rusije, do centra, bez šećera, kod lekara, zbog posla, pored reke, posle posla</td></tr>
+      <tr><td>Датив</td><td class="sr">ka / k, prema, uprkos, zahvaljujući</td><td class="sr">ka centru, prema meni, uprkos kiši</td></tr>
+      <tr><td>Аккузатив</td><td class="sr">u, na (куда), za (для, через), kroz, po (за чем), niz, uz, pod, nad, pred (куда)</td><td class="sr">u grad, na posao, za tebe, kroz park, po hleb</td></tr>
+      <tr><td>Инструментал</td><td class="sr">s(a) «с кем», pod, nad, pred, za, među (где)</td><td class="sr">sa Anom, za stolom, pod mostom, pred zgradom</td></tr>
+      <tr><td>Локатив</td><td class="sr">u, na (где), o, po, pri</td><td class="sr">u gradu, na poslu, o tebi, po gradu</td></tr>
+    </table></div>
+    <p>Подробные разборы обманчивых предлогов (<i class="sr">pre, za, po, od, kod</i>) — во вкладке «Предлоги».</p>
+  </section>
+
+  <section>
+    <h3>Предлоги с двумя падежами</h3>
+    <p class="lead">Несколько предлогов меняют смысл вместе с падежом. Почти всегда это пара «куда» (аккузатив) и «где» (локатив или инструментал), как в русском «в город / в городе».</p>
+    <div class="tbl"><table>
+      <tr><th>Предлог</th><th>Куда / для чего</th><th>Где / с кем</th></tr>
+      <tr><td class="sr">u</td><td>+ A: <span class="sr">Idem u grad.</span></td><td>+ L: <span class="sr">Živim u gradu.</span></td></tr>
+      <tr><td class="sr">na</td><td>+ A: <span class="sr">Idem na posao.</span></td><td>+ L: <span class="sr">Na poslu sam.</span></td></tr>
+      <tr><td class="sr">pod</td><td>+ A: <span class="sr">Stavi to pod sto.</span></td><td>+ I: <span class="sr">Mačak je pod stolom.</span></td></tr>
+      <tr><td class="sr">za</td><td>+ A: <span class="sr">poklon za Anu, za dva dana</span></td><td>+ I: <span class="sr">Sedimo za stolom.</span></td></tr>
+      <tr><td class="sr">po</td><td>+ A: <span class="sr">Idem po hleb.</span></td><td>+ L: <span class="sr">Šetamo po gradu.</span></td></tr>
+      <tr><td class="sr">među</td><td>+ A: <span class="sr">Sedi među nas.</span></td><td>+ I: <span class="sr">Među nama…</span></td></tr>
+      <tr><td class="sr">s(a)</td><td>+ G «с чего»: <span class="sr">sa stola, sa posla</span></td><td>+ I «с кем»: <span class="sr">sa Anom</span></td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <h3>Где, куда, откуда</h3>
+    <p class="lead">Три вопроса — три пары предлогов. Если запомнить эту таблицу, большая часть ошибок с местом уйдёт.</p>
+    <div class="tbl"><table>
+      <tr><th></th><th>Где?</th><th>Куда?</th><th>Откуда?</th></tr>
+      <tr><td>Помещения, города</td><td class="sr">u gradu (L)</td><td class="sr">u grad (A)</td><td class="sr">iz grada (G)</td></tr>
+      <tr><td>Открытые места, события, учреждения</td><td class="sr">na poslu (L)</td><td class="sr">na posao (A)</td><td class="sr">sa posla (G)</td></tr>
+      <tr><td>Люди</td><td class="sr">kod lekara (G)</td><td class="sr">kod lekara (G)</td><td class="sr">od lekara (G)</td></tr>
+      <tr><td>Дом</td><td class="sr">kod kuće</td><td class="sr">kući</td><td class="sr">od kuće</td></tr>
+    </table></div>
+    <p>Логика пар: <i class="sr">u → iz</i>, <i class="sr">na → sa</i>, <i class="sr">kod → od</i>. <i class="sr">Bila sam u prodavnici, idem u apoteku, upravo sam izašla iz banke. Na poslu sam do pet, posle idem sa posla pravo kući.</i></p>
+    <p>Что с <i class="sr">u</i>, а что с <i class="sr">na</i> — во вкладке «Предлоги», раздел «u или na».</p>
+  </section>
+
+  <div class="grp-h">Прилагательные в падежах</div>
+
+  <section>
+    <h3>Окончания прилагательных</h3>
+    <p class="lead">Прилагательное повторяет род, число и падеж существительного: <i class="sr">u novom gradu, sa novim prijateljima, kod nove komšinice</i>.</p>
+    <div class="tbl"><table>
+      <tr><th>Падеж</th><th>м.р.</th><th>ср.р.</th><th>ж.р.</th><th>мн.ч.</th></tr>
+      <tr><td class="sr">N</td><td class="sr">nov(i) grad</td><td class="sr">novo selo</td><td class="sr">nova kuća</td><td class="sr">novi gradovi, nove kuće, nova sela</td></tr>
+      <tr><td class="sr">G</td><td class="sr">novog grada</td><td class="sr">novog sela</td><td class="sr">nove kuće</td><td class="sr">novih gradova</td></tr>
+      <tr><td class="sr">D</td><td class="sr">novom gradu</td><td class="sr">novom selu</td><td class="sr">novoj kući</td><td class="sr">novim gradovima</td></tr>
+      <tr><td class="sr">A</td><td class="sr">novi grad / novog brata</td><td class="sr">novo selo</td><td class="sr">novu kuću</td><td class="sr">nove gradove, nove kuće, nova sela</td></tr>
+      <tr><td class="sr">I</td><td class="sr">novim gradom</td><td class="sr">novim selom</td><td class="sr">novom kućom</td><td class="sr">novim gradovima</td></tr>
+      <tr><td class="sr">L</td><td class="sr">(u) novom gradu</td><td class="sr">novom selu</td><td class="sr">novoj kući</td><td class="sr">novim gradovima</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <h3>Как запомнить через русский</h3>
+    <p>Это русские окончания с «отрубленным» хвостом:</p>
+    <div class="tbl"><table>
+      <tr><th>По-русски</th><th>По-сербски</th><th>Где</th></tr>
+      <tr><td>нов<b>ого</b></td><td class="sr">nov<b>og</b></td><td>G м.р. и ср.р., A одушевлённых</td></tr>
+      <tr><td>нов<b>ому</b> / нов<b>ом</b></td><td class="sr">nov<b>om</b></td><td>D и L м.р. и ср.р.</td></tr>
+      <tr><td>нов<b>ым</b></td><td class="sr">nov<b>im</b></td><td>I м.р. и ср.р.</td></tr>
+      <tr><td>нов<b>ой</b> (кому, где)</td><td class="sr">nov<b>oj</b></td><td>D и L ж.р.</td></tr>
+      <tr><td>нов<b>ую</b></td><td class="sr">nov<b>u</b></td><td>A ж.р.</td></tr>
+      <tr><td>нов<b>ых</b></td><td class="sr">nov<b>ih</b></td><td>G мн.ч.</td></tr>
+      <tr><td>нов<b>ым</b> / нов<b>ыми</b> / нов<b>ых</b> (о ком)</td><td class="sr">nov<b>im(a)</b></td><td>D, I, L мн.ч.</td></tr>
+    </table></div>
+    <div class="trap"><b>Два места, где русский подводит</b>Генитив женского рода — <i class="sr">-e</i>, а не <i class="sr">-oj</i>: <i class="sr">kod nove komšinice</i>, <i class="sr">ove godine</i>. Инструментал женского рода — <i class="sr">-om</i>, а не <i class="sr">-oj</i>: <i class="sr">sa novom komšinicom</i>, <i class="sr">sa mojom ženom</i>.</div>
+  </section>
+
+  <section>
+    <h3>Мягкая основа и мелочи</h3>
+    <ul>
+      <li><b>o → e</b> после <i class="sr">č, ć, š, ž, đ, j, lj, nj</i>: <i class="sr">vrući → vrućeg, vrućem; poslednji → poslednjeg; naš → našeg, našem</i>. <i class="sr">Pijem čaj sa vrućim mlekom.</i></li>
+      <li><b>Местоимения склоняются так же</b>: <i class="sr">u ovom gradu, kod mog brata, sa tvojom sestrom, u našem stanu</i>.</li>
+      <li><b>Длинные варианты</b> <i class="sr">novoga, novome, novima</i> — то же самое, звучат в песнях и для ритма.</li>
+      <li><b>nov или novi</b>: <i class="sr">nov stan</i> — «какая-то новая квартира», <i class="sr">novi stan</i> — «та самая». В речи чаще <i class="sr">-i</i>.</li>
+      <li><b>С числами 2–4</b>: <i class="sr">dva nova stana, tri velika grada, dve nove kuće</i>.</li>
+    </ul>
+    <div class="live"><b>В живой речи</b>
+      <ul class="dlg">
+        <li><i class="sr">Živimo u malom stanu na Detelinari.</i> <span class="ru">Живём в маленькой квартире на Детелинаре.</span></li>
+        <li><i class="sr">Idem na pivo sa starim drugom.</i> <span class="ru">Иду на пиво со старым другом.</span></li>
+        <li><i class="sr">Ove godine idemo u Tajland.</i> <span class="ru">В этом году едем в Таиланд.</span></li>
+        <li><i class="sr">Daj mi onu crvenu majicu.</i> <span class="ru">Дай мне ту красную футболку.</span></li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<div class="panel" id="panel-predlozi" role="tabpanel" aria-labelledby="t-predlozi" hidden>
+  <h2>Предлоги</h2>
+  <p class="intro">Каждый предлог требует определённого падежа. Большинство совпадает с русскими, но несколько коротких слов значат совсем не то, что кажется.</p>
+
+
+  <div class="grp-h">По падежам</div>
+
+  <section>
+    <h3>Предлоги по падежам</h3>
+    <div class="tbl"><table>
+      <tr><th>Падеж</th><th>Предлоги</th><th>Примеры</th></tr>
+      <tr><td>Генитив</td><td class="sr">od, do, iz, kod, bez, posle, pre, oko, blizu, pored, preko, iza, ispred, iznad, ispod, između, zbog, umesto, osim, tokom, s(a) «с, со»</td><td class="sr">iz Rusije, do centra, bez šećera, zbog posla, pored reke</td></tr>
+      <tr><td>Датив</td><td class="sr">ka / k, prema, uprkos, zahvaljujući</td><td class="sr">ka centru, prema meni, uprkos kiši</td></tr>
+      <tr><td>Аккузатив</td><td class="sr">u, na (куда), kroz, za (для), po (за чем), niz, uz</td><td class="sr">u grad, kroz park, za tebe, po hleb</td></tr>
+      <tr><td>Инструментал</td><td class="sr">s(a), pod, nad, pred, za (где), među</td><td class="sr">sa Anom, za stolom, pred zgradom</td></tr>
+      <tr><td>Локатив</td><td class="sr">u, na (где), o, po, pri</td><td class="sr">u gradu, o tebi, po gradu</td></tr>
+    </table></div>
+    <p>Предлоги, которые стоят в двух падежах (<i class="sr">u, na, za, po, sa, među</i>), меняют смысл вместе с падежом. Разбор ниже.</p>
+  </section>
+
+  <div class="grp-h">Обманчивые предлоги</div>
+
+  <section>
+    <h3>pre — это «назад»</h3>
+    <p><i class="sr">pre</i> + генитив = «до, перед», а с промежутком времени — <b>«назад»</b>: <i class="sr">pre dva dana</i> — два дня назад. <i class="sr">pre ručka</i> — до обеда. Противоположное — <i class="sr">posle</i> или <i class="sr">nakon</i>: <i class="sr">posle posla</i>.</p>
+  </section>
+  <section>
+    <h3>za — три разных значения</h3>
+    <ul>
+      <li>+ аккузатив, «для»: <i class="sr">poklon za Anu.</i></li>
+      <li>+ аккузатив, «через (срок)»: <i class="sr">za dva dana</i> — через два дня.</li>
+      <li>+ инструментал, «за (где)»: <i class="sr">za stolom, za volanom.</i></li>
+      <li><i class="sr">za vreme</i> + генитив, «во время»: <i class="sr">za vreme ručka.</i></li>
+    </ul>
+  </section>
+  <section>
+    <h3>po — тоже три</h3>
+    <ul>
+      <li>+ аккузатив, «сходить за чем-то»: <i class="sr">Idem po hleb. Dođi po mene.</i> — Заедь за мной.</li>
+      <li>+ локатив, «по поверхности»: <i class="sr">šetamo po gradu.</i></li>
+      <li>«По-моему»: <i class="sr">po meni, po mom mišljenju.</i></li>
+    </ul>
+  </section>
+  <section>
+    <h3>od — не только «от»</h3>
+    <p>Ещё «из чего» (<i class="sr">od drveta</i>), «с какого момента» (<i class="sr">od ponedeljka</i>) и «уже столько-то» (<i class="sr">Živimo ovde od 2024.</i>).</p>
+  </section>
+  <section>
+    <h3>sa — с кем или откуда</h3>
+    <p>+ инструментал — «вместе с»: <i class="sr">sa Anom.</i> + генитив — «с поверхности»: <i class="sr">sa stola, sa posla.</i> Перед большинством слов можно короче — <i class="sr">s</i>: <i class="sr">s njim, s Anom</i>; перед <i class="sr">s, z, š, ž</i> и <i class="sr">mn</i> — только <i class="sr">sa</i>: <i class="sr">sa sestrom, sa mnom</i>.</p>
+  </section>
+
+  <div class="grp-h">Место и направление</div>
+
+  <section>
+    <h3>kod: «у» и «к» человеку</h3>
+    <p class="lead"><i class="sr">kod</i> + генитив — одно из самых частых слов в речи. Оно значит и «у кого-то», и «к кому-то».</p>
+    <ul>
+      <li>Где: <i class="sr">Bio sam kod lekara.</i> — Был у врача. <i class="sr">Večeramo kod Ane.</i></li>
+      <li>Куда: <i class="sr">Idem kod lekara.</i> — Иду к врачу. <i class="sr">Dođi kod nas.</i> — Приходи к нам.</li>
+      <li>Дома: <i class="sr">kod kuće</i> — дома, <i class="sr">kod nas</i> — у нас (и «в нашей стране»).</li>
+      <li>«У меня» в смысле «по-моему, в моём случае»: <i class="sr">Kod mene je to drugačije.</i></li>
+    </ul>
+    <div class="trap"><b>Ловушка</b>«У меня есть машина» — <i class="sr">Imam auto</i>, а не <s class="sr">Kod mene je auto</s> (последнее значит «машина сейчас у меня, я её взял»).</div>
+  </section>
+  <section>
+    <h3>u или na</h3>
+    <p class="lead">Оба значат «в / на». С аккузативом — куда, с локативом — где.</p>
+    <div class="tbl"><table>
+      <tr><th><span class="sr">na</span></th><th><span class="sr">u</span></th></tr>
+      <tr><td>Открытые места: <span class="sr">na ulici, na trgu, na moru, na plaži</span></td><td>Помещения: <span class="sr">u sobi, u prodavnici, u kafiću</span></td></tr>
+      <tr><td>События: <span class="sr">na koncertu, na sastanku, na rođendanu</span></td><td>Города и страны: <span class="sr">u Novom Sadu, u Srbiji</span></td></tr>
+      <tr><td>Многие учреждения: <span class="sr">na poslu, na fakultetu, na pošti, na pijaci, na šalteru</span></td><td>Другие учреждения: <span class="sr">u banci, u školi, u bolnici, u opštini</span></td></tr>
+    </table></div>
+    <p>Если сомневаетесь, вспомните русское: «на работе», «на почте», «на концерте» обычно совпадают. Расхождения стоит просто запоминать: <i class="sr">na fakultetu</i> (в университете), <i class="sr">na selu</i> (в деревне).</p>
+  </section>
+  <section>
+    <h3>među и između</h3>
+    <p class="lead"><i class="sr">među</i> идёт с двумя падежами, как русские «между / среди» в значении «где» и «куда».</p>
+    <div class="tbl"><table>
+      <tr><th>Вопрос</th><th>Падеж</th><th>Примеры</th></tr>
+      <tr><td>где?</td><td>инструментал</td><td class="sr">Među nama. Sedi među prijateljima. Među ostalim(a)…</td></tr>
+      <tr><td>куда?</td><td>аккузатив</td><td class="sr">Sedi među nas. Otišao je među ljude.</td></tr>
+    </table></div>
+    <p><i class="sr">između</i> всегда с генитивом и значит «между двумя точками»: <i class="sr">između kuće i škole</i>, <i class="sr">između nas</i>. Ориентир: <i class="sr">između</i> — «между A и B», <i class="sr">među</i> — «среди, в кругу».</p>
+  </section>
+</div>
+
+<div class="panel" id="panel-vremena" role="tabpanel" aria-labelledby="t-vremena" hidden>
   <h2>Времена</h2>
-  <p class="intro">В живой речи нужны четыре времени: настоящее (<i class="sr">prezent</i>), прошедшее (<i class="sr">perfekat</i>), будущее (<i class="sr">futur I</i>) и будущее в придаточных (<i class="sr">futur II</i>). Остальные встречаются в книгах и в нескольких устойчивых фразах.</p>
+  <p class="intro">В живой речи нужны четыре времени: настоящее (<i class="sr">prezent</i>), прошедшее (<i class="sr">perfekat</i>), будущее (<i class="sr">futur I</i>) и будущее в придаточных (<i class="sr">futur II</i>).</p>
 
+  <div class="grp-h">Настоящее</div>
   <section>
     <h3>Настоящее время: prezent</h3>
     <p class="lead">Глаголы делятся на три группы по окончанию формы «я»: <b>-am</b>, <b>-im</b>, <b>-em</b>. Узнав форму <i class="sr">ja</i>, вы почти всегда знаете остальные.</p>
@@ -187,17 +572,6 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
       <tr><td class="sr">oni</td><td class="sr">čitaju</td><td class="sr">govore</td><td class="sr">pišu</td><td class="sr">piju</td></tr>
     </table></div>
     <p>Форма <i class="sr">oni</i> пригодится дальше: от неё строится императив. Обратите внимание, что в группе -im она оканчивается на <b>-e</b> (<i class="sr">govore, rade, vole</i>), а не на -iju.</p>
-    <h4>Глагол biti: две формы</h4>
-    <div class="tbl"><table>
-      <tr><th></th><th>Краткая (энклитика)</th><th>Полная (ударная)</th><th>Отрицание</th></tr>
-      <tr><td class="sr">ja</td><td class="sr">sam</td><td class="sr">jesam</td><td class="sr">nisam</td></tr>
-      <tr><td class="sr">ti</td><td class="sr">si</td><td class="sr">jesi</td><td class="sr">nisi</td></tr>
-      <tr><td class="sr">on / ona</td><td class="sr">je</td><td class="sr">jeste</td><td class="sr">nije</td></tr>
-      <tr><td class="sr">mi</td><td class="sr">smo</td><td class="sr">jesmo</td><td class="sr">nismo</td></tr>
-      <tr><td class="sr">vi</td><td class="sr">ste</td><td class="sr">jeste</td><td class="sr">niste</td></tr>
-      <tr><td class="sr">oni</td><td class="sr">su</td><td class="sr">jesu</td><td class="sr">nisu</td></tr>
-    </table></div>
-    <p>Краткая форма — обычная: <i class="sr">Ja sam umoran.</i> Полная — в вопросах и для подтверждения: <i class="sr">Jesi li umoran? — Jesam.</i> По-русски связка «есть» не произносится, а в сербском она обязательна: <i class="sr">Ovo je moj stan</i>, а не <s class="sr">Ovo moj stan</s>.</p>
     <h4>Вопросы</h4>
     <p>Три равноправных способа: <i class="sr">Da li radiš sutra?</i> / <i class="sr">Radiš li sutra?</i> / разговорное <i class="sr">Je l' radiš sutra?</i> Последний вариант в речи самый частый.</p>
     <div class="live"><b>В живой речи</b>
@@ -209,7 +583,21 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
       <p>Настоящее время спокойно используют для планов на ближайшее будущее, как в русском: <i class="sr">Sutra idem kod lekara.</i></p>
     </div>
   </section>
+  <section>
+    <h3>Глагол biti: sam и jesam</h3>
+    <div class="tbl"><table>
+      <tr><th></th><th>Краткая (энклитика)</th><th>Полная (ударная)</th><th>Отрицание</th></tr>
+      <tr><td class="sr">ja</td><td class="sr">sam</td><td class="sr">jesam</td><td class="sr">nisam</td></tr>
+      <tr><td class="sr">ti</td><td class="sr">si</td><td class="sr">jesi</td><td class="sr">nisi</td></tr>
+      <tr><td class="sr">on / ona</td><td class="sr">je</td><td class="sr">jeste</td><td class="sr">nije</td></tr>
+      <tr><td class="sr">mi</td><td class="sr">smo</td><td class="sr">jesmo</td><td class="sr">nismo</td></tr>
+      <tr><td class="sr">vi</td><td class="sr">ste</td><td class="sr">jeste</td><td class="sr">niste</td></tr>
+      <tr><td class="sr">oni</td><td class="sr">su</td><td class="sr">jesu</td><td class="sr">nisu</td></tr>
+    </table></div>
+    <p>Краткая форма — обычная: <i class="sr">Ja sam umoran.</i> Полная — в вопросах и для подтверждения: <i class="sr">Jesi li umoran? — Jesam.</i> По-русски связка «есть» не произносится, а в сербском она обязательна: <i class="sr">Ovo je moj stan</i>, а не <s class="sr">Ovo moj stan</s>.</p>
+  </section>
 
+  <div class="grp-h">Прошедшее</div>
   <section>
     <h3>Прошедшее время: perfekat</h3>
     <p class="lead">Единственное прошедшее время, которое нужно для разговора. Строится как «я есть сделавший»: краткая форма <i class="sr">biti</i> + причастие на <b>-o / -la / -lo</b>.</p>
@@ -255,32 +643,129 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
     </div>
   </section>
 
+  <div class="grp-h">Будущее</div>
   <section>
-    <h3>Будущее время: futur I</h3>
-    <p class="lead">Краткая форма <i class="sr">hteti</i> + инфинитив: <i class="sr">ću, ćeš, će, ćemo, ćete, će</i>. Отрицание — <i class="sr">neću, nećeš, neće…</i></p>
+    <h3>Futur I: как образуется</h3>
+    <p class="lead">Будущее время — это краткая форма глагола <i class="sr">hteti</i> («хотеть») плюс инфинитив. Буквально «хочу работать» → «буду работать».</p>
+    <div class="tbl"><table>
+      <tr><th>Лицо</th><th>ću</th><th>С подлежащим</th><th>Глагол первым</th><th>Отрицание</th></tr>
+      <tr><td class="sr">ja</td><td class="sr">ću</td><td class="sr">Ja ću raditi.</td><td class="sr">Radiću.</td><td class="sr">Neću raditi.</td></tr>
+      <tr><td class="sr">ti</td><td class="sr">ćeš</td><td class="sr">Ti ćeš raditi.</td><td class="sr">Radićeš.</td><td class="sr">Nećeš raditi.</td></tr>
+      <tr><td class="sr">on / ona</td><td class="sr">će</td><td class="sr">Ona će raditi.</td><td class="sr">Radiće.</td><td class="sr">Neće raditi.</td></tr>
+      <tr><td class="sr">mi</td><td class="sr">ćemo</td><td class="sr">Mi ćemo raditi.</td><td class="sr">Radićemo.</td><td class="sr">Nećemo raditi.</td></tr>
+      <tr><td class="sr">vi</td><td class="sr">ćete</td><td class="sr">Vi ćete raditi.</td><td class="sr">Radićete.</td><td class="sr">Nećete raditi.</td></tr>
+      <tr><td class="sr">oni</td><td class="sr">će</td><td class="sr">Oni će raditi.</td><td class="sr">Radiće.</td><td class="sr">Neće raditi.</td></tr>
+    </table></div>
+    <p>Обе формы — «с подлежащим» и «глагол первым» — значат одно и то же. Разница только в порядке слов, разобранном ниже.</p>
+  </section>
+
+  <section>
+    <h3>Две формы: ću raditi и radiću</h3>
+    <p class="lead"><i class="sr">ću</i> — энклитика: она не может стоять первой в предложении и всегда занимает второе место. Отсюда две формы.</p>
+    <h4>Перед глаголом что-то есть → ću raditi</h4>
+    <p>Если предложение начинается с подлежащего, наречия, вопросительного слова или союза, <i class="sr">ću</i> встаёт сразу после этого первого слова, а инфинитив идёт дальше целиком:</p>
     <ul>
-      <li><b>ću стоит вторым</b>, с него нельзя начинать: <i class="sr">Ja ću raditi.</i> / <i class="sr">Sutra ću raditi.</i></li>
-      <li><b>Глагол первым — слитно</b>, -ti отпадает: <i class="sr">Radiću sutra.</i> <i class="sr">Biće hladno.</i> <i class="sr">Želeću.</i></li>
-      <li><b>На -ći — раздельно</b>: <i class="sr">Ići ću. Doći ćeš. Reći ćemo.</i></li>
-      <li><b>На -sti — s превращается в š</b>: <i class="sr">jesti → ješću, sesti → sešću, pasti → pašću.</i> <i class="sr">Pašće kiša.</i> — Пойдёт дождь.</li>
-      <li><b>Вариант с da</b> типичен для Сербии: <i class="sr">Ja ću da radim</i> = <i class="sr">Ja ću raditi</i>.</li>
-      <li><b>Вопрос и ответ</b>: <i class="sr">Hoćeš li doći? — Hoću.</i> / <i class="sr">Neću.</i></li>
-      <li><b>neću не энклитика</b>: <i class="sr">Neću raditi.</i> Слитной формы с отрицанием нет.</li>
+      <li><i class="sr">Ja ću kuvati večeras.</i> — Я буду готовить вечером.</li>
+      <li><i class="sr">Sutra ću raditi od kuće.</i> — Завтра буду работать из дома.</li>
+      <li><i class="sr">Šta ćeš raditi za vikend?</i> — Что будешь делать на выходных?</li>
+      <li><i class="sr">Mislim da će padati kiša.</i> — Думаю, будет дождь.</li>
+      <li><i class="sr">Ana će doći kasnije.</i> — Аня придёт позже.</li>
     </ul>
-    <p>Подробно о том, когда <i class="sr">radiću</i>, а когда <i class="sr">ću raditi</i>, — во вкладке «Энклитики».</p>
-    <div class="trap"><b>Главная ловушка для русскоговорящих</b>По-русски «сделаю» — это настоящее время совершенного вида. В сербском <i class="sr">uradim</i> само по себе будущим не является. «Завтра сделаю» — <i class="sr">Sutra ću uraditi</i>, а не <s class="sr">Sutra uradim</s>.</div>
+    <h4>Глагол стоит первым → radiću (слитно)</h4>
+    <p>Если начать с глагола, <i class="sr">ću</i> «прилипает» к нему: у инфинитива отпадает <i class="sr">-ti</i>, и всё пишется одним словом.</p>
+    <div class="tbl"><table>
+      <tr><th>Инфинитив</th><th>Слитно</th><th>Пример</th></tr>
+      <tr><td class="sr">raditi</td><td class="sr">radiću, radićeš…</td><td class="sr">Radiću sutra od kuće.</td></tr>
+      <tr><td class="sr">kuvati</td><td class="sr">kuvaću</td><td class="sr">Kuvaću večeras.</td></tr>
+      <tr><td class="sr">gledati</td><td class="sr">gledaćemo</td><td class="sr">Gledaćemo film posle večere.</td></tr>
+      <tr><td class="sr">videti</td><td class="sr">videćemo</td><td class="sr">Videćemo.</td></tr>
+      <tr><td class="sr">biti</td><td class="sr">biću, biće</td><td class="sr">Biće hladno. Biću kod kuće.</td></tr>
+      <tr><td class="sr">imati</td><td class="sr">imaću</td><td class="sr">Imaću vremena u petak.</td></tr>
+      <tr><td class="sr">javiti se</td><td class="sr">javiću se</td><td class="sr">Javiću ti se.</td></tr>
+    </table></div>
+    <h4>Одно предложение — два способа</h4>
+    <div class="tbl"><table>
+      <tr><th>Начинаем не с глагола</th><th>Начинаем с глагола</th></tr>
+      <tr><td class="sr">Sutra ću raditi.</td><td class="sr">Radiću sutra.</td></tr>
+      <tr><td class="sr">Ja ću kuvati večeras.</td><td class="sr">Kuvaću večeras.</td></tr>
+      <tr><td class="sr">Večeras ćemo gledati film.</td><td class="sr">Gledaćemo film večeras.</td></tr>
+      <tr><td class="sr">U petak ćemo ići na Dunav.</td><td class="sr">Ići ćemo na Dunav u petak.</td></tr>
+      <tr><td class="sr">Ja ću ti se javiti.</td><td class="sr">Javiću ti se.</td></tr>
+    </table></div>
+    <h4>Союзы i, a, ali не считаются</h4>
+    <p>После <i class="sr">i, a, ali, pa</i> отсчёт идёт так, будто их нет, поэтому глагол снова «первый»: <i class="sr">Idem u grad, a vratiću se brzo.</i> <i class="sr">Pokušaću, ali biće teško.</i> После запятой и придаточного — тоже заново: <i class="sr">Kad završim, javiću ti se.</i></p>
+    <p>А вот после <i class="sr">da, što, jer, kad, ako, ko, šta</i> слитной формы не бывает: <i class="sr">Ne znam šta ću raditi.</i> <i class="sr">Ne mogu, jer ću raditi.</i></p>
+    <div class="trap"><b>Две частые ошибки</b><s class="sr">Ću raditi sutra</s> — <i class="sr">ću</i> не может стоять первым. <s class="sr">Raditi ću</s> — так пишут в Хорватии (<i class="sr">radit ću</i>), а в Сербии слитно: <i class="sr">radiću</i>.</div>
+  </section>
+
+  <section>
+    <h3>Особые глаголы в будущем</h3>
+    <ul>
+      <li><b>На -ći</b> не сливаются, всегда раздельно: <i class="sr">Ići ću. Doći ćeš? Moći ćemo. Reći ću ti. Pomoći ću vam.</i></li>
+      <li><b>На -sti</b>: <i class="sr">s</i> перед <i class="sr">ć</i> становится <i class="sr">š</i>: <i class="sr">jesti → ješću, sesti → sešću, pasti → pašće</i>. <i class="sr">Pašće kiša.</i> — Пойдёт дождь. В речи их часто обходят через <i class="sr">da</i>: <i class="sr">Ja ću da jedem.</i></li>
+      <li><b>biti</b>: <i class="sr">biću, bićeš, biće…</i> — <i class="sr">Biće dobro.</i> — Всё будет хорошо.</li>
+      <li><b>moći</b>: будущее <i class="sr">moći ću</i> — <i class="sr">Moći ćemo da dođemo tek u osam.</i></li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Вариант с da: ja ću da radim</h3>
+    <p class="lead">В Сербии вместо инфинитива очень часто говорят <i class="sr">da</i> + настоящее время. Смысл тот же.</p>
+    <div class="tbl"><table>
+      <tr><th>С инфинитивом</th><th>С da</th></tr>
+      <tr><td class="sr">Ja ću raditi.</td><td class="sr">Ja ću da radim.</td></tr>
+      <tr><td class="sr">Šta ćeš raditi?</td><td class="sr">Šta ćeš da radiš?</td></tr>
+      <tr><td class="sr">Ja ću ti reći.</td><td class="sr">Ja ću da ti kažem.</td></tr>
+      <tr><td class="sr">Nećemo ići.</td><td class="sr">Nećemo da idemo.</td></tr>
+    </table></div>
+    <p>С <i class="sr">da</i> слитной формы нет: <i class="sr">ću</i> всё равно второе, поэтому нужно что-то перед ним (<i class="sr">Ja ću da…</i>, <i class="sr">Sutra ću da…</i>). Местоимения переезжают к второму глаголу: <i class="sr">Ja ću da ti kažem.</i></p>
+    <div class="tip"><b>Нюанс</b><i class="sr">Neću da idem</i> может значить и «не пойду», и «не хочу идти» — <i class="sr">hteti</i> ведь и есть «хотеть». Понятно по интонации и контексту.</div>
+  </section>
+
+  <section>
+    <h3>Вопросы, ответы, отрицание</h3>
+    <ul>
+      <li><b>Вопрос</b>: <i class="sr">Hoćeš li doći?</i> / <i class="sr">Da li ćeš doći?</i> Можно и со слитной формой, тогда <i class="sr">li</i> идёт сразу за глаголом: <i class="sr">Radićeš li sutra?</i> (кроме глаголов на <i class="sr">-ći</i>).</li>
+      <li><b>С вопросительным словом</b>: <i class="sr">Kad ćeš doći? Šta ćemo jesti? Gde ćete biti?</i></li>
+      <li><b>Короткий ответ</b> — полной формой: <i class="sr">Hoću.</i> / <i class="sr">Neću.</i></li>
+      <li><b>Отрицание</b>: <i class="sr">neću, nećeš, neće…</i> — не энклитика, им можно начинать, и слитной формы нет: <i class="sr">Neću raditi.</i> <i class="sr">Neće biti problema.</i></li>
+    </ul>
+    <p><i class="sr">Hoćeš</i> значит и «будешь», и «хочешь»: <i class="sr">Hoćeš li kafu?</i> — Хочешь кофе?</p>
+  </section>
+
+  <section>
+    <h3>Энклитики в будущем</h3>
+    <p class="lead">Местоимения идут сразу после <i class="sr">ću</i> в порядке «кому → кого → se».</p>
+    <div class="tbl"><table>
+      <tr><th>Глагол первым</th><th>Что-то перед глаголом</th><th>Перевод</th></tr>
+      <tr><td class="sr">Daću ti ga.</td><td class="sr">Ja ću ti ga dati.</td><td>Я тебе его дам.</td></tr>
+      <tr><td class="sr">Javiću ti se.</td><td class="sr">Sutra ću ti se javiti.</td><td>Напишу / позвоню тебе.</td></tr>
+      <tr><td class="sr">Vratiću se.</td><td class="sr">Brzo ću se vratiti.</td><td>Вернусь (скоро).</td></tr>
+      <tr><td class="sr">Videćemo se.</td><td class="sr">Sutra ćemo se videti.</td><td>Увидимся.</td></tr>
+      <tr><td class="sr">Svideće ti se.</td><td class="sr">Mislim da će ti se svideti.</td><td>Тебе понравится.</td></tr>
+      <tr><td class="sr">Reći ću ti.</td><td class="sr">Ja ću ti reći.</td><td>Я тебе скажу.</td></tr>
+      <tr><td class="sr">Pomoći ću vam.</td><td class="sr">Rado ću vam pomoći.</td><td>Помогу вам (с радостью).</td></tr>
+    </table></div>
+    <p>С отрицанием и вопросом: <i class="sr">Neću ti reći. Nećeš se pokajati. Hoćeš li mi pomoći? Da li ćeš mi ga dati?</i></p>
+    <div class="trap"><b>Ошибка русскоговорящих</b>Местоимение перед <i class="sr">ću</i>, как в русском «я тебе скажу»: <s class="sr">Ja ti ću reći</s> → <i class="sr">Ja ću ti reći</i>.</div>
+  </section>
+
+  <section>
+    <h3>Вид глагола в будущем</h3>
+    <p>Как в русском: несовершенный — процесс (<i class="sr">Pisaću pisma ceo dan</i> — буду писать), совершенный — результат (<i class="sr">Napisaću pismo</i> — напишу).</p>
+    <div class="trap"><b>Главная ловушка</b>По-русски «сделаю» — это настоящее время совершенного вида. В сербском <i class="sr">uradim</i> само по себе будущим не является. «Завтра сделаю» — <i class="sr">Sutra ću uraditi</i>, а не <s class="sr">Sutra uradim</s>. Форма <i class="sr">uradim</i> живёт только после <i class="sr">ako, kad, da</i>: <i class="sr">Kad uradim, javiću ti.</i></div>
     <div class="live"><b>В живой речи</b>
       <ul class="dlg">
         <li><i class="sr">— Javiću ti se kad stignem.</i> <span class="ru">— Напишу, когда доеду.</span></li>
         <li><i class="sr">— Videćemo.</i> <span class="ru">— Посмотрим (уклончиво).</span></li>
         <li><i class="sr">— Biće to.</i> <span class="ru">— Будет, не волнуйся.</span></li>
-        <li><i class="sr">— Šta ćeš da radiš za vikend?</i> <span class="ru">— Что будешь делать на выходных?</span></li>
+        <li><i class="sr">— Šta ćeš da radiš za vikend? — Ništa, odmaraću.</i> <span class="ru">— Что будешь делать на выходных? — Ничего, буду отдыхать.</span></li>
+        <li><i class="sr">— Hoćeš li stići do osam? — Hoću, sigurno.</i> <span class="ru">— Успеешь к восьми? — Успею, точно.</span></li>
       </ul>
     </div>
   </section>
-
   <section>
-    <h3>Будущее в придаточных: futur II</h3>
+    <h3>Futur II: после ako и kad</h3>
     <p class="lead">После <i class="sr">ako, kad(a), čim, dok, ukoliko</i>, когда речь о будущем, futur I не используется. Вместо него одно из двух.</p>
     <ol>
       <li><b>Futur II</b>: <i class="sr">budem, budeš, bude, budemo, budete, budu</i> + причастие на -o / -la. <i class="sr">Kad budem završio, zvaću te.</i></li>
@@ -297,15 +782,363 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
     </div>
   </section>
 
+  <div class="grp-h">Ещё</div>
   <section>
     <h3>Пара книжных форм, которые встретите</h3>
     <p>Активно учить <i class="sr">aorist</i> не нужно, но несколько фраз с ним звучат постоянно: <i class="sr">Odoh!</i> — Я пошёл! <i class="sr">Rekoh ti.</i> — Я же говорил. <i class="sr">Umreh od smeha.</i> — Чуть не умер со смеху.</p>
   </section>
 </div>
 
+<div class="panel" id="panel-zamenice" role="tabpanel" aria-labelledby="t-zamenice" hidden>
+  <h2>Местоимения</h2>
+  <p class="intro">У личных местоимений в нескольких падежах есть две формы: полная (ударная) и краткая (энклитика). Краткая — по умолчанию, полная — когда на местоимении смысловое ударение или после предлога.</p>
+
+
+  <div class="grp-h">Личные</div>
+
+  <section>
+    <h3>Личные местоимения по падежам</h3>
+    <div class="tbl"><table>
+      <tr><th></th><th>G / A</th><th>D</th><th>I</th><th>L</th></tr>
+      <tr><td class="sr">ja</td><td class="sr">mene / me</td><td class="sr">meni / mi</td><td class="sr">mnom</td><td class="sr">meni</td></tr>
+      <tr><td class="sr">ti</td><td class="sr">tebe / te</td><td class="sr">tebi / ti</td><td class="sr">tobom</td><td class="sr">tebi</td></tr>
+      <tr><td class="sr">on / ono</td><td class="sr">njega / ga</td><td class="sr">njemu / mu</td><td class="sr">njim</td><td class="sr">njemu</td></tr>
+      <tr><td class="sr">ona</td><td class="sr">nje / je</td><td class="sr">njoj / joj</td><td class="sr">njom</td><td class="sr">njoj</td></tr>
+      <tr><td class="sr">mi</td><td class="sr">nas / nas</td><td class="sr">nama / nam</td><td class="sr">nama</td><td class="sr">nama</td></tr>
+      <tr><td class="sr">vi</td><td class="sr">vas / vas</td><td class="sr">vama / vam</td><td class="sr">vama</td><td class="sr">vama</td></tr>
+      <tr><td class="sr">oni</td><td class="sr">njih / ih</td><td class="sr">njima / im</td><td class="sr">njima</td><td class="sr">njima</td></tr>
+    </table></div>
+    <p>Аккузатив <i class="sr">ona</i> полной формой — <i class="sr">nju</i> (<i class="sr">Volim nju</i>), а генитив — <i class="sr">nje</i> (<i class="sr">kod nje</i>). Краткая у обоих — <i class="sr">je</i>.</p>
+    <p>Омонимы: <i class="sr">mi</i> = «мы» и «мне», <i class="sr">ti</i> = «ты» и «тебе», <i class="sr">je</i> = «есть» и «её». Различаются по месту в предложении: <i class="sr">Mi idemo</i> и <i class="sr">Reci mi</i>.</p>
+    <h4>Полная форма нужна</h4>
+    <ol>
+      <li><b>При противопоставлении</b>: <i class="sr">Meni se sviđa, a tebi ne.</i></li>
+      <li><b>В начале предложения</b>: <i class="sr">Meni je hladno</i>, но не <s class="sr">Mi je hladno</s>. Нейтрально — <i class="sr">Hladno mi je</i>.</li>
+      <li><b>После предлога</b>: <i class="sr">kod mene, za tebe, sa njim, o njoj, bez nas.</i></li>
+      <li><b>Ответ одним словом</b>: <i class="sr">Kome si dao? — Njemu.</i></li>
+    </ol>
+    <div class="trap"><b>Ловушка: sa mnom</b>«Со мной» — <i class="sr">sa mnom</i>, не <s class="sr">s mnom</s>: перед <i class="sr">mn</i> нужна гласная.</div>
+    <div class="tip"><b>Датив</b>Краткие формы датива (<i class="sr">mi, ti, mu…</i>), конструкции вроде <i class="sr">Hladno mi je</i>, <i class="sr">Sviđa mi se</i> и посессивный датив (<i class="sr">Curi mi nos</i>) собраны в отдельной вкладке «Датив в речи».</div>
+  </section>
+
+  <div class="grp-h">Притяжательные</div>
+
+  <section>
+    <h3>Притяжательные: moj, tvoj, njegov, njen…</h3>
+    <div class="tbl"><table>
+      <tr><th>Чей</th><th>м.р.</th><th>ж.р.</th><th>ср.р.</th><th>мн.ч. (м. / ж.)</th></tr>
+      <tr><td>мой</td><td class="sr">moj</td><td class="sr">moja</td><td class="sr">moje</td><td class="sr">moji / moje</td></tr>
+      <tr><td>твой</td><td class="sr">tvoj</td><td class="sr">tvoja</td><td class="sr">tvoje</td><td class="sr">tvoji / tvoje</td></tr>
+      <tr><td>его</td><td class="sr">njegov</td><td class="sr">njegova</td><td class="sr">njegovo</td><td class="sr">njegovi / njegove</td></tr>
+      <tr><td>её</td><td class="sr">njen</td><td class="sr">njena</td><td class="sr">njeno</td><td class="sr">njeni / njene</td></tr>
+      <tr><td>наш</td><td class="sr">naš</td><td class="sr">naša</td><td class="sr">naše</td><td class="sr">naši / naše</td></tr>
+      <tr><td>ваш</td><td class="sr">vaš</td><td class="sr">vaša</td><td class="sr">vaše</td><td class="sr">vaši / vaše</td></tr>
+      <tr><td>их</td><td class="sr">njihov</td><td class="sr">njihova</td><td class="sr">njihovo</td><td class="sr">njihovi / njihove</td></tr>
+      <tr><td>свой</td><td class="sr">svoj</td><td class="sr">svoja</td><td class="sr">svoje</td><td class="sr">svoji / svoje</td></tr>
+    </table></div>
+    <div class="trap"><b>Главное отличие от русского</b>«Его, её, их» в русском не меняются, а в сербском согласуются с предметом, как прилагательные: <i class="sr">njegova žena</i> (его жена), <i class="sr">njen muž</i> (её муж), <i class="sr">sa njihovom decom</i> (с их детьми). Род выбирается по предмету, а не по владельцу: <i class="sr">Anin brat → njen brat</i>, <i class="sr">Pašina sestra → njegova sestra</i>.</div>
+    <h4>Склонение moj (так же tvoj, svoj)</h4>
+    <div class="tbl"><table>
+      <tr><th>Падеж</th><th>м.р. / ср.р.</th><th>ж.р.</th><th>мн.ч.</th></tr>
+      <tr><td class="sr">N</td><td class="sr">moj / moje</td><td class="sr">moja</td><td class="sr">moji, moje, moja</td></tr>
+      <tr><td class="sr">G</td><td class="sr">mog(a) / mojeg</td><td class="sr">moje</td><td class="sr">mojih</td></tr>
+      <tr><td class="sr">D / L</td><td class="sr">mom(e) / mojem</td><td class="sr">mojoj</td><td class="sr">mojim(a)</td></tr>
+      <tr><td class="sr">A</td><td class="sr">moj / mog (одуш.) / moje</td><td class="sr">moju</td><td class="sr">moje, moja</td></tr>
+      <tr><td class="sr">I</td><td class="sr">mojim</td><td class="sr">mojom</td><td class="sr">mojim(a)</td></tr>
+    </table></div>
+    <p><i class="sr">njegov, njen, njihov</i> склоняются как <i class="sr">nov</i> (<i class="sr">njegovog, njegovom, njegovim</i>), <i class="sr">naš, vaš</i> — с мягким <i class="sr">e</i>: <i class="sr">našeg, našem, našim</i>. Примеры: <i class="sr">kod mog brata, u našem stanu, sa njenom mamom, o vašim planovima.</i></p>
+    <h4>svoj</h4>
+    <p>Как русское «свой»: указывает на подлежащее. <i class="sr">Marko voli svoju ženu</i> — свою. <i class="sr">Marko voli njegovu ženu</i> — жену другого мужчины. С «я» и «ты» в разговоре проходят оба варианта: <i class="sr">Volim svoju ženu</i> / <i class="sr">Volim moju ženu</i>.</p>
+    <p>Ещё есть притяжательные от имён: <i class="sr">Anin</i> (Анин), <i class="sr">Pašin</i> (Пашин), <i class="sr">mamin, tatin</i>: <i class="sr">Anina torba, u maminoj kući</i>.</p>
+  </section>
+
+  <div class="grp-h">Весь, каждый, никто</div>
+
+  <section>
+    <h3>sav и ceo: весь, все, всё</h3>
+    <div class="tbl"><table>
+      <tr><th>Падеж</th><th>м.р. / ср.р.</th><th>ж.р.</th><th>мн.ч.</th></tr>
+      <tr><td class="sr">N</td><td class="sr">sav / sve</td><td class="sr">sva</td><td class="sr">svi, sve, sva</td></tr>
+      <tr><td class="sr">G</td><td class="sr">svega</td><td class="sr">sve</td><td class="sr">svih</td></tr>
+      <tr><td class="sr">D / L</td><td class="sr">svemu / svem</td><td class="sr">svoj</td><td class="sr">svima / svim</td></tr>
+      <tr><td class="sr">A</td><td class="sr">sav / sve</td><td class="sr">svu</td><td class="sr">sve, sva</td></tr>
+      <tr><td class="sr">I</td><td class="sr">svim</td><td class="sr">svom</td><td class="sr">svima / svim</td></tr>
+    </table></div>
+    <ul>
+      <li><i class="sr">sve</i> — всё: <i class="sr">Sve je u redu.</i> <i class="sr">Hvala za sve.</i></li>
+      <li><i class="sr">svi</i> — все (люди): <i class="sr">Svi su došli.</i> <i class="sr">Hvala svima!</i> <i class="sr">Pozdrav svima.</i></li>
+      <li><i class="sr">svih</i> — всех: <i class="sr">najbolji od svih</i>, <i class="sr">sa svih strana</i>.</li>
+      <li><i class="sr">svu</i> — всю: <i class="sr">svu noć</i>, <i class="sr">svu hranu</i>.</li>
+      <li><i class="sr">sve vreme</i> — всё время, <i class="sr">pre svega</i> — прежде всего, <i class="sr">uz sve to</i> — вдобавок.</li>
+    </ul>
+    <p><b>ceo / cela / celo</b> — «весь, целый» о чём-то одном и целом. С отрезками времени и предметами в речи звучит чаще, чем <i class="sr">sav</i>: <i class="sr">ceo dan</i> — весь день, <i class="sr">cela porodica</i> — вся семья, <i class="sr">celu noć</i> — всю ночь, <i class="sr">u celom gradu</i> — во всём городе.</p>
+    <div class="trap"><b>Ловушка</b>«Все» о людях — <i class="sr">svi</i>, а <i class="sr">sve</i> — это «всё» или «все» о предметах женского рода: <i class="sr">Sve su žene došle.</i> <i class="sr">Sve knjige su tu.</i></div>
+  </section>
+  <section>
+    <h3>Кто-то, никто, каждый: система ko / neko / niko / svako</h3>
+    <p class="lead">Как в русском, всё строится от вопросительного слова: <i class="sr">ne-</i> = «-то», <i class="sr">ni-</i> = «ни-», <i class="sr">sva-</i> = «все-, каждый».</p>
+    <div class="tbl"><table>
+      <tr><th>Вопрос</th><th>«-то»</th><th>«ни-»</th><th>«все-»</th></tr>
+      <tr><td class="sr">ko? кто</td><td class="sr">neko</td><td class="sr">niko</td><td class="sr">svako</td></tr>
+      <tr><td class="sr">šta? что</td><td class="sr">nešto</td><td class="sr">ništa</td><td class="sr">sve</td></tr>
+      <tr><td class="sr">gde? где</td><td class="sr">negde</td><td class="sr">nigde</td><td class="sr">svuda</td></tr>
+      <tr><td class="sr">kad? когда</td><td class="sr">nekad</td><td class="sr">nikad</td><td class="sr">uvek</td></tr>
+      <tr><td class="sr">kako? как</td><td class="sr">nekako</td><td class="sr">nikako</td><td class="sr">svakako</td></tr>
+      <tr><td class="sr">koji? какой</td><td class="sr">neki</td><td class="sr">nijedan</td><td class="sr">svaki</td></tr>
+      <tr><td class="sr">kakav? какой</td><td class="sr">nekakav</td><td class="sr">nikakav</td><td class="sr">svakakav</td></tr>
+      <tr><td class="sr">čiji? чей</td><td class="sr">nečiji</td><td class="sr">ničiji</td><td>—</td></tr>
+    </table></div>
+    <ul>
+      <li><b>Двойное отрицание</b>, как в русском: <i class="sr">Niko ne zna.</i> <i class="sr">Ništa nisam rekao.</i> <i class="sr">Nikad nisam bio tamo.</i></li>
+      <li><b>Предлог встаёт внутрь</b>: «ни с кем» — <i class="sr">ni sa kim</i>, «ни о чём» — <i class="sr">ni o čemu</i>, «ни у кого» — <i class="sr">ni kod koga</i>. Как в русском.</li>
+      <li><i class="sr">svakako</i> — не «всяко», а «обязательно, в любом случае»: <i class="sr">Svakako ću doći.</i></li>
+      <li><i class="sr">nekad</i> — и «когда-то», и «иногда»: <i class="sr">Nekad idemo na Dunav.</i></li>
+    </ul>
+    <h4>Склонение ko и šta</h4>
+    <div class="tbl"><table>
+      <tr><th>Падеж</th><th class="sr">ko</th><th class="sr">šta</th></tr>
+      <tr><td class="sr">G / A</td><td class="sr">koga</td><td class="sr">čega / šta</td></tr>
+      <tr><td class="sr">D / L</td><td class="sr">kome</td><td class="sr">čemu</td></tr>
+      <tr><td class="sr">I</td><td class="sr">kim / kime</td><td class="sr">čim / čime</td></tr>
+    </table></div>
+    <p>По тому же образцу <i class="sr">neko, niko, nešto, ništa</i>: <i class="sr">sa nekim, od nekoga, o nečemu, ni sa kim</i>.</p>
+  </section>
+
+  <div class="grp-h">Указательные и другие</div>
+
+  <section>
+    <h3>Другие полезные: ovaj, taj, onaj, isti, sam, drugi</h3>
+    <div class="tbl"><table>
+      <tr><th>Слово</th><th>Значение</th><th>Пример</th></tr>
+      <tr><td class="sr">ovaj, ova, ovo</td><td>этот (рядом со мной)</td><td class="sr">Ovaj stan je lep.</td></tr>
+      <tr><td class="sr">taj, ta, to</td><td>этот, тот (рядом с тобой; уже упомянутый)</td><td class="sr">Ko je taj čovek?</td></tr>
+      <tr><td class="sr">onaj, ona, ono</td><td>тот (далеко)</td><td class="sr">Vidiš onu zgradu?</td></tr>
+      <tr><td class="sr">isti</td><td>тот же, одинаковый</td><td class="sr">Isto kao juče.</td></tr>
+      <tr><td class="sr">sam, sama</td><td>сам; один</td><td class="sr">Sam sam to uradio. / Sama je kod kuće.</td></tr>
+      <tr><td class="sr">drugi</td><td>другой; второй</td><td class="sr">Neki drugi put.</td></tr>
+      <tr><td class="sr">oba / obe</td><td>оба / обе</td><td class="sr">Obe su tu.</td></tr>
+    </table></div>
+    <p>Указательные склоняются как прилагательные: <i class="sr">u ovom gradu, ove godine, sa tim čovekom, o toj stvari.</i> В разговоре <i class="sr">taj</i> часто используют там, где по-русски «этот».</p>
+    <div class="live"><b>В живой речи</b>
+      <ul class="dlg">
+        <li><i class="sr">— Čija je ovo jakna? — Moja.</i> <span class="ru">— Чья это куртка? — Моя.</span></li>
+        <li><i class="sr">Svaka čast!</i> <span class="ru">Респект, молодец!</span></li>
+        <li><i class="sr">Ništa strašno.</i> <span class="ru">Ничего страшного.</span></li>
+        <li><i class="sr">To je to.</i> <span class="ru">Вот и всё / то, что нужно.</span></li>
+        <li><i class="sr">Svako ima svoje.</i> <span class="ru">У каждого свои заботы.</span></li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<div class="panel" id="panel-poredjenje" role="tabpanel" aria-labelledby="t-poredjenje" hidden>
+  <h2>Сравнение: pozitiv, komparativ, superlativ</h2>
+  <p class="intro">Три степени: <i class="sr">lep</i> (красивый) → <i class="sr">lepši</i> (красивее) → <i class="sr">najlepši</i> (самый красивый). Превосходная всегда строится одинаково, вся сложность — в сравнительной.</p>
+
+
+  <div class="grp-h">Сравнительная степень</div>
+
+  <section>
+    <h3>Komparativ: три способа</h3>
+    <div class="tbl"><table>
+      <tr><th>Окончание</th><th>Когда</th><th>Примеры</th></tr>
+      <tr><td class="sr">-iji</td><td>большинство прилагательных, особенно многосложных</td><td class="sr">star → stariji, nov → noviji, pametan → pametniji, bogat → bogatiji, jeftin → jeftiniji</td></tr>
+      <tr><td class="sr">-ji</td><td>часть коротких; согласный смягчается</td><td class="sr">mlad → mlađi, jak → jači, tih → tiši, brz → brži, skup → skuplji, glup → gluplji, ljut → ljući</td></tr>
+      <tr><td class="sr">-ši</td><td>всего три слова</td><td class="sr">lep → lepši, lak → lakši, mek → mekši</td></tr>
+    </table></div>
+    <h4>Смягчение перед -ji</h4>
+    <p>Работает по той же схеме, что в русском «молодой → моложе», «тихий → тише»: <i class="sr">d → đ, t → ć, k → č, g → ž, h → š, z → ž, s → š, p → plj, b → blj, v → vlj</i>.</p>
+    <p>Прилагательные на <i class="sr">-ak, -ek, -ok</i> теряют суффикс: <i class="sr">kratak → kraći, blizak → bliži, nizak → niži, težak → teži, tanak → tanji, sladak → slađi, dalek → dalji</i>.</p>
+  </section>
+  <section>
+    <h3>Неправильные формы</h3>
+    <div class="tbl"><table>
+      <tr><th>Позитив</th><th>Компаратив</th><th>Суперлатив</th></tr>
+      <tr><td class="sr">dobar</td><td class="sr">bolji</td><td class="sr">najbolji</td></tr>
+      <tr><td class="sr">loš / zao</td><td class="sr">gori</td><td class="sr">najgori</td></tr>
+      <tr><td class="sr">velik</td><td class="sr">veći</td><td class="sr">najveći</td></tr>
+      <tr><td class="sr">mali</td><td class="sr">manji</td><td class="sr">najmanji</td></tr>
+      <tr><td class="sr">mnogo</td><td class="sr">više</td><td class="sr">najviše</td></tr>
+      <tr><td class="sr">malo</td><td class="sr">manje</td><td class="sr">najmanje</td></tr>
+    </table></div>
+    <p>Компаратив — обычное прилагательное и склоняется: <i class="sr">bolji stan, bolja kuća, bolje mesto, u boljem stanju</i>.</p>
+  </section>
+
+  <div class="grp-h">Превосходная степень</div>
+
+  <section>
+    <h3>Superlativ: naj- + komparativ</h3>
+    <p class="lead">Всегда <i class="sr">naj</i> + сравнительная степень, слитно: <i class="sr">najbolji, najlepši, najstariji, najjeftiniji</i>. Перед <i class="sr">j</i> получается двойное <i class="sr">jj</i>: <i class="sr">najjači, najjeftiniji</i>.</p>
+    <ul>
+      <li><i class="sr">najbolji restoran u gradu</i> — лучший ресторан в городе</li>
+      <li><i class="sr">jedan od najboljih</i> — один из лучших</li>
+      <li><i class="sr">najlepši od svih</i> — самый красивый из всех</li>
+      <li><i class="sr">Najbolje je da…</i> — Лучше всего…</li>
+    </ul>
+    <div class="trap"><b>Ловушка</b>«Самый лучший» — просто <i class="sr">najbolji</i>: отдельного слова «самый» в сравнении нет. Не путайте с <i class="sr">sam</i> = «сам, один»: <i class="sr">Sam sam kod kuće.</i> — Я дома один.</div>
+  </section>
+
+  <div class="grp-h">В предложении</div>
+
+  <section>
+    <h3>С чем сравниваем: od и nego</h3>
+    <div class="tbl"><table>
+      <tr><th>Конструкция</th><th>Падеж</th><th>Пример</th></tr>
+      <tr><td class="sr">od</td><td>генитив</td><td class="sr">Ana je mlađa od mene.</td></tr>
+      <tr><td class="sr">nego</td><td>тот же, что у первого</td><td class="sr">Ana je mlađa nego ja.</td></tr>
+    </table></div>
+    <p><i class="sr">nego</i> нужно, когда сравниваются не предметы, а действия или обстоятельства: <i class="sr">Bolje je ovde nego tamo.</i> <i class="sr">Više volim da kuvam nego da perem sudove.</i></p>
+  </section>
+  <section>
+    <h3>Полезные конструкции</h3>
+    <ul>
+      <li><b>Намного</b>: <i class="sr">mnogo / puno / daleko bolji.</i> <i class="sr">Mnogo je jeftinije.</i></li>
+      <li><b>Немного</b>: <i class="sr">malo bolji, malo skuplje.</i></li>
+      <li><b>Всё лучше и лучше</b>: <i class="sr">sve bolje i bolje.</i> <i class="sr">Sve više ljudi…</i></li>
+      <li><b>Чем…, тем…</b>: <i class="sr">Što pre, to bolje.</i> <i class="sr">Što više učim, to manje znam.</i></li>
+      <li><b>Как можно…</b>: <i class="sr">što pre</i> — как можно скорее, <i class="sr">što bolje možeš</i>.</li>
+      <li><b>Очень</b> (без сравнения): <i class="sr">veoma, vrlo, jako, baš</i> + позитив: <i class="sr">jako lepo, baš skupo.</i></li>
+    </ul>
+  </section>
+
+  <div class="grp-h">Наречия</div>
+
+  <section>
+    <h3>Наречия</h3>
+    <p class="lead">Наречия сравниваются так же, только окончание <i class="sr">-e</i>: <i class="sr">brzo → brže → najbrže</i>.</p>
+    <p>Самые нужные: <i class="sr">bolje, gore, brže, lakše, teže, skuplje, jeftinije, ranije, kasnije, češće</i>.</p>
+    <div class="live"><b>В живой речи</b>
+      <ul class="dlg">
+        <li><i class="sr">Bolje ikad nego nikad.</i> <span class="ru">Лучше поздно, чем никогда.</span></li>
+        <li><i class="sr">Može li malo jeftinije?</i> <span class="ru">А подешевле можно?</span></li>
+        <li><i class="sr">Najkasnije u petak.</i> <span class="ru">Не позже пятницы.</span></li>
+        <li><i class="sr">Sve je skuplje.</i> <span class="ru">Всё дорожает.</span></li>
+        <li><i class="sr">— Kako si? — Bolje, hvala.</i> <span class="ru">— Как ты? — Получше, спасибо.</span></li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<div class="panel" id="panel-nacini" role="tabpanel" aria-labelledby="t-nacini" hidden>
+  <h2>Наклонения</h2>
+  <p class="intro">Как просить и командовать (<i class="sr">imperativ</i>), как говорить «бы» (<i class="sr">potencijal</i>) и почему сербы так любят конструкцию с <i class="sr">da</i>.</p>
+
+
+  <div class="grp-h">Императив</div>
+
+  <section>
+    <h3>Как образуется императив</h3>
+    <p class="lead">Строится от формы <i class="sr">oni</i> настоящего времени. Типов окончаний всего два.</p>
+    <div class="tbl"><table>
+      <tr><th>oni</th><th>Правило</th><th>ti</th><th>mi</th><th>vi</th></tr>
+      <tr><td class="sr">čitaju</td><td>-ju после гласной → -j</td><td class="sr">čitaj</td><td class="sr">čitajmo</td><td class="sr">čitajte</td></tr>
+      <tr><td class="sr">daju</td><td>-j</td><td class="sr">daj</td><td class="sr">dajmo</td><td class="sr">dajte</td></tr>
+      <tr><td class="sr">piju</td><td>-j</td><td class="sr">pij</td><td class="sr">pijmo</td><td class="sr">pijte</td></tr>
+      <tr><td class="sr">rade</td><td>остальные → -i</td><td class="sr">radi</td><td class="sr">radimo</td><td class="sr">radite</td></tr>
+      <tr><td class="sr">pišu</td><td>-i</td><td class="sr">piši</td><td class="sr">pišimo</td><td class="sr">pišite</td></tr>
+      <tr><td class="sr">uzmu</td><td>-i</td><td class="sr">uzmi</td><td class="sr">uzmimo</td><td class="sr">uzmite</td></tr>
+      <tr><td class="sr">dođu</td><td>-i</td><td class="sr">dođi</td><td class="sr">dođimo</td><td class="sr">dođite</td></tr>
+    </table></div>
+    <ul>
+      <li><b>k → c, g → z</b> перед -i: <i class="sr">reći → reci, pomoći → pomozi, peći → peci, leći → lezi.</i></li>
+      <li><b>Исключения</b>: <i class="sr">biti → budi, jesti → jedi, videti → vidi, ići → idi, kazati → kaži, stati → stani, sesti → sedi</i> (сядь). У <i class="sr">moći</i> и <i class="sr">hteti</i> императива практически нет.</li>
+      <li><b>mi-форма</b> = «давайте»: <i class="sr">Idimo!</i> У типа -i совпадает с настоящим (<i class="sr">radimo</i>), понятно из контекста.</li>
+      <li><b>3-е лицо</b> — через <i class="sr">neka</i> + презенс: <i class="sr">Neka dođe.</i> — Пусть придёт. Отдельное <i class="sr">Neka!</i> = «Не надо, оставь».</li>
+      <li><b>vi-форма</b> — и множественная, и вежливая: <i class="sr">Izvolite, sedite.</i></li>
+    </ul>
+  </section>
+  <section>
+    <h3>Отрицание и энклитики</h3>
+    <ul>
+      <li><i class="sr">ne</i> + императив, обычно несовершенного вида: <i class="sr">Ne brini.</i> <i class="sr">Ne pričaj gluposti.</i></li>
+      <li><i class="sr">nemoj / nemojmo / nemojte + da</i> + презенс — мягче и очень часто: <i class="sr">Nemoj da brineš.</i> <i class="sr">Nemojte da zaboravite.</i></li>
+      <li>Предостеречь — <i class="sr">nemoj da</i> + совершенный вид: <i class="sr">Nemoj da padneš!</i> — Смотри не упади.</li>
+    </ul>
+    <p>Энклитики идут сразу за глаголом: <i class="sr">Daj mi ga. Reci mi. Javi mi se. Smiri se.</i> С отрицанием — после <i class="sr">ne / nemoj</i>: <i class="sr">Ne daj mu to.</i> <i class="sr">Nemoj da mi kažeš.</i></p>
+  </section>
+  <section>
+    <h3>Ошибки и живая речь</h3>
+    <div class="trap"><b>Типичные ошибки</b>«Пусть» → <i class="sr">neka</i> (<i class="sr">Neka čeka.</i>). «Не волнуйся» → <i class="sr">Ne brini</i>, не <s class="sr">Ne brinij</s>. «Скажи» → <i class="sr">reci</i>, не <s class="sr">reki</s>.</div>
+    <div class="live"><b>В живой речи</b>
+      <ul class="dlg">
+        <li><i class="sr">Ajde, požuri!</i> <span class="ru">Давай, быстрее!</span></li>
+        <li><i class="sr">Hajde da idemo.</i> / <i class="sr">Ajmo!</i> <span class="ru">Пошли!</span></li>
+        <li><i class="sr">Čekaj malo.</i> / <i class="sr">Sačekaj.</i> <span class="ru">Подожди минутку.</span></li>
+        <li><i class="sr">Izvolite!</i> <span class="ru">Пожалуйста / проходите / что желаете?</span></li>
+        <li><i class="sr">Pazi!</i> <span class="ru">Осторожно!</span></li>
+        <li><i class="sr">Ma pusti to.</i> <span class="ru">Да брось ты.</span></li>
+      </ul>
+      <p>В магазинах и учреждениях вместо голого императива естественнее <i class="sr">Možete li…?</i> или <i class="sr">Da li biste mogli…?</i></p>
+    </div>
+  </section>
+
+  <div class="grp-h">Условное наклонение</div>
+
+  <section>
+    <h3>Условное наклонение: potencijal («бы»)</h3>
+    <p class="lead">Краткая форма «бы» + причастие на -o / -la. Главное отличие от русского: <b>«бы» спрягается</b>.</p>
+    <div class="tbl"><table>
+      <tr><th></th><th>«бы»</th><th>Пример</th></tr>
+      <tr><td class="sr">ja</td><td class="sr">bih</td><td class="sr">Voleo bih. / Volela bih.</td></tr>
+      <tr><td class="sr">ti</td><td class="sr">bi</td><td class="sr">Da li bi došao?</td></tr>
+      <tr><td class="sr">on / ona</td><td class="sr">bi</td><td class="sr">Ona bi htela kafu.</td></tr>
+      <tr><td class="sr">mi</td><td class="sr">bismo</td><td class="sr">Išli bismo.</td></tr>
+      <tr><td class="sr">vi</td><td class="sr">biste</td><td class="sr">Da li biste mogli…?</td></tr>
+      <tr><td class="sr">oni</td><td class="sr">bi</td><td class="sr">Oni bi pomogli.</td></tr>
+    </table></div>
+    <p>Это энклитика, она стоит на втором месте: <i class="sr">Ja bih voleo</i> = <i class="sr">Voleo bih</i>. В разговоре часто слышно <i class="sr">ja bi</i> вместо <i class="sr">ja bih</i>, но это просторечие.</p>
+    <h4>Для чего нужно</h4>
+    <ul>
+      <li><b>Вежливая просьба и заказ</b> — самое частое: <i class="sr">Ja bih jednu kafu sa mlekom.</i> — Мне, пожалуйста, кофе с молоком. <i class="sr">Hteo bih da platim.</i> — Я хотел бы расплатиться.</li>
+      <li><b>Желание</b>: <i class="sr">Voleo bih da živim na moru.</i></li>
+      <li><b>Совет</b>: <i class="sr">Na tvom mestu, ja bih to uzeo.</i> — На твоём месте я бы взял.</li>
+    </ul>
+  </section>
+  <section>
+    <h3>Условия: «если» и «если бы»</h3>
+    <div class="tbl"><table>
+      <tr><th>Тип</th><th>Схема</th><th>Пример</th></tr>
+      <tr><td>Реальное</td><td><span class="sr">ako</span> + презенс, главное в будущем</td><td class="sr">Ako imam vremena, doći ću.</td></tr>
+      <tr><td>Нереальное (сейчас)</td><td><span class="sr">da</span> + презенс, главное с «бы»</td><td class="sr">Da imam vremena, došao bih.</td></tr>
+      <tr><td>Нереальное (прошлое)</td><td><span class="sr">da sam</span> + причастие</td><td class="sr">Da sam znao, ne bih došao.</td></tr>
+    </table></div>
+    <p>«Если бы я знал» — <i class="sr">Da sam znao</i>: здесь прошедшее время, а «бы» не нужно.</p>
+    <div class="live"><b>В живой речи</b>
+      <ul class="dlg">
+        <li><i class="sr">— Šta biste želeli?</i> <span class="ru">— Что желаете?</span></li>
+        <li><i class="sr">— Ja bih jedno točeno pivo, a ona bi limunadu.</i> <span class="ru">— Мне разливное пиво, а ей лимонад.</span></li>
+        <li><i class="sr">Bilo bi lepo.</i> <span class="ru">Было бы здорово.</span></li>
+        <li><i class="sr">Ne bih rekao.</i> <span class="ru">Я бы так не сказал / вряд ли.</span></li>
+        <li><i class="sr">Da znaš!</i> <span class="ru">Чтоб ты знал!</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="grp-h">Конструкция с da</div>
+
+  <section>
+    <h3>da + презенс вместо инфинитива</h3>
+    <p class="lead">Там, где в русском инфинитив, сербы в Сербии чаще говорят <i class="sr">da</i> + настоящее время. Инфинитив тоже правильный, но звучит книжнее.</p>
+    <div class="tbl"><table>
+      <tr><th>По-русски</th><th>Разговорно</th><th>Книжно</th></tr>
+      <tr><td>Я хочу пойти</td><td class="sr">Hoću da idem.</td><td class="sr">Hoću ići.</td></tr>
+      <tr><td>Мне надо работать</td><td class="sr">Moram da radim.</td><td class="sr">Moram raditi.</td></tr>
+      <tr><td>Можешь прийти?</td><td class="sr">Možeš li da dođeš?</td><td class="sr">Možeš li doći?</td></tr>
+      <tr><td>Я люблю готовить</td><td class="sr">Volim da kuvam.</td><td class="sr">Volim kuvati.</td></tr>
+      <tr><td>Начал учить сербский</td><td class="sr">Počeo sam da učim srpski.</td><td class="sr">Počeo sam učiti srpski.</td></tr>
+    </table></div>
+    <p>Глагол после <i class="sr">da</i> спрягается по лицу: <i class="sr">Hoćemo da idemo</i>, <i class="sr">Hoće da ide</i>. Если подлежащие разные, возможен только вариант с da: <i class="sr">Hoću da ti dođeš.</i> — Я хочу, чтобы ты пришёл.</p>
+    <p>Для цели есть ещё <i class="sr">da bih / da bi…</i> (буквально «чтобы»), оно звучит чуть формальнее: <i class="sr">Učimo srpski da bismo dobili stalni boravak.</i></p>
+    <div class="trap"><b>Ловушка</b>«Я хочу, чтобы ты пришёл» — <i class="sr">Hoću da dođeš</i>, а не калька <s class="sr">Hoću da bi ti došao</s>. После «хотеть, просить, требовать» нужно простое <i class="sr">da</i> + презенс.</div>
+  </section>
+</div>
+
 <div class="panel" id="panel-glagoli" role="tabpanel" aria-labelledby="t-glagoli" hidden>
   <h2>Глаголы по променам</h2>
   <p class="intro">Промену (тип спряжения) определяет форма «я»: <i class="sr">-im</i>, <i class="sr">-am</i> или <i class="sr">-em</i>. По инфинитиву её не угадать, поэтому глагол стоит учить сразу парой «инфинитив + ja».</p>
+
+
+  <div class="grp-h">Как устроено</div>
 
   <section>
     <h3>Как пользоваться таблицей</h3>
@@ -327,10 +1160,14 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
     <div class="tip"><b>Как образуются пары</b>Совершенный вид чаще всего получается приставкой (<i class="sr">pro-čitati, na-pisati, po-piti, u-raditi, s-kuvati</i>). Несовершенный от совершенного — суффиксом <i class="sr">-avati / -ivati</i> (<i class="sr">završiti → završavati, pokazati → pokazivati</i>). А <i class="sr">-nuti</i> делает одно короткое действие: <i class="sr">vikati → viknuti</i> (крикнуть).</div>
   </section>
 
+  <div class="grp-h">Глаголы движения</div>
+
   <section>
-    <h3>Глаголы движения</h3>
+    <h3>Как устроены глаголы движения</h3>
     <p class="lead">Работают почти как в русском: базовый глагол плюс приставка, которая задаёт направление. Главное отличие — одно <i class="sr">ići</i> значит и «идти», и «ехать»: <i class="sr">Idem u Beograd vozom.</i></p>
-    <h4>ići с приставками</h4>
+  </section>
+  <section>
+    <h3>ići с приставками</h3>
     <div class="tbl"><table>
       <tr><th>Приставка</th><th>Несов.</th><th>Сов.</th><th>Значение</th><th>Пример</th></tr>
       <tr><td>—</td><td class="sr">ići, idem</td><td class="sr">poći, pođem</td><td>идти, ехать / пойти</td><td class="sr">Idem kući.</td></tr>
@@ -346,7 +1183,9 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
       <tr><td class="sr">na-</td><td class="sr">nailaziti, nailazim</td><td class="sr">naići, naiđem</td><td>натыкаться / наткнуться, нагрянуть</td><td class="sr">Naišao sam na problem.</td></tr>
     </table></div>
     <p>Несовершенный вид везде на <i class="sr">-laziti</i>, и-промена. Совершенный — на <i class="sr">-ći</i>, е-промена.</p>
-    <h4>Нести, вести, везти</h4>
+  </section>
+  <section>
+    <h3>Нести, вести, везти</h3>
     <div class="tbl"><table>
       <tr><th>Несов.</th><th>Принести / привезти</th><th>Отнести / отвезти</th><th>Пример</th></tr>
       <tr><td class="sr">nositi, nosim<br><span class="ru">носить, нести</span></td><td class="sr">doneti, donesem</td><td class="sr">odneti, odnesem</td><td class="sr">Donesi mi čašu vode.</td></tr>
@@ -354,7 +1193,9 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
       <tr><td class="sr">voziti, vozim<br><span class="ru">возить; водить машину</span></td><td class="sr">dovesti, dovezem</td><td class="sr">odvesti, odvezem</td><td class="sr">Odvešću te do stanice.</td></tr>
     </table></div>
     <p><i class="sr">dovesti</i> и <i class="sr">odvesti</i> — омонимы: «привести» (<i class="sr">dovedem</i>) и «привезти» (<i class="sr">dovezem</i>). Различаются только в настоящем времени, остальное понятно из контекста.</p>
-    <h4>Другие</h4>
+  </section>
+  <section>
+    <h3>Другие глаголы движения</h3>
     <div class="tbl"><table>
       <tr><th>Несов.</th><th>Сов.</th><th>Значение</th></tr>
       <tr><td class="sr">vraćati se, vraćam se</td><td class="sr">vratiti se, vratim se</td><td>возвращаться / вернуться</td></tr>
@@ -383,7 +1224,11 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
     </div>
   </section>
 
-  <h3 class="vb-title">Все остальные глаголы</h3>
+  <div class="grp-h">Все остальные глаголы</div>
+
+  <section class="vb-wrap">
+    <h3>Таблица по променам</h3>
+    <p>Самые употребительные глаголы каждой промены, примерно по частоте. Поиск работает по-сербски (латиницей и кириллицей) и по-русски.</p>
   <div class="vb-tools">
     <label class="vb-search"><span>Найти глагол</span>
       <input type="search" id="vb-q" placeholder="по-сербски или по-русски" autocomplete="off">
@@ -396,6 +1241,7 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
   </div>
   <p class="vb-empty" id="vb-empty" hidden>Ничего не нашлось. Попробуйте другую форму слова.</p>
   <div class="vb-grid" id="vb-grid"></div>
+  </section>
 </div>
 
 <script>
@@ -454,713 +1300,413 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
 })();
 </script>
 
-<div class="panel" id="panel-nacini" role="tabpanel" aria-labelledby="t-nacini" hidden>
-  <h2>Наклонения</h2>
-  <p class="intro">Как просить и командовать (<i class="sr">imperativ</i>), как говорить «бы» (<i class="sr">potencijal</i>) и почему сербы так любят конструкцию с <i class="sr">da</i>.</p>
-
-  <section>
-    <h3>Императив</h3>
-    <p class="lead">Строится от формы <i class="sr">oni</i> настоящего времени. Типов окончаний всего два.</p>
-    <div class="tbl"><table>
-      <tr><th>oni</th><th>Правило</th><th>ti</th><th>mi</th><th>vi</th></tr>
-      <tr><td class="sr">čitaju</td><td>-ju после гласной → -j</td><td class="sr">čitaj</td><td class="sr">čitajmo</td><td class="sr">čitajte</td></tr>
-      <tr><td class="sr">daju</td><td>-j</td><td class="sr">daj</td><td class="sr">dajmo</td><td class="sr">dajte</td></tr>
-      <tr><td class="sr">piju</td><td>-j</td><td class="sr">pij</td><td class="sr">pijmo</td><td class="sr">pijte</td></tr>
-      <tr><td class="sr">rade</td><td>остальные → -i</td><td class="sr">radi</td><td class="sr">radimo</td><td class="sr">radite</td></tr>
-      <tr><td class="sr">pišu</td><td>-i</td><td class="sr">piši</td><td class="sr">pišimo</td><td class="sr">pišite</td></tr>
-      <tr><td class="sr">uzmu</td><td>-i</td><td class="sr">uzmi</td><td class="sr">uzmimo</td><td class="sr">uzmite</td></tr>
-      <tr><td class="sr">dođu</td><td>-i</td><td class="sr">dođi</td><td class="sr">dođimo</td><td class="sr">dođite</td></tr>
-    </table></div>
-    <ul>
-      <li><b>k → c, g → z</b> перед -i: <i class="sr">reći → reci, pomoći → pomozi, peći → peci, leći → lezi.</i></li>
-      <li><b>Исключения</b>: <i class="sr">biti → budi, jesti → jedi, videti → vidi, ići → idi, kazati → kaži, stati → stani, sesti → sedi</i> (сядь). У <i class="sr">moći</i> и <i class="sr">hteti</i> императива практически нет.</li>
-      <li><b>mi-форма</b> = «давайте»: <i class="sr">Idimo!</i> У типа -i совпадает с настоящим (<i class="sr">radimo</i>), понятно из контекста.</li>
-      <li><b>3-е лицо</b> — через <i class="sr">neka</i> + презенс: <i class="sr">Neka dođe.</i> — Пусть придёт. Отдельное <i class="sr">Neka!</i> = «Не надо, оставь».</li>
-      <li><b>vi-форма</b> — и множественная, и вежливая: <i class="sr">Izvolite, sedite.</i></li>
-    </ul>
-    <h4>Отрицание</h4>
-    <ul>
-      <li><i class="sr">ne</i> + императив, обычно несовершенного вида: <i class="sr">Ne brini.</i> <i class="sr">Ne pričaj gluposti.</i></li>
-      <li><i class="sr">nemoj / nemojmo / nemojte + da</i> + презенс — мягче и очень часто: <i class="sr">Nemoj da brineš.</i> <i class="sr">Nemojte da zaboravite.</i></li>
-      <li>Предостеречь — <i class="sr">nemoj da</i> + совершенный вид: <i class="sr">Nemoj da padneš!</i> — Смотри не упади.</li>
-    </ul>
-    <p>Энклитики идут сразу за глаголом: <i class="sr">Daj mi ga. Reci mi. Javi mi se. Smiri se.</i> С отрицанием — после <i class="sr">ne / nemoj</i>: <i class="sr">Ne daj mu to.</i> <i class="sr">Nemoj da mi kažeš.</i></p>
-    <div class="trap"><b>Типичные ошибки</b>«Пусть» → <i class="sr">neka</i> (<i class="sr">Neka čeka.</i>). «Не волнуйся» → <i class="sr">Ne brini</i>, не <s class="sr">Ne brinij</s>. «Скажи» → <i class="sr">reci</i>, не <s class="sr">reki</s>.</div>
-    <div class="live"><b>В живой речи</b>
-      <ul class="dlg">
-        <li><i class="sr">Ajde, požuri!</i> <span class="ru">Давай, быстрее!</span></li>
-        <li><i class="sr">Hajde da idemo.</i> / <i class="sr">Ajmo!</i> <span class="ru">Пошли!</span></li>
-        <li><i class="sr">Čekaj malo.</i> / <i class="sr">Sačekaj.</i> <span class="ru">Подожди минутку.</span></li>
-        <li><i class="sr">Izvolite!</i> <span class="ru">Пожалуйста / проходите / что желаете?</span></li>
-        <li><i class="sr">Pazi!</i> <span class="ru">Осторожно!</span></li>
-        <li><i class="sr">Ma pusti to.</i> <span class="ru">Да брось ты.</span></li>
-      </ul>
-      <p>В магазинах и учреждениях вместо голого императива естественнее <i class="sr">Možete li…?</i> или <i class="sr">Da li biste mogli…?</i></p>
-    </div>
-  </section>
-
-  <section>
-    <h3>Условное наклонение: potencijal («бы»)</h3>
-    <p class="lead">Краткая форма «бы» + причастие на -o / -la. Главное отличие от русского: <b>«бы» спрягается</b>.</p>
-    <div class="tbl"><table>
-      <tr><th></th><th>«бы»</th><th>Пример</th></tr>
-      <tr><td class="sr">ja</td><td class="sr">bih</td><td class="sr">Voleo bih. / Volela bih.</td></tr>
-      <tr><td class="sr">ti</td><td class="sr">bi</td><td class="sr">Da li bi došao?</td></tr>
-      <tr><td class="sr">on / ona</td><td class="sr">bi</td><td class="sr">Ona bi htela kafu.</td></tr>
-      <tr><td class="sr">mi</td><td class="sr">bismo</td><td class="sr">Išli bismo.</td></tr>
-      <tr><td class="sr">vi</td><td class="sr">biste</td><td class="sr">Da li biste mogli…?</td></tr>
-      <tr><td class="sr">oni</td><td class="sr">bi</td><td class="sr">Oni bi pomogli.</td></tr>
-    </table></div>
-    <p>Это энклитика, она стоит на втором месте: <i class="sr">Ja bih voleo</i> = <i class="sr">Voleo bih</i>. В разговоре часто слышно <i class="sr">ja bi</i> вместо <i class="sr">ja bih</i>, но это просторечие.</p>
-    <h4>Для чего нужно</h4>
-    <ul>
-      <li><b>Вежливая просьба и заказ</b> — самое частое: <i class="sr">Ja bih jednu kafu sa mlekom.</i> — Мне, пожалуйста, кофе с молоком. <i class="sr">Hteo bih da platim.</i> — Я хотел бы расплатиться.</li>
-      <li><b>Желание</b>: <i class="sr">Voleo bih da živim na moru.</i></li>
-      <li><b>Совет</b>: <i class="sr">Na tvom mestu, ja bih to uzeo.</i> — На твоём месте я бы взял.</li>
-    </ul>
-    <h4>Условия: реальные и нереальные</h4>
-    <div class="tbl"><table>
-      <tr><th>Тип</th><th>Схема</th><th>Пример</th></tr>
-      <tr><td>Реальное</td><td><span class="sr">ako</span> + презенс, главное в будущем</td><td class="sr">Ako imam vremena, doći ću.</td></tr>
-      <tr><td>Нереальное (сейчас)</td><td><span class="sr">da</span> + презенс, главное с «бы»</td><td class="sr">Da imam vremena, došao bih.</td></tr>
-      <tr><td>Нереальное (прошлое)</td><td><span class="sr">da sam</span> + причастие</td><td class="sr">Da sam znao, ne bih došao.</td></tr>
-    </table></div>
-    <p>«Если бы я знал» — <i class="sr">Da sam znao</i>: здесь прошедшее время, а «бы» не нужно.</p>
-    <div class="live"><b>В живой речи</b>
-      <ul class="dlg">
-        <li><i class="sr">— Šta biste želeli?</i> <span class="ru">— Что желаете?</span></li>
-        <li><i class="sr">— Ja bih jedno točeno pivo, a ona bi limunadu.</i> <span class="ru">— Мне разливное пиво, а ей лимонад.</span></li>
-        <li><i class="sr">Bilo bi lepo.</i> <span class="ru">Было бы здорово.</span></li>
-        <li><i class="sr">Ne bih rekao.</i> <span class="ru">Я бы так не сказал / вряд ли.</span></li>
-        <li><i class="sr">Da znaš!</i> <span class="ru">Чтоб ты знал!</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <h3>da + презенс вместо инфинитива</h3>
-    <p class="lead">Там, где в русском инфинитив, сербы в Сербии чаще говорят <i class="sr">da</i> + настоящее время. Инфинитив тоже правильный, но звучит книжнее.</p>
-    <div class="tbl"><table>
-      <tr><th>По-русски</th><th>Разговорно</th><th>Книжно</th></tr>
-      <tr><td>Я хочу пойти</td><td class="sr">Hoću da idem.</td><td class="sr">Hoću ići.</td></tr>
-      <tr><td>Мне надо работать</td><td class="sr">Moram da radim.</td><td class="sr">Moram raditi.</td></tr>
-      <tr><td>Можешь прийти?</td><td class="sr">Možeš li da dođeš?</td><td class="sr">Možeš li doći?</td></tr>
-      <tr><td>Я люблю готовить</td><td class="sr">Volim da kuvam.</td><td class="sr">Volim kuvati.</td></tr>
-      <tr><td>Начал учить сербский</td><td class="sr">Počeo sam da učim srpski.</td><td class="sr">Počeo sam učiti srpski.</td></tr>
-    </table></div>
-    <p>Глагол после <i class="sr">da</i> спрягается по лицу: <i class="sr">Hoćemo da idemo</i>, <i class="sr">Hoće da ide</i>. Если подлежащие разные, возможен только вариант с da: <i class="sr">Hoću da ti dođeš.</i> — Я хочу, чтобы ты пришёл.</p>
-    <p>Для цели есть ещё <i class="sr">da bih / da bi…</i> (буквально «чтобы»), оно звучит чуть формальнее: <i class="sr">Učimo srpski da bismo dobili stalni boravak.</i></p>
-    <div class="trap"><b>Ловушка</b>«Я хочу, чтобы ты пришёл» — <i class="sr">Hoću da dođeš</i>, а не калька <s class="sr">Hoću da bi ti došao</s>. После «хотеть, просить, требовать» нужно простое <i class="sr">da</i> + презенс.</div>
-  </section>
-</div>
-
-<div class="panel" id="panel-padezi" role="tabpanel" aria-labelledby="t-padezi" hidden>
-  <h2>Падежи</h2>
-  <p class="intro">Падежей семь: шесть русских плюс звательный (<i class="sr">vokativ</i>). Логика почти та же, что в русском, поэтому полезнее всего запомнить окончания и места, где сербский ведёт себя иначе.</p>
-
-  <section>
-    <h3>Обзор: вопросы и окончания</h3>
-    <div class="tbl"><table>
-      <tr><th>Падеж</th><th>Вопрос</th><th>м.р.: grad</th><th>ж.р.: žena</th><th>ср.р.: selo</th></tr>
-      <tr><td class="sr">nominativ</td><td class="sr">ko? šta?</td><td class="sr">grad</td><td class="sr">žena</td><td class="sr">selo</td></tr>
-      <tr><td class="sr">genitiv</td><td class="sr">koga? čega?</td><td class="sr">grada</td><td class="sr">žene</td><td class="sr">sela</td></tr>
-      <tr><td class="sr">dativ</td><td class="sr">kome? čemu?</td><td class="sr">gradu</td><td class="sr">ženi</td><td class="sr">selu</td></tr>
-      <tr><td class="sr">akuzativ</td><td class="sr">koga? šta?</td><td class="sr">grad / brata</td><td class="sr">ženu</td><td class="sr">selo</td></tr>
-      <tr><td class="sr">vokativ</td><td>обращение</td><td class="sr">grade / brate</td><td class="sr">ženo</td><td class="sr">selo</td></tr>
-      <tr><td class="sr">instrumental</td><td class="sr">s kim? čim?</td><td class="sr">gradom</td><td class="sr">ženom</td><td class="sr">selom</td></tr>
-      <tr><td class="sr">lokativ</td><td class="sr">o kome? gde?</td><td class="sr">gradu</td><td class="sr">ženi</td><td class="sr">selu</td></tr>
-    </table></div>
-    <h4>Множественное число</h4>
-    <div class="tbl"><table>
-      <tr><th>Падеж</th><th>м.р.</th><th>ж.р.</th><th>ср.р.</th></tr>
-      <tr><td class="sr">N / V</td><td class="sr">gradovi</td><td class="sr">žene</td><td class="sr">sela</td></tr>
-      <tr><td class="sr">G</td><td class="sr">gradova</td><td class="sr">žena</td><td class="sr">sela</td></tr>
-      <tr><td class="sr">A</td><td class="sr">gradove</td><td class="sr">žene</td><td class="sr">sela</td></tr>
-      <tr><td class="sr">D / I / L</td><td class="sr">gradovima</td><td class="sr">ženama</td><td class="sr">selima</td></tr>
-    </table></div>
-    <p>Хорошая новость: <b>датив, инструментал и локатив во множественном числе совпадают</b>: <i class="sr">sa prijateljima, prijateljima, o prijateljima</i>.</p>
-    <h4>Две особенности, которые слышны сразу</h4>
-    <ul>
-      <li><b>k, g, h → c, z, s</b> перед -i: <i class="sr">ruka → u ruci, knjiga → u knjizi, majka → majci</i>.</li>
-      <li><b>Беглое a</b>: <i class="sr">Novi Sad → u Novom Sadu</i>, <i class="sr">petak → u petku</i>.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Прилагательные в падежах</h3>
-    <p class="lead">Прилагательное повторяет род, число и падеж существительного: <i class="sr">u novom gradu, sa novim prijateljima, kod nove komšinice</i>. Окончания легко запомнить через русские: это русские окончания с «отрубленным» хвостом.</p>
-    <div class="tbl"><table>
-      <tr><th>Падеж</th><th>м.р.</th><th>ср.р.</th><th>ж.р.</th><th>мн.ч.</th></tr>
-      <tr><td class="sr">N</td><td class="sr">nov(i) grad</td><td class="sr">novo selo</td><td class="sr">nova kuća</td><td class="sr">novi gradovi, nove kuće, nova sela</td></tr>
-      <tr><td class="sr">G</td><td class="sr">novog grada</td><td class="sr">novog sela</td><td class="sr">nove kuće</td><td class="sr">novih gradova</td></tr>
-      <tr><td class="sr">D</td><td class="sr">novom gradu</td><td class="sr">novom selu</td><td class="sr">novoj kući</td><td class="sr">novim gradovima</td></tr>
-      <tr><td class="sr">A</td><td class="sr">novi grad / novog brata</td><td class="sr">novo selo</td><td class="sr">novu kuću</td><td class="sr">nove gradove, nove kuće, nova sela</td></tr>
-      <tr><td class="sr">I</td><td class="sr">novim gradom</td><td class="sr">novim selom</td><td class="sr">novom kućom</td><td class="sr">novim gradovima</td></tr>
-      <tr><td class="sr">L</td><td class="sr">(u) novom gradu</td><td class="sr">novom selu</td><td class="sr">novoj kući</td><td class="sr">novim gradovima</td></tr>
-    </table></div>
-    <h4>Как запомнить через русский</h4>
-    <div class="tbl"><table>
-      <tr><th>По-русски</th><th>По-сербски</th><th>Где</th></tr>
-      <tr><td>нов<b>ого</b></td><td class="sr">nov<b>og</b></td><td>G м.р. и ср.р., A одушевлённых</td></tr>
-      <tr><td>нов<b>ому</b> / нов<b>ом</b></td><td class="sr">nov<b>om</b></td><td>D и L м.р. и ср.р.</td></tr>
-      <tr><td>нов<b>ым</b></td><td class="sr">nov<b>im</b></td><td>I м.р. и ср.р.</td></tr>
-      <tr><td>нов<b>ой</b> (кому, где)</td><td class="sr">nov<b>oj</b></td><td>D и L ж.р.</td></tr>
-      <tr><td>нов<b>ую</b></td><td class="sr">nov<b>u</b></td><td>A ж.р.</td></tr>
-      <tr><td>нов<b>ых</b></td><td class="sr">nov<b>ih</b></td><td>G мн.ч.</td></tr>
-      <tr><td>нов<b>ым</b> / нов<b>ыми</b> / нов<b>ых</b> (о ком)</td><td class="sr">nov<b>im(a)</b></td><td>D, I, L мн.ч.</td></tr>
-    </table></div>
-    <div class="trap"><b>Два места, где русский подводит</b>Генитив женского рода — <i class="sr">-e</i>, а не <i class="sr">-oj</i>: <i class="sr">kod nove komšinice</i>, <i class="sr">ove godine</i>. Инструментал женского рода — <i class="sr">-om</i>, а не <i class="sr">-oj</i>: <i class="sr">sa novom komšinicom</i>, <i class="sr">sa mojom ženom</i>.</div>
-    <h4>Мягкая основа: o → e</h4>
-    <p>После <i class="sr">č, ć, š, ž, đ, j, lj, nj</i> вместо <i class="sr">-og / -om</i> пишется <i class="sr">-eg / -em</i>: <i class="sr">vrući → vrućeg, vrućem; poslednji → poslednjeg; naš → našeg, našem; tuđ → tuđeg</i>. <i class="sr">Pijem čaj sa vrućim mlekom.</i></p>
-    <h4>Местоимения склоняются так же</h4>
-    <p><i class="sr">ovaj, taj, onaj, moj, tvoj, svoj, naš, vaš</i>: <i class="sr">u ovom gradu, kod mog brata, sa tvojom sestrom, u našem stanu</i>. У <i class="sr">moj / tvoj / svoj</i> есть короткие формы: <i class="sr">mog = mojeg, mom = mojem</i>.</p>
-    <h4>Мелочи</h4>
-    <ul>
-      <li><b>Длинные варианты</b> <i class="sr">novoga, novome, novima</i> — то же самое, звучат в песнях и для ритма. Писать и говорить можно короткие.</li>
-      <li><b>nov или novi</b> в именительном мужского рода: <i class="sr">nov stan</i> — «какая-то новая квартира», <i class="sr">novi stan</i> — «та самая новая». В речи чаще звучит <i class="sr">-i</i>. Только <i class="sr">-i</i> бывает у <i class="sr">mali</i> и прилагательных на <i class="sr">-ski, -čki, -nji</i>: <i class="sr">srpski, gradski, poslednji</i>.</li>
-      <li><b>С числами 2–4</b>: <i class="sr">dva nova stana, tri velika grada, dve nove kuće</i>.</li>
-      <li><b>Время в генитиве</b>: <i class="sr">ove godine</i> — в этом году, <i class="sr">prošle nedelje</i> — на прошлой неделе, <i class="sr">sledećeg meseca</i> — в следующем месяце.</li>
-    </ul>
-    <div class="live"><b>В живой речи</b>
-      <ul class="dlg">
-        <li><i class="sr">Živimo u malom stanu na Detelinari.</i> <span class="ru">Живём в маленькой квартире на Детелинаре.</span></li>
-        <li><i class="sr">Idem na pivo sa starim drugom.</i> <span class="ru">Иду на пиво со старым другом.</span></li>
-        <li><i class="sr">Ove godine idemo u Tajland.</i> <span class="ru">В этом году едем в Таиланд.</span></li>
-        <li><i class="sr">Daj mi onu crvenu majicu.</i> <span class="ru">Дай мне ту красную футболку.</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <h3>Nominativ и akuzativ</h3>
-    <p class="lead"><i class="sr">Nominativ</i> — подлежащее и словарная форма. <i class="sr">Akuzativ</i> — прямое дополнение и направление «куда».</p>
-    <ul>
-      <li>Одушевлённые мужского рода в аккузативе = генитив, как в русском: <i class="sr">Vidim brata.</i> Неодушевлённые = номинатив: <i class="sr">Vidim grad.</i></li>
-      <li><b>Куда?</b> — <i class="sr">u / na</i> + аккузатив: <i class="sr">Idem u grad. Idem na posao. Idemo na more.</i></li>
-      <li><b>Время</b>: <i class="sr">u ponedeljak, u petak, svaki dan, celu noć.</i></li>
-      <li><b>«Через» срок</b>: <i class="sr">za dva dana, za pet minuta.</i></li>
-      <li><b>«Для»</b>: <i class="sr">za tebe, za Anu.</i></li>
-      <li><b>«За чем-то сходить»</b>: <i class="sr">po</i> + аккузатив: <i class="sr">Idem po hleb.</i> — Схожу за хлебом.</li>
-    </ul>
-    <div class="trap"><b>Ловушка: «ждать» и «искать»</b>В русском бывает родительный (ждать автобуса, искать помощи). В сербском всегда аккузатив: <i class="sr">Čekam autobus.</i> <i class="sr">Tražim pomoć.</i></div>
-  </section>
-
-  <section>
-    <h3>Genitiv</h3>
-    <p class="lead">Самый «загруженный» падеж: принадлежность, количество, отсутствие и половина предлогов.</p>
-    <ul>
-      <li><b>Чей</b>: <i class="sr">stan mog brata, kraj filma, centar grada.</i></li>
-      <li><b>Сколько</b>: <i class="sr">malo vode, mnogo ljudi, čaša vina, kilo jabuka.</i></li>
-      <li><b>Нет чего</b>: <i class="sr">Nema hleba. Nema problema. Nemam vremena.</i></li>
-      <li><b>Даты</b>: <i class="sr">prvog maja, osamnaestog avgusta.</i></li>
-      <li><b>Предлоги</b>: <i class="sr">od, do, iz, kod, bez, posle, pre, oko, blizu, pored, preko, iza, ispred, zbog, umesto, osim, tokom</i> — подробнее во вкладке «Предлоги».</li>
-    </ul>
-    <h4>Числительные: 1, 2–4, 5+</h4>
-    <div class="tbl"><table>
-      <tr><th>Число</th><th>Форма</th><th>м.р.</th><th>ж.р.</th></tr>
-      <tr><td>1, 21, 31…</td><td>номинатив ед.ч.</td><td class="sr">jedan grad</td><td class="sr">jedna žena</td></tr>
-      <tr><td>2, 3, 4</td><td>«паукал»</td><td class="sr">dva grada</td><td class="sr">dve žene</td></tr>
-      <tr><td>5 и больше, 11–19</td><td>генитив мн.ч.</td><td class="sr">pet gradova</td><td class="sr">pet žena</td></tr>
-    </table></div>
-    <p>Паукал совпадает с генитивом единственного числа (<i class="sr">dva brata</i>) у мужского и среднего рода и выглядит как номинатив множественного у женского (<i class="sr">tri sestre</i>). Обратите внимание: <i class="sr">dva</i> (м., ср.) и <i class="sr">dve</i> (ж.).</p>
-    <div class="live"><b>В живой речи</b>
-      <ul class="dlg">
-        <li><i class="sr">Dve kafe i jednu vodu, molim.</i> <span class="ru">Два кофе и одну воду, пожалуйста.</span></li>
-        <li><i class="sr">Ima li još hleba?</i> <span class="ru">Хлеб ещё есть?</span></li>
-        <li><i class="sr">Nema veze.</i> <span class="ru">Ничего страшного / неважно.</span></li>
-        <li><i class="sr">Za pet minuta sam tu.</i> <span class="ru">Буду через пять минут.</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <h3>Dativ</h3>
-    <p class="lead">Кому и чему. Почти как в русском, плюс «посессивный датив» (<i class="sr">curi mi nos</i>) — о нём во вкладке «Местоимения».</p>
-    <ul>
-      <li><b>Кому</b>: <i class="sr">dati, reći, pisati, poslati, pokazati, objasniti, pomoći</i> — <i class="sr">Pišem mami. Pomozi bratu.</i></li>
-      <li><b>Состояния</b>: <i class="sr">Hladno mi je. Ani je dosadno.</i></li>
-      <li><b>Нравиться</b>: <i class="sr">Ani se sviđa Novi Sad.</i></li>
-      <li><b>Предлоги</b>: <i class="sr">ka / k</i> (по направлению к), <i class="sr">prema, uprkos, zahvaljujući</i>.</li>
-    </ul>
-    <div class="trap"><b>Ловушка: «к врачу», «к маме»</b>Когда идёте к человеку, в сербском <i class="sr">kod</i> + генитив, а не датив: <i class="sr">Idem kod lekara. Idemo kod mame.</i> <i class="sr">Ka</i> — это физическое направление: <i class="sr">Pas trči ka meni.</i></div>
-  </section>
-
-  <section>
-    <h3>Instrumental</h3>
-    <p class="lead">С кем и чем. Главное отличие от русского — транспорт и инструменты идут без предлога.</p>
-    <ul>
-      <li><b>С кем</b>: <i class="sr">sa</i> + инструментал: <i class="sr">sa Anom, sa prijateljima, sa mnom.</i></li>
-      <li><b>Чем, на чём</b> — без <i class="sr">sa</i>: <i class="sr">pišem olovkom, idem autobusom, putujemo vozom, vozim se biciklom.</i></li>
-      <li><b>Где</b> с предлогами <i class="sr">pod, nad, pred, za, među</i>: <i class="sr">za stolom, pod stolom, pred zgradom.</i></li>
-      <li><b>Регулярное время</b>: <i class="sr">nedeljom</i> — по воскресеньям, <i class="sr">ponedeljkom</i>, <i class="sr">noću</i>, <i class="sr">danju</i>.</li>
-      <li><b>Чем занимаешься</b>: <i class="sr">Čime se baviš? — Bavim se marketingom.</i></li>
-    </ul>
-    <div class="trap"><b>Ловушка</b>«Еду на велосипеде» — <i class="sr">Idem biciklom</i> (или <i class="sr">Vozim bicikl</i>). <i class="sr">Sa biciklom</i> значит «вместе с велосипедом», например катите его рядом.</div>
-  </section>
-
-  <section>
-    <h3>Lokativ</h3>
-    <p class="lead">Только с предлогами <i class="sr">u, na, o, po, pri</i>. Отвечает на «где?» и «о ком?».</p>
-    <ul>
-      <li><b>Где</b>: <i class="sr">u gradu, u Novom Sadu, na poslu, na moru.</i></li>
-      <li><b>О ком</b>: <i class="sr">Pričamo o tebi.</i></li>
-      <li><b>По</b> (поверхности): <i class="sr">šetamo po gradu, po kiši.</i></li>
-    </ul>
-    <h4>Где или куда: одна и та же пара предлогов</h4>
-    <div class="tbl"><table>
-      <tr><th></th><th>Куда? (аккузатив)</th><th>Где? (локатив)</th></tr>
-      <tr><td class="sr">u</td><td class="sr">Idem u grad.</td><td class="sr">Živim u gradu.</td></tr>
-      <tr><td class="sr">na</td><td class="sr">Idem na posao.</td><td class="sr">Na poslu sam.</td></tr>
-      <tr><td class="sr">na</td><td class="sr">Idemo na more.</td><td class="sr">Bili smo na moru.</td></tr>
-    </table></div>
-    <p>Как в русском «в город / в городе». Ориентир для <i class="sr">u</i> или <i class="sr">na</i>: <i class="sr">na</i> — открытые места, события и многие учреждения (<i class="sr">na poslu, na fakultetu, na pijaci, na koncertu, na pošti</i>), <i class="sr">u</i> — помещения и города (<i class="sr">u prodavnici, u banci, u školi, u Beogradu</i>). Районы Нови-Сада обычно с <i class="sr">na</i>: <i class="sr">na Limanu, na Detelinari</i>.</p>
-  </section>
-
-  <section>
-    <h3>Vokativ: обращение</h3>
-    <p class="lead">Звательный падеж в сербском живой и обязательный: к человеку обращаются в нём.</p>
-    <p>Мужской род обычно получает <i class="sr">-e</i> (<i class="sr">brate, gospodine, Petre</i>) или <i class="sr">-u</i> после мягких (<i class="sr">prijatelju</i>), женский на -a — <i class="sr">-o</i> (<i class="sr">dušo, ženo</i>). Многие женские имена в речи не меняются: <i class="sr">Ana!</i></p>
-    <div class="live"><b>В живой речи</b>
-      <ul class="dlg">
-        <li><i class="sr">Brate, šta ima?</i> <span class="ru">Братан, как дела? (дружеское, даже к малознакомым ровесникам)</span></li>
-        <li><i class="sr">Izvinite, gospodine…</i> <span class="ru">Извините, мужчина…</span></li>
-        <li><i class="sr">Dušo, gde su ključevi?</i> <span class="ru">Дорогая, где ключи?</span></li>
-        <li><i class="sr">Bože!</i> / <i class="sr">Bože moj!</i> <span class="ru">Боже!</span></li>
-      </ul>
-    </div>
-  </section>
-
-</div>
-
-<div class="panel" id="panel-zamenice" role="tabpanel" aria-labelledby="t-zamenice" hidden>
-  <h2>Местоимения</h2>
-  <p class="intro">У личных местоимений в нескольких падежах есть две формы: полная (ударная) и краткая (энклитика). Краткая — по умолчанию, полная — когда на местоимении смысловое ударение или после предлога.</p>
-
-  <section>
-    <h3>Личные местоимения по падежам</h3>
-    <div class="tbl"><table>
-      <tr><th></th><th>G / A</th><th>D</th><th>I</th><th>L</th></tr>
-      <tr><td class="sr">ja</td><td class="sr">mene / me</td><td class="sr">meni / mi</td><td class="sr">mnom</td><td class="sr">meni</td></tr>
-      <tr><td class="sr">ti</td><td class="sr">tebe / te</td><td class="sr">tebi / ti</td><td class="sr">tobom</td><td class="sr">tebi</td></tr>
-      <tr><td class="sr">on / ono</td><td class="sr">njega / ga</td><td class="sr">njemu / mu</td><td class="sr">njim</td><td class="sr">njemu</td></tr>
-      <tr><td class="sr">ona</td><td class="sr">nje / je</td><td class="sr">njoj / joj</td><td class="sr">njom</td><td class="sr">njoj</td></tr>
-      <tr><td class="sr">mi</td><td class="sr">nas / nas</td><td class="sr">nama / nam</td><td class="sr">nama</td><td class="sr">nama</td></tr>
-      <tr><td class="sr">vi</td><td class="sr">vas / vas</td><td class="sr">vama / vam</td><td class="sr">vama</td><td class="sr">vama</td></tr>
-      <tr><td class="sr">oni</td><td class="sr">njih / ih</td><td class="sr">njima / im</td><td class="sr">njima</td><td class="sr">njima</td></tr>
-    </table></div>
-    <p>Аккузатив <i class="sr">ona</i> полной формой — <i class="sr">nju</i> (<i class="sr">Volim nju</i>), а генитив — <i class="sr">nje</i> (<i class="sr">kod nje</i>). Краткая у обоих — <i class="sr">je</i>.</p>
-    <p>Омонимы: <i class="sr">mi</i> = «мы» и «мне», <i class="sr">ti</i> = «ты» и «тебе», <i class="sr">je</i> = «есть» и «её». Различаются по месту в предложении: <i class="sr">Mi idemo</i> и <i class="sr">Reci mi</i>.</p>
-    <h4>Полная форма нужна</h4>
-    <ol>
-      <li><b>При противопоставлении</b>: <i class="sr">Meni se sviđa, a tebi ne.</i></li>
-      <li><b>В начале предложения</b>: <i class="sr">Meni je hladno</i>, но не <s class="sr">Mi je hladno</s>. Нейтрально — <i class="sr">Hladno mi je</i>.</li>
-      <li><b>После предлога</b>: <i class="sr">kod mene, za tebe, sa njim, o njoj, bez nas.</i></li>
-      <li><b>Ответ одним словом</b>: <i class="sr">Kome si dao? — Njemu.</i></li>
-    </ol>
-    <div class="trap"><b>Ловушка: sa mnom</b>«Со мной» — <i class="sr">sa mnom</i>, не <s class="sr">s mnom</s>: перед <i class="sr">mn</i> нужна гласная.</div>
-  </section>
-
-  <section>
-    <h3>Датив: где он нужен</h3>
-    <ul>
-      <li><b>Кому</b>: <i class="sr">Pokaži mi. Pomozi mu. Objasniću vam.</i></li>
-      <li><b>Состояния</b>: <i class="sr">Hladno mi je. Dosadno mi je. Teško mi je. Muka mi je</i> (тошнит). <i class="sr">Žao mi je.</i> — Мне жаль.</li>
-      <li><b>Нравиться и нужно</b>: <i class="sr">Sviđa mi se. Treba mi pomoć. Trebaš mi.</i></li>
-      <li><b>Тёплое обращение</b>: <i class="sr">Kako si mi?</i> — Ну как ты, мой хороший?</li>
-    </ul>
-    <div class="trap"><b>Ловушки</b>«Мне 33 года» → <i class="sr">Imam 33 godine</i>, а не <s class="sr">Meni je 33</s>. «Мне нравится» → <i class="sr">Sviđa mi se</i>, а не <s class="sr">Meni sviđa</s>: без <i class="sr">se</i> нельзя. «Мне надо идти» → чаще <i class="sr">Moram da idem</i>.</div>
-  </section>
-
-  <section>
-    <h3>Посессивный датив: curi mi nos</h3>
-    <p class="lead">Краткий датив вместо «мой / твой / ваш». По-русски это чаще всего «у меня…». Звучит естественнее и теплее, чем <i class="sr">moj / vaš</i>.</p>
-    <div class="tbl"><table>
-      <tr><th>Тема</th><th>Примеры</th></tr>
-      <tr><td>Тело и самочувствие</td><td class="sr">Curi mi nos. Zapušen mi je nos. Trne mi noga. Zuji mi u ušima.</td></tr>
-      <tr><td>Семья и близкие</td><td class="sr">Žena mi se zove Anja. Kako ti je mama? Mačak nam se zove Timi.</td></tr>
-      <tr><td>Вещи</td><td class="sr">Pokvario mi se telefon. Ispao mi je ključ. Ukrali su mi bicikl. Ističe mi boravak.</td></tr>
-      <tr><td>Комплименты</td><td class="sr">Lepa ti je jakna. Stan vam je baš svetao. Kuća vam je prelepa.</td></tr>
-    </table></div>
-    <h4>Порядок слов</h4>
-    <p>Датив стоит вторым, <i class="sr">je</i> в конце цепочки: <i class="sr">Kuća vam je prelepa</i> = <i class="sr">Prelepa vam je kuća</i>. <i class="sr">Telefon mi se pokvario</i> = <i class="sr">Pokvario mi se telefon</i>. Нельзя: <s class="sr">Vam je kuća prelepa</s>.</p>
-    <h4>Датив или moj / vaš</h4>
-    <p>Притяжательное — когда важна сама принадлежность (<i class="sr">To je moja kuća, ne tvoja</i>) и в официальных текстах. Не дублируйте: <s class="sr">Moja mi je kuća</s>.</p>
-    <h4>Полная форма в посессивном дативе</h4>
-    <ol>
-      <li>Противопоставление: <i class="sr">Vama je kuća velika, a nama mala.</i></li>
-      <li>«И у меня тоже»: <i class="sr">I meni curi nos.</i> <i class="sr">Ni meni se ne sviđa.</i></li>
-      <li>Короткий вопрос или ответ: <i class="sr">Kome je pao telefon? — Meni.</i> <i class="sr">Meni je dobro, a tebi?</i></li>
-      <li>Выделение в начале: <i class="sr">Meni se uvek nešto pokvari.</i></li>
-    </ol>
-    <p>Обе формы сразу (<s class="sr">Meni mi curi nos</s>) — просторечие. Полная форма без контраста звучит с лишним нажимом.</p>
-    <div class="trap"><b>Главная ловушка: boleti, svrbeti, peći — с аккузативом</b><i class="sr">Boli me glava</i> (не <s class="sr">boli mi</s>), <i class="sr">Bole me leđa</i>, <i class="sr">Svrbi me ruka</i>, <i class="sr">Peče me grlo</i>. С акцентом: <i class="sr">Mene boli glava, a nju grlo.</i> Почти всё остальное про тело — с дативом.</div>
-    <div class="live"><b>В живой речи: у врача</b>
-      <ul class="dlg">
-        <li><i class="sr">— Šta vas muči?</i> <span class="ru">— Что вас беспокоит?</span></li>
-        <li><i class="sr">— Već tri dana me boli grlo i curi mi nos.</i> <span class="ru">— Уже три дня болит горло и течёт из носа.</span></li>
-        <li><i class="sr">— Imate li temperaturu?</i> <span class="ru">— Температура есть?</span></li>
-        <li><i class="sr">— Nemam, ali stalno mi je hladno.</i> <span class="ru">— Нет, но всё время знобит.</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <h3>Притяжательные: moj, tvoj, njegov, njen…</h3>
-    <div class="tbl"><table>
-      <tr><th>Чей</th><th>м.р.</th><th>ж.р.</th><th>ср.р.</th><th>мн.ч. (м. / ж.)</th></tr>
-      <tr><td>мой</td><td class="sr">moj</td><td class="sr">moja</td><td class="sr">moje</td><td class="sr">moji / moje</td></tr>
-      <tr><td>твой</td><td class="sr">tvoj</td><td class="sr">tvoja</td><td class="sr">tvoje</td><td class="sr">tvoji / tvoje</td></tr>
-      <tr><td>его</td><td class="sr">njegov</td><td class="sr">njegova</td><td class="sr">njegovo</td><td class="sr">njegovi / njegove</td></tr>
-      <tr><td>её</td><td class="sr">njen</td><td class="sr">njena</td><td class="sr">njeno</td><td class="sr">njeni / njene</td></tr>
-      <tr><td>наш</td><td class="sr">naš</td><td class="sr">naša</td><td class="sr">naše</td><td class="sr">naši / naše</td></tr>
-      <tr><td>ваш</td><td class="sr">vaš</td><td class="sr">vaša</td><td class="sr">vaše</td><td class="sr">vaši / vaše</td></tr>
-      <tr><td>их</td><td class="sr">njihov</td><td class="sr">njihova</td><td class="sr">njihovo</td><td class="sr">njihovi / njihove</td></tr>
-      <tr><td>свой</td><td class="sr">svoj</td><td class="sr">svoja</td><td class="sr">svoje</td><td class="sr">svoji / svoje</td></tr>
-    </table></div>
-    <div class="trap"><b>Главное отличие от русского</b>«Его, её, их» в русском не меняются, а в сербском согласуются с предметом, как прилагательные: <i class="sr">njegova žena</i> (его жена), <i class="sr">njen muž</i> (её муж), <i class="sr">sa njihovom decom</i> (с их детьми). Род выбирается по предмету, а не по владельцу: <i class="sr">Anin brat → njen brat</i>, <i class="sr">Pašina sestra → njegova sestra</i>.</div>
-    <h4>Склонение moj (так же tvoj, svoj)</h4>
-    <div class="tbl"><table>
-      <tr><th>Падеж</th><th>м.р. / ср.р.</th><th>ж.р.</th><th>мн.ч.</th></tr>
-      <tr><td class="sr">N</td><td class="sr">moj / moje</td><td class="sr">moja</td><td class="sr">moji, moje, moja</td></tr>
-      <tr><td class="sr">G</td><td class="sr">mog(a) / mojeg</td><td class="sr">moje</td><td class="sr">mojih</td></tr>
-      <tr><td class="sr">D / L</td><td class="sr">mom(e) / mojem</td><td class="sr">mojoj</td><td class="sr">mojim(a)</td></tr>
-      <tr><td class="sr">A</td><td class="sr">moj / mog (одуш.) / moje</td><td class="sr">moju</td><td class="sr">moje, moja</td></tr>
-      <tr><td class="sr">I</td><td class="sr">mojim</td><td class="sr">mojom</td><td class="sr">mojim(a)</td></tr>
-    </table></div>
-    <p><i class="sr">njegov, njen, njihov</i> склоняются как <i class="sr">nov</i> (<i class="sr">njegovog, njegovom, njegovim</i>), <i class="sr">naš, vaš</i> — с мягким <i class="sr">e</i>: <i class="sr">našeg, našem, našim</i>. Примеры: <i class="sr">kod mog brata, u našem stanu, sa njenom mamom, o vašim planovima.</i></p>
-    <h4>svoj</h4>
-    <p>Как русское «свой»: указывает на подлежащее. <i class="sr">Marko voli svoju ženu</i> — свою. <i class="sr">Marko voli njegovu ženu</i> — жену другого мужчины. С «я» и «ты» в разговоре проходят оба варианта: <i class="sr">Volim svoju ženu</i> / <i class="sr">Volim moju ženu</i>.</p>
-    <p>Ещё есть притяжательные от имён: <i class="sr">Anin</i> (Анин), <i class="sr">Pašin</i> (Пашин), <i class="sr">mamin, tatin</i>: <i class="sr">Anina torba, u maminoj kući</i>.</p>
-  </section>
-
-  <section>
-    <h3>sav и ceo: весь, все, всё</h3>
-    <div class="tbl"><table>
-      <tr><th>Падеж</th><th>м.р. / ср.р.</th><th>ж.р.</th><th>мн.ч.</th></tr>
-      <tr><td class="sr">N</td><td class="sr">sav / sve</td><td class="sr">sva</td><td class="sr">svi, sve, sva</td></tr>
-      <tr><td class="sr">G</td><td class="sr">svega</td><td class="sr">sve</td><td class="sr">svih</td></tr>
-      <tr><td class="sr">D / L</td><td class="sr">svemu / svem</td><td class="sr">svoj</td><td class="sr">svima / svim</td></tr>
-      <tr><td class="sr">A</td><td class="sr">sav / sve</td><td class="sr">svu</td><td class="sr">sve, sva</td></tr>
-      <tr><td class="sr">I</td><td class="sr">svim</td><td class="sr">svom</td><td class="sr">svima / svim</td></tr>
-    </table></div>
-    <ul>
-      <li><i class="sr">sve</i> — всё: <i class="sr">Sve je u redu.</i> <i class="sr">Hvala za sve.</i></li>
-      <li><i class="sr">svi</i> — все (люди): <i class="sr">Svi su došli.</i> <i class="sr">Hvala svima!</i> <i class="sr">Pozdrav svima.</i></li>
-      <li><i class="sr">svih</i> — всех: <i class="sr">najbolji od svih</i>, <i class="sr">sa svih strana</i>.</li>
-      <li><i class="sr">svu</i> — всю: <i class="sr">svu noć</i>, <i class="sr">svu hranu</i>.</li>
-      <li><i class="sr">sve vreme</i> — всё время, <i class="sr">pre svega</i> — прежде всего, <i class="sr">uz sve to</i> — вдобавок.</li>
-    </ul>
-    <p><b>ceo / cela / celo</b> — «весь, целый» о чём-то одном и целом. С отрезками времени и предметами в речи звучит чаще, чем <i class="sr">sav</i>: <i class="sr">ceo dan</i> — весь день, <i class="sr">cela porodica</i> — вся семья, <i class="sr">celu noć</i> — всю ночь, <i class="sr">u celom gradu</i> — во всём городе.</p>
-    <div class="trap"><b>Ловушка</b>«Все» о людях — <i class="sr">svi</i>, а <i class="sr">sve</i> — это «всё» или «все» о предметах женского рода: <i class="sr">Sve su žene došle.</i> <i class="sr">Sve knjige su tu.</i></div>
-  </section>
-
-  <section>
-    <h3>Кто-то, никто, каждый: система ko / neko / niko / svako</h3>
-    <p class="lead">Как в русском, всё строится от вопросительного слова: <i class="sr">ne-</i> = «-то», <i class="sr">ni-</i> = «ни-», <i class="sr">sva-</i> = «все-, каждый».</p>
-    <div class="tbl"><table>
-      <tr><th>Вопрос</th><th>«-то»</th><th>«ни-»</th><th>«все-»</th></tr>
-      <tr><td class="sr">ko? кто</td><td class="sr">neko</td><td class="sr">niko</td><td class="sr">svako</td></tr>
-      <tr><td class="sr">šta? что</td><td class="sr">nešto</td><td class="sr">ništa</td><td class="sr">sve</td></tr>
-      <tr><td class="sr">gde? где</td><td class="sr">negde</td><td class="sr">nigde</td><td class="sr">svuda</td></tr>
-      <tr><td class="sr">kad? когда</td><td class="sr">nekad</td><td class="sr">nikad</td><td class="sr">uvek</td></tr>
-      <tr><td class="sr">kako? как</td><td class="sr">nekako</td><td class="sr">nikako</td><td class="sr">svakako</td></tr>
-      <tr><td class="sr">koji? какой</td><td class="sr">neki</td><td class="sr">nijedan</td><td class="sr">svaki</td></tr>
-      <tr><td class="sr">kakav? какой</td><td class="sr">nekakav</td><td class="sr">nikakav</td><td class="sr">svakakav</td></tr>
-      <tr><td class="sr">čiji? чей</td><td class="sr">nečiji</td><td class="sr">ničiji</td><td>—</td></tr>
-    </table></div>
-    <ul>
-      <li><b>Двойное отрицание</b>, как в русском: <i class="sr">Niko ne zna.</i> <i class="sr">Ništa nisam rekao.</i> <i class="sr">Nikad nisam bio tamo.</i></li>
-      <li><b>Предлог встаёт внутрь</b>: «ни с кем» — <i class="sr">ni sa kim</i>, «ни о чём» — <i class="sr">ni o čemu</i>, «ни у кого» — <i class="sr">ni kod koga</i>. Как в русском.</li>
-      <li><i class="sr">svakako</i> — не «всяко», а «обязательно, в любом случае»: <i class="sr">Svakako ću doći.</i></li>
-      <li><i class="sr">nekad</i> — и «когда-то», и «иногда»: <i class="sr">Nekad idemo na Dunav.</i></li>
-    </ul>
-    <h4>Склонение ko и šta</h4>
-    <div class="tbl"><table>
-      <tr><th>Падеж</th><th class="sr">ko</th><th class="sr">šta</th></tr>
-      <tr><td class="sr">G / A</td><td class="sr">koga</td><td class="sr">čega / šta</td></tr>
-      <tr><td class="sr">D / L</td><td class="sr">kome</td><td class="sr">čemu</td></tr>
-      <tr><td class="sr">I</td><td class="sr">kim / kime</td><td class="sr">čim / čime</td></tr>
-    </table></div>
-    <p>По тому же образцу <i class="sr">neko, niko, nešto, ništa</i>: <i class="sr">sa nekim, od nekoga, o nečemu, ni sa kim</i>.</p>
-  </section>
-
-  <section>
-    <h3>Другие полезные: ovaj, taj, onaj, isti, sam, drugi</h3>
-    <div class="tbl"><table>
-      <tr><th>Слово</th><th>Значение</th><th>Пример</th></tr>
-      <tr><td class="sr">ovaj, ova, ovo</td><td>этот (рядом со мной)</td><td class="sr">Ovaj stan je lep.</td></tr>
-      <tr><td class="sr">taj, ta, to</td><td>этот, тот (рядом с тобой; уже упомянутый)</td><td class="sr">Ko je taj čovek?</td></tr>
-      <tr><td class="sr">onaj, ona, ono</td><td>тот (далеко)</td><td class="sr">Vidiš onu zgradu?</td></tr>
-      <tr><td class="sr">isti</td><td>тот же, одинаковый</td><td class="sr">Isto kao juče.</td></tr>
-      <tr><td class="sr">sam, sama</td><td>сам; один</td><td class="sr">Sam sam to uradio. / Sama je kod kuće.</td></tr>
-      <tr><td class="sr">drugi</td><td>другой; второй</td><td class="sr">Neki drugi put.</td></tr>
-      <tr><td class="sr">oba / obe</td><td>оба / обе</td><td class="sr">Obe su tu.</td></tr>
-    </table></div>
-    <p>Указательные склоняются как прилагательные: <i class="sr">u ovom gradu, ove godine, sa tim čovekom, o toj stvari.</i> В разговоре <i class="sr">taj</i> часто используют там, где по-русски «этот».</p>
-    <div class="live"><b>В живой речи</b>
-      <ul class="dlg">
-        <li><i class="sr">— Čija je ovo jakna? — Moja.</i> <span class="ru">— Чья это куртка? — Моя.</span></li>
-        <li><i class="sr">Svaka čast!</i> <span class="ru">Респект, молодец!</span></li>
-        <li><i class="sr">Ništa strašno.</i> <span class="ru">Ничего страшного.</span></li>
-        <li><i class="sr">To je to.</i> <span class="ru">Вот и всё / то, что нужно.</span></li>
-        <li><i class="sr">Svako ima svoje.</i> <span class="ru">У каждого свои заботы.</span></li>
-      </ul>
-    </div>
-  </section>
-</div>
-
-<div class="panel" id="panel-poredjenje" role="tabpanel" aria-labelledby="t-poredjenje" hidden>
-  <h2>Сравнение: pozitiv, komparativ, superlativ</h2>
-  <p class="intro">Три степени: <i class="sr">lep</i> (красивый) → <i class="sr">lepši</i> (красивее) → <i class="sr">najlepši</i> (самый красивый). Превосходная всегда строится одинаково, вся сложность — в сравнительной.</p>
-
-  <section>
-    <h3>Komparativ: три способа</h3>
-    <div class="tbl"><table>
-      <tr><th>Окончание</th><th>Когда</th><th>Примеры</th></tr>
-      <tr><td class="sr">-iji</td><td>большинство прилагательных, особенно многосложных</td><td class="sr">star → stariji, nov → noviji, pametan → pametniji, bogat → bogatiji, jeftin → jeftiniji</td></tr>
-      <tr><td class="sr">-ji</td><td>часть коротких; согласный смягчается</td><td class="sr">mlad → mlađi, jak → jači, tih → tiši, brz → brži, skup → skuplji, glup → gluplji, ljut → ljući</td></tr>
-      <tr><td class="sr">-ši</td><td>всего три слова</td><td class="sr">lep → lepši, lak → lakši, mek → mekši</td></tr>
-    </table></div>
-    <h4>Смягчение перед -ji</h4>
-    <p>Работает по той же схеме, что в русском «молодой → моложе», «тихий → тише»: <i class="sr">d → đ, t → ć, k → č, g → ž, h → š, z → ž, s → š, p → plj, b → blj, v → vlj</i>.</p>
-    <p>Прилагательные на <i class="sr">-ak, -ek, -ok</i> теряют суффикс: <i class="sr">kratak → kraći, blizak → bliži, nizak → niži, težak → teži, tanak → tanji, sladak → slađi, dalek → dalji</i>.</p>
-    <h4>Неправильные — выучить</h4>
-    <div class="tbl"><table>
-      <tr><th>Позитив</th><th>Компаратив</th><th>Суперлатив</th></tr>
-      <tr><td class="sr">dobar</td><td class="sr">bolji</td><td class="sr">najbolji</td></tr>
-      <tr><td class="sr">loš / zao</td><td class="sr">gori</td><td class="sr">najgori</td></tr>
-      <tr><td class="sr">velik</td><td class="sr">veći</td><td class="sr">najveći</td></tr>
-      <tr><td class="sr">mali</td><td class="sr">manji</td><td class="sr">najmanji</td></tr>
-      <tr><td class="sr">mnogo</td><td class="sr">više</td><td class="sr">najviše</td></tr>
-      <tr><td class="sr">malo</td><td class="sr">manje</td><td class="sr">najmanje</td></tr>
-    </table></div>
-    <p>Компаратив — обычное прилагательное и склоняется: <i class="sr">bolji stan, bolja kuća, bolje mesto, u boljem stanju</i>.</p>
-  </section>
-
-  <section>
-    <h3>Superlativ: naj- + komparativ</h3>
-    <p class="lead">Всегда <i class="sr">naj</i> + сравнительная степень, слитно: <i class="sr">najbolji, najlepši, najstariji, najjeftiniji</i>. Перед <i class="sr">j</i> получается двойное <i class="sr">jj</i>: <i class="sr">najjači, najjeftiniji</i>.</p>
-    <ul>
-      <li><i class="sr">najbolji restoran u gradu</i> — лучший ресторан в городе</li>
-      <li><i class="sr">jedan od najboljih</i> — один из лучших</li>
-      <li><i class="sr">najlepši od svih</i> — самый красивый из всех</li>
-      <li><i class="sr">Najbolje je da…</i> — Лучше всего…</li>
-    </ul>
-    <div class="trap"><b>Ловушка</b>«Самый лучший» — просто <i class="sr">najbolji</i>: отдельного слова «самый» в сравнении нет. Не путайте с <i class="sr">sam</i> = «сам, один»: <i class="sr">Sam sam kod kuće.</i> — Я дома один.</div>
-  </section>
-
-  <section>
-    <h3>С чем сравниваем: od и nego</h3>
-    <div class="tbl"><table>
-      <tr><th>Конструкция</th><th>Падеж</th><th>Пример</th></tr>
-      <tr><td class="sr">od</td><td>генитив</td><td class="sr">Ana je mlađa od mene.</td></tr>
-      <tr><td class="sr">nego</td><td>тот же, что у первого</td><td class="sr">Ana je mlađa nego ja.</td></tr>
-    </table></div>
-    <p><i class="sr">nego</i> нужно, когда сравниваются не предметы, а действия или обстоятельства: <i class="sr">Bolje je ovde nego tamo.</i> <i class="sr">Više volim da kuvam nego da perem sudove.</i></p>
-    <h4>Полезные конструкции</h4>
-    <ul>
-      <li><b>Намного</b>: <i class="sr">mnogo / puno / daleko bolji.</i> <i class="sr">Mnogo je jeftinije.</i></li>
-      <li><b>Немного</b>: <i class="sr">malo bolji, malo skuplje.</i></li>
-      <li><b>Всё лучше и лучше</b>: <i class="sr">sve bolje i bolje.</i> <i class="sr">Sve više ljudi…</i></li>
-      <li><b>Чем…, тем…</b>: <i class="sr">Što pre, to bolje.</i> <i class="sr">Što više učim, to manje znam.</i></li>
-      <li><b>Как можно…</b>: <i class="sr">što pre</i> — как можно скорее, <i class="sr">što bolje možeš</i>.</li>
-      <li><b>Очень</b> (без сравнения): <i class="sr">veoma, vrlo, jako, baš</i> + позитив: <i class="sr">jako lepo, baš skupo.</i></li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Наречия</h3>
-    <p class="lead">Наречия сравниваются так же, только окончание <i class="sr">-e</i>: <i class="sr">brzo → brže → najbrže</i>.</p>
-    <p>Самые нужные: <i class="sr">bolje, gore, brže, lakše, teže, skuplje, jeftinije, ranije, kasnije, češće</i>.</p>
-    <div class="live"><b>В живой речи</b>
-      <ul class="dlg">
-        <li><i class="sr">Bolje ikad nego nikad.</i> <span class="ru">Лучше поздно, чем никогда.</span></li>
-        <li><i class="sr">Može li malo jeftinije?</i> <span class="ru">А подешевле можно?</span></li>
-        <li><i class="sr">Najkasnije u petak.</i> <span class="ru">Не позже пятницы.</span></li>
-        <li><i class="sr">Sve je skuplje.</i> <span class="ru">Всё дорожает.</span></li>
-        <li><i class="sr">— Kako si? — Bolje, hvala.</i> <span class="ru">— Как ты? — Получше, спасибо.</span></li>
-      </ul>
-    </div>
-  </section>
-</div>
-
 <div class="panel" id="panel-enklitike" role="tabpanel" aria-labelledby="t-enklitike" hidden>
   <h2>Энклитики</h2>
-  <p class="intro">Энклитики — короткие безударные слова, которые не могут стоять сами по себе и «прилипают» к первому слову предложения. Это главное, что делает сербский порядок слов непривычным для русского уха.</p>
+  <p class="intro">Энклитики — короткие безударные слова, которые не могут стоять сами по себе и «прилипают» к первому слову предложения. Именно из-за них сербский порядок слов звучит непривычно для русского уха.</p>
+
+  <div class="grp-h">Основы</div>
 
   <section>
     <h3>Какие слова — энклитики</h3>
     <div class="tbl"><table>
-      <tr><th>Группа</th><th>Формы</th></tr>
-      <tr><td>Вопросительная частица</td><td class="sr">li</td></tr>
-      <tr><td>biti (есть)</td><td class="sr">sam, si, je, smo, ste, su</td></tr>
-      <tr><td>Будущее</td><td class="sr">ću, ćeš, će, ćemo, ćete, će</td></tr>
-      <tr><td>«Бы»</td><td class="sr">bih, bi, bi, bismo, biste, bi</td></tr>
-      <tr><td>Датив (кому)</td><td class="sr">mi, ti, mu, joj, nam, vam, im</td></tr>
-      <tr><td>Аккузатив / генитив (кого)</td><td class="sr">me, te, ga, je, nas, vas, ih</td></tr>
-      <tr><td>Возвратное</td><td class="sr">se</td></tr>
+      <tr><th>Группа</th><th>Формы</th><th>Пример</th></tr>
+      <tr><td>Вопросительная частица</td><td class="sr">li</td><td class="sr">Imaš li vremena?</td></tr>
+      <tr><td>biti (есть, прошедшее)</td><td class="sr">sam, si, je, smo, ste, su</td><td class="sr">Umoran sam. Bio sam tamo.</td></tr>
+      <tr><td>Будущее</td><td class="sr">ću, ćeš, će, ćemo, ćete, će</td><td class="sr">Sutra ću doći.</td></tr>
+      <tr><td>«Бы»</td><td class="sr">bih, bi, bi, bismo, biste, bi</td><td class="sr">Voleo bih.</td></tr>
+      <tr><td>Кому (датив)</td><td class="sr">mi, ti, mu, joj, nam, vam, im</td><td class="sr">Reci mi.</td></tr>
+      <tr><td>Кого (аккузатив)</td><td class="sr">me, te, ga, je (ju), nas, vas, ih</td><td class="sr">Vidim ga.</td></tr>
+      <tr><td>Возвратное</td><td class="sr">se</td><td class="sr">Vidimo se.</td></tr>
     </table></div>
-    <p>Не энклитики (могут стоять где угодно, даже первыми): отрицательные формы <i class="sr">nisam, neću, ne bih</i> и полные формы <i class="sr">jesam, hoću, meni, njega</i>.</p>
+    <p>Не энклитики — могут стоять где угодно, даже первыми: отрицательные формы (<i class="sr">nisam, neću, ne bih</i>), полные формы (<i class="sr">jesam, hoću, meni, njega</i>) и сама частица <i class="sr">ne</i>.</p>
   </section>
 
   <section>
     <h3>Правило второго места</h3>
-    <p class="lead">Вся цепочка энклитик стоит <b>после первого слова или первой группы слов</b> в предложении (точнее, в каждой его части).</p>
+    <p class="lead">Вся цепочка энклитик стоит <b>после первого слова или первой группы слов</b> в предложении.</p>
     <ul>
       <li><i class="sr">Ja sam ti rekao.</i> — после подлежащего</li>
       <li><i class="sr">Juče sam ti rekao.</i> — после наречия</li>
       <li><i class="sr">Rekao sam ti.</i> — после глагола</li>
       <li><i class="sr">Moj brat je lekar.</i> — после группы «мой брат»</li>
+      <li><i class="sr">Ana i ja smo bili u Beogradu.</i> — после группы «Аня и я»</li>
       <li><i class="sr">Mislim da si u pravu.</i> — после союза <i class="sr">da</i></li>
     </ul>
-    <p>Начинать с энклитики нельзя: <s class="sr">Sam ti rekao</s>, <s class="sr">Mi je hladno</s>.</p>
+    <p>Начинать с энклитики нельзя: <s class="sr">Sam ti rekao</s>, <s class="sr">Mi je hladno</s>, <s class="sr">Ga vidim</s>.</p>
     <h4>Что не считается первым словом</h4>
-    <p>Союзы <i class="sr">i, a, ali, pa, nego</i> энклитики пропускают и встают после следующего слова: <i class="sr">Idem u grad, a vratiću se brzo.</i> <i class="sr">Ali biće teško.</i></p>
-    <p>Придаточное или обращение отделяются запятой, и после них отсчёт начинается заново: <i class="sr">Kad završim, javiću ti se.</i> <i class="sr">Ana, zvaću te.</i></p>
+    <ul>
+      <li>Союзы <i class="sr">i, a, ali, pa, nego</i> — энклитики их пропускают: <i class="sr">Idem u grad, a vratiću se brzo.</i> <i class="sr">Ali biće teško.</i></li>
+      <li>После запятой, придаточного или обращения отсчёт начинается заново: <i class="sr">Kad završim, javiću ti se.</i> <i class="sr">Ana, zvaću te.</i></li>
+    </ul>
+    <p>Подробно о будущем времени (<i class="sr">radiću</i> или <i class="sr">ću raditi</i>) — во вкладке «Времена».</p>
   </section>
+
+  <div class="grp-h">Порядок и комбинации</div>
 
   <section>
     <h3>Порядок внутри цепочки</h3>
     <div class="chain"><span class="sr">li</span> → <span class="sr">sam / ću / bih…</span> → кому (<span class="sr">mi, ti, mu…</span>) → кого (<span class="sr">me, te, ga…</span>) → <span class="sr">se</span> → <span class="sr">je</span></div>
-    <p><i class="sr">je</i> (есть) — исключение: оно всегда в самом конце, в то время как остальные формы <i class="sr">biti</i> идут в начале.</p>
-    <div class="tbl"><table>
-      <tr><th>Пример</th><th>Разбор</th></tr>
-      <tr><td class="sr">Dao sam mu ga.</td><td><span class="sr">sam</span> → <span class="sr">mu</span> → <span class="sr">ga</span></td></tr>
-      <tr><td class="sr">Dala mi ga je.</td><td><span class="sr">mi</span> → <span class="sr">ga</span> → <span class="sr">je</span> (в конце)</td></tr>
-      <tr><td class="sr">Da li si mu rekao?</td><td><span class="sr">li</span> уже в <span class="sr">da li</span>, дальше <span class="sr">si</span> → <span class="sr">mu</span></td></tr>
-      <tr><td class="sr">Jesi li mu rekao?</td><td><span class="sr">jesi</span> — полная форма в начале, потом <span class="sr">li</span> → <span class="sr">mu</span></td></tr>
-      <tr><td class="sr">Svideo mi se.</td><td><span class="sr">mi</span> → <span class="sr">se</span></td></tr>
-      <tr><td class="sr">Svidelo mi se je.</td><td>ошибка: <span class="sr">se je</span> → просто <span class="sr">se</span></td></tr>
-      <tr><td class="sr">Pomogao bih ti.</td><td><span class="sr">bih</span> → <span class="sr">ti</span></td></tr>
-      <tr><td class="sr">Ja ću ti se javiti.</td><td><span class="sr">ću</span> → <span class="sr">ti</span> → <span class="sr">se</span></td></tr>
-    </table></div>
-  </section>
-
-  <section>
-    <h3>Будущее: radiću или ću raditi?</h3>
-    <p class="lead">Слитная форма нужна, когда глагол стоит первым в своей части предложения. Это вопрос порядка слов, а не смысла: <i class="sr">Radiću sutra</i> = <i class="sr">Sutra ću raditi</i>.</p>
-    <div class="tbl"><table>
-      <tr><th>Глагол первым</th><th>Что-то перед глаголом</th></tr>
-      <tr><td class="sr">Daću ti ga.</td><td class="sr">Ja ću ti ga dati. / Sutra ću ti ga dati.</td></tr>
-      <tr><td class="sr">Javiću ti se.</td><td class="sr">Ja ću ti se javiti.</td></tr>
-      <tr><td class="sr">Vratiću se.</td><td class="sr">Brzo ću se vratiti.</td></tr>
-      <tr><td class="sr">Videćemo se.</td><td class="sr">Sutra ćemo se videti.</td></tr>
-      <tr><td class="sr">Svideće ti se.</td><td class="sr">Mislim da će ti se svideti.</td></tr>
-      <tr><td class="sr">Reći ću ti.</td><td class="sr">Ja ću ti reći.</td></tr>
-    </table></div>
     <ul>
-      <li>После <i class="sr">da, što, jer, kad, ako, ko, šta</i> — всегда раздельно: <i class="sr">Ne znam šta ću raditi.</i> <i class="sr">Ne mogu, jer ću raditi.</i></li>
-      <li>После <i class="sr">i, a, ali</i> — слитно: <i class="sr">Pokušaću, ali biće teško.</i></li>
-      <li>Вопрос с глаголом первым: <i class="sr">Daćeš li mi ga?</i></li>
-      <li>Форма <i class="sr">Ja radiću</i> в речи встречается, но нейтральная норма — <i class="sr">Ja ću raditi</i>.</li>
+      <li><b>je (есть) всегда в самом конце</b>, хотя остальные формы <i class="sr">biti</i> идут в начале цепочки: <i class="sr">Dao sam mu ga</i>, но <i class="sr">Dao mu ga je</i>.</li>
+      <li><b>se + je → просто se</b>: <i class="sr">Vratio se</i> (не <s class="sr">vratio se je</s>), <i class="sr">Svidelo mi se.</i></li>
+      <li><b>je (её) + je (есть) → ju je</b>: «он её видел» — <i class="sr">Video ju je</i>, а не <s class="sr">video je je</s>.</li>
     </ul>
   </section>
 
   <section>
-    <h3>Отрицание и вопросы</h3>
+    <h3>Комбинации по временам</h3>
+    <p class="lead">Один и тот же набор «дать — ему — это» во всех временах.</p>
+    <div class="tbl"><table>
+      <tr><th>Время</th><th>Пример</th><th>Перевод</th></tr>
+      <tr><td>Настоящее</td><td class="sr">Dajem mu ga.</td><td>Я даю ему это.</td></tr>
+      <tr><td>Прошедшее, я</td><td class="sr">Dao sam mu ga.</td><td>Я дал ему это.</td></tr>
+      <tr><td>Прошедшее, она</td><td class="sr">Dala mu ga je.</td><td>Она дала ему это.</td></tr>
+      <tr><td>Прошедшее, с подлежащим</td><td class="sr">Ana mu ga je dala.</td><td>Аня дала ему это.</td></tr>
+      <tr><td>Будущее</td><td class="sr">Daću mu ga. / Ja ću mu ga dati.</td><td>Я дам ему это.</td></tr>
+      <tr><td>«Бы»</td><td class="sr">Dao bih mu ga.</td><td>Я бы дал ему это.</td></tr>
+      <tr><td>Императив</td><td class="sr">Daj mu ga.</td><td>Дай ему это.</td></tr>
+      <tr><td>Отрицание</td><td class="sr">Nisam mu ga dao. / Neću mu ga dati.</td><td>Не дал / не дам.</td></tr>
+      <tr><td>Вопрос</td><td class="sr">Da li si mu ga dao? / Jesi li mu ga dao?</td><td>Ты дал ему это?</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <h3>Частые сочетания</h3>
+    <div class="tbl"><table>
+      <tr><th>Сочетание</th><th>Примеры</th><th>Перевод</th></tr>
+      <tr><td class="sr">mi / ti… + se</td><td class="sr">Sviđa mi se. Javi mi se. Smeje ti se.</td><td>Мне нравится. Напиши мне. Он над тобой смеётся.</td></tr>
+      <tr><td class="sr">sam + mu / joj</td><td class="sr">Rekao sam mu. Pisala sam joj.</td><td>Я ему сказал. Я ей писала.</td></tr>
+      <tr><td class="sr">si + me / ga</td><td class="sr">Zvao si me? Jesi li ga video?</td><td>Ты мне звонил? Ты его видел?</td></tr>
+      <tr><td class="sr">mi + ga / je / ih</td><td class="sr">Pokaži mi ga. Daj mi je. Pošalji mi ih.</td><td>Покажи мне его. Дай мне её. Пришли мне их.</td></tr>
+      <tr><td class="sr">ću + ti + se</td><td class="sr">Javiću ti se. Ja ću ti se javiti.</td><td>Я тебе напишу / позвоню.</td></tr>
+      <tr><td class="sr">bih + ti</td><td class="sr">Rado bih ti pomogao.</td><td>Я бы с радостью тебе помог.</td></tr>
+      <tr><td class="sr">mi + je (есть)</td><td class="sr">Žao mi je. Drago mi je. Svejedno mi je.</td><td>Мне жаль. Очень приятно. Мне всё равно.</td></tr>
+      <tr><td class="sr">me + je (есть)</td><td class="sr">Strah me je. Sramota me je.</td><td>Мне страшно. Мне стыдно.</td></tr>
+      <tr><td class="sr">se + mi (желание)</td><td class="sr">Spava mi se. Ne da mi se.</td><td>Хочется спать. Неохота.</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <h3>Энклитики с da и инфинитивом</h3>
+    <p class="lead">При <i class="sr">da</i> + презенс местоимения стоят после <i class="sr">da</i>. При инфинитиве они «поднимаются» к первому глаголу.</p>
+    <div class="tbl"><table>
+      <tr><th>С da</th><th>С инфинитивом</th><th>Перевод</th></tr>
+      <tr><td class="sr">Moram da ti kažem nešto.</td><td class="sr">Moram ti reći nešto.</td><td>Должен тебе кое-что сказать.</td></tr>
+      <tr><td class="sr">Hoću da ga vidim.</td><td class="sr">Hoću ga videti.</td><td>Хочу его увидеть.</td></tr>
+      <tr><td class="sr">Možeš li da mi pomogneš?</td><td class="sr">Možeš li mi pomoći?</td><td>Можешь мне помочь?</td></tr>
+      <tr><td class="sr">Ne mogu da se setim.</td><td class="sr">Ne mogu se setiti.</td><td>Не могу вспомнить.</td></tr>
+    </table></div>
+    <p>В Сербии чаще звучит вариант с <i class="sr">da</i>, и он проще: местоимения просто идут за <i class="sr">da</i>, как в обычном предложении.</p>
+  </section>
+
+  <div class="grp-h">Вопросы и отрицание</div>
+
+  <section>
+    <h3>Вопросы: li, da li, je l'</h3>
+    <ul>
+      <li><b>li</b> встаёт сразу после первого слова, обычно глагола: <i class="sr">Imaš li vremena? Hoćeš li kafu? Možeš li mi pomoći? Jesi li gladan?</i></li>
+      <li><b>da li</b> — вопрос с самого начала, дальше обычный порядок: <i class="sr">Da li ti se sviđa? Da li si ga video? Da li ćeš doći?</i></li>
+      <li><b>je l'</b> (= <i class="sr">da li</i>) — разговорное, самое частое: <i class="sr">Je l' ti hladno? Je l' može? Je l' si video? Je l' idemo?</i></li>
+      <li><b>С вопросительным словом</b> <i class="sr">li</i> не нужно: <i class="sr">Gde si bio? Šta ti je? Kad ćeš doći?</i></li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Отрицание</h3>
     <p><i class="sr">ne</i> и отрицательные формы — не энклитики, поэтому цепочка идёт после них:</p>
     <ul>
-      <li><i class="sr">Nisam ti rekao.</i> <i class="sr">Neću ti ga dati.</i> <i class="sr">Ne sviđa mi se.</i></li>
-      <li><i class="sr">Ne bih ti to preporučio.</i></li>
+      <li><i class="sr">Nisam ti rekao.</i> <i class="sr">Nije mi se svidelo.</i></li>
+      <li><i class="sr">Neću ti ga dati.</i> <i class="sr">Ne bih ti to preporučio.</i></li>
+      <li><i class="sr">Ne sviđa mi se.</i> <i class="sr">Ne da mi se.</i></li>
     </ul>
-    <p>Вопросы с <i class="sr">li</i>: оно встаёт сразу после первого слова.</p>
-    <ul>
-      <li><i class="sr">Imaš li vremena?</i> <i class="sr">Hoćeš li kafu?</i> <i class="sr">Možeš li mi pomoći?</i></li>
-      <li><i class="sr">Da li ti se sviđa?</i> — <i class="sr">li</i> уже есть в <i class="sr">da li</i></li>
-      <li>Разговорное <i class="sr">je l'</i> (= <i class="sr">da li</i>): <i class="sr">Je l' ti hladno?</i> <i class="sr">Je l' može?</i> <i class="sr">Je l' si video?</i></li>
-    </ul>
-    <div class="trap"><b>Главная ошибка русскоговорящих</b>Ставить местоимение перед <i class="sr">ću / sam</i>, как в русском: <s class="sr">Ja ti ću reći</s> → <i class="sr">Ja ću ti reći</i>. <s class="sr">Ja mu sam dao</s> → <i class="sr">Ja sam mu dao</i>.</div>
+    <p><i class="sr">ne</i> сливается с несколькими глаголами: <i class="sr">nisam</i> (не есть), <i class="sr">neću</i> (не буду), <i class="sr">nemam</i> (не имею), <i class="sr">nema</i> (нет). С остальными пишется отдельно: <i class="sr">ne znam, ne mogu, ne volim</i>.</p>
+    <div class="trap"><b>Главная ошибка русскоговорящих</b>Ставить местоимение перед <i class="sr">sam / ću</i>, как в русском: <s class="sr">Ja mu sam dao</s> → <i class="sr">Ja sam mu dao</i>. <s class="sr">Ja ti ću reći</s> → <i class="sr">Ja ću ti reći</i>.</div>
+  </section>
+
+  <div class="grp-h">Короткие частицы</div>
+
+  <section>
+    <h3>Маленькие слова, которые всё время звучат</h3>
+    <div class="tbl"><table>
+      <tr><th>Частица</th><th>Значение</th><th>Примеры</th></tr>
+      <tr><td class="sr">li</td><td>вопрос</td><td class="sr">Znaš li? Je li tako?</td></tr>
+      <tr><td class="sr">zar</td><td>неужели, разве</td><td class="sr">Zar ne? Zar si već stigao?</td></tr>
+      <tr><td class="sr">je l'</td><td>разговорное «ли»; «да?» в конце</td><td class="sr">Je l' može? Dolaziš sutra, je l'?</td></tr>
+      <tr><td class="sr">pa</td><td>ну; так ведь; потом</td><td class="sr">Pa da! Pa šta? Prvo kafa, pa posao.</td></tr>
+      <tr><td class="sr">a</td><td>а; ну а</td><td class="sr">A ti? A gde si bio?</td></tr>
+      <tr><td class="sr">i</td><td>и; тоже; даже</td><td class="sr">I ja. I to je nešto.</td></tr>
+      <tr><td class="sr">ni</td><td>ни; тоже не</td><td class="sr">Ni ja. Ni reč.</td></tr>
+      <tr><td class="sr">ma</td><td>да ну, да ладно</td><td class="sr">Ma nema veze. Ma daj!</td></tr>
+      <tr><td class="sr">e</td><td>эй; ну (привлечь внимание)</td><td class="sr">E, slušaj… E, to je to.</td></tr>
+      <tr><td class="sr">bar / barem</td><td>хотя бы</td><td class="sr">Bar pokušaj.</td></tr>
+      <tr><td class="sr">baš</td><td>прям, именно</td><td class="sr">Baš lepo. Baš sad?</td></tr>
+      <tr><td class="sr">već</td><td>уже; а (после отрицания)</td><td class="sr">Već idem. Nije crven, već plav.</td></tr>
+      <tr><td class="sr">još</td><td>ещё</td><td class="sr">Još malo. Još nisam.</td></tr>
+      <tr><td class="sr">tek</td><td>только (не раньше)</td><td class="sr">Tek sam stigao. Tek u petak.</td></tr>
+      <tr><td class="sr">kao</td><td>как; типа</td><td class="sr">Kao i uvek. On je kao umoran.</td></tr>
+      <tr><td class="sr">ono</td><td>это самое (слово-паразит)</td><td class="sr">Bili smo, ono, na moru.</td></tr>
+    </table></div>
     <div class="live"><b>В живой речи</b>
       <ul class="dlg">
-        <li><i class="sr">Je l' može?</i> <span class="ru">Можно? / Пойдёт?</span></li>
-        <li><i class="sr">Rekao sam ti!</i> <span class="ru">Я же говорил!</span></li>
-        <li><i class="sr">Javi mi se kad stigneš.</i> <span class="ru">Напиши, как доедешь.</span></li>
-        <li><i class="sr">Ne da mi se.</i> <span class="ru">Неохота (буквально «не даётся мне»).</span></li>
-        <li><i class="sr">Svidelo mi se.</i> <span class="ru">Мне понравилось.</span></li>
+        <li><i class="sr">— Umorna sam. — I ja.</i> <span class="ru">— Я устала. — Я тоже.</span></li>
+        <li><i class="sr">— Ne volim ovo. — Ni ja.</i> <span class="ru">— Не люблю это. — Я тоже нет.</span></li>
+        <li><i class="sr">— Zar ne znaš? — Pa ne znam!</i> <span class="ru">— Разве ты не знаешь? — Ну не знаю!</span></li>
+        <li><i class="sr">Lepo je, je l' da?</i> <span class="ru">Красиво, правда?</span></li>
       </ul>
     </div>
   </section>
 </div>
 
-<div class="panel" id="panel-predlozi" role="tabpanel" aria-labelledby="t-predlozi" hidden>
-  <h2>Предлоги</h2>
-  <p class="intro">Каждый предлог требует определённого падежа. Большинство совпадает с русскими, но несколько коротких слов значат совсем не то, что кажется.</p>
+<div class="panel" id="panel-dativ" role="tabpanel" aria-labelledby="t-dativ" hidden>
+  <h2>Датив в живой речи</h2>
+  <p class="intro">Краткие формы датива (<i class="sr">mi, ti, mu, joj, nam, vam, im</i>) звучат в сербской речи постоянно: «мне холодно», «тебе нравится», «у него сломалась машина», «скучаю по тебе». Здесь все эти конструкции во всех лицах.</p>
+
+  <div class="grp-h">Формы</div>
 
   <section>
-    <h3>Предлоги по падежам</h3>
+    <h3>Полные и краткие формы</h3>
     <div class="tbl"><table>
-      <tr><th>Падеж</th><th>Предлоги</th><th>Примеры</th></tr>
-      <tr><td>Генитив</td><td class="sr">od, do, iz, kod, bez, posle, pre, oko, blizu, pored, preko, iza, ispred, iznad, ispod, između, zbog, umesto, osim, tokom, s(a) «с, со»</td><td class="sr">iz Rusije, do centra, bez šećera, zbog posla, pored reke</td></tr>
-      <tr><td>Датив</td><td class="sr">ka / k, prema, uprkos, zahvaljujući</td><td class="sr">ka centru, prema meni, uprkos kiši</td></tr>
-      <tr><td>Аккузатив</td><td class="sr">u, na (куда), kroz, za (для), po (за чем), niz, uz</td><td class="sr">u grad, kroz park, za tebe, po hleb</td></tr>
-      <tr><td>Инструментал</td><td class="sr">s(a), pod, nad, pred, za (где), među</td><td class="sr">sa Anom, za stolom, pred zgradom</td></tr>
-      <tr><td>Локатив</td><td class="sr">u, na (где), o, po, pri</td><td class="sr">u gradu, o tebi, po gradu</td></tr>
+      <tr><th></th><th>Полная</th><th>Краткая</th><th>Пример с краткой</th></tr>
+      <tr><td>я</td><td class="sr">meni</td><td class="sr">mi</td><td class="sr">Reci mi.</td></tr>
+      <tr><td>ты</td><td class="sr">tebi</td><td class="sr">ti</td><td class="sr">Hvala ti.</td></tr>
+      <tr><td>он, оно</td><td class="sr">njemu</td><td class="sr">mu</td><td class="sr">Pomozi mu.</td></tr>
+      <tr><td>она</td><td class="sr">njoj</td><td class="sr">joj</td><td class="sr">Javi joj.</td></tr>
+      <tr><td>мы</td><td class="sr">nama</td><td class="sr">nam</td><td class="sr">Lepo nam je.</td></tr>
+      <tr><td>вы</td><td class="sr">vama</td><td class="sr">vam</td><td class="sr">Hvala vam.</td></tr>
+      <tr><td>они</td><td class="sr">njima</td><td class="sr">im</td><td class="sr">Reci im.</td></tr>
     </table></div>
-    <p>Предлоги, которые стоят в двух падежах (<i class="sr">u, na, za, po, sa, među</i>), меняют смысл вместе с падежом. Разбор ниже.</p>
+    <p><b>Краткая — по умолчанию.</b> Она стоит на втором месте в предложении, а <i class="sr">je</i> — в конце цепочки: <i class="sr">Hladno mi je</i>, <i class="sr">Pokvario mi se telefon</i>.</p>
+    <p><b>Полная</b> нужна при противопоставлении (<i class="sr">Meni je hladno, a tebi?</i>), со словами «и» / «ни» (<i class="sr">I meni. Ni njoj.</i>), в ответе одним словом (<i class="sr">Kome? — Njemu.</i>) и после предлога (<i class="sr">prema meni</i>). Обе формы сразу (<s class="sr">Meni mi je hladno</s>) — просторечие.</p>
   </section>
 
-  <section>
-    <h3>Обманчивые предлоги</h3>
-    <h4>pre — это «назад»</h4>
-    <p><i class="sr">pre</i> + генитив = «до, перед», а с промежутком времени — <b>«назад»</b>: <i class="sr">pre dva dana</i> — два дня назад. <i class="sr">pre ručka</i> — до обеда. Противоположное — <i class="sr">posle</i> или <i class="sr">nakon</i>: <i class="sr">posle posla</i>.</p>
-    <h4>za — три разных значения</h4>
-    <ul>
-      <li>+ аккузатив, «для»: <i class="sr">poklon za Anu.</i></li>
-      <li>+ аккузатив, «через (срок)»: <i class="sr">za dva dana</i> — через два дня.</li>
-      <li>+ инструментал, «за (где)»: <i class="sr">za stolom, za volanom.</i></li>
-      <li><i class="sr">za vreme</i> + генитив, «во время»: <i class="sr">za vreme ručka.</i></li>
-    </ul>
-    <h4>po — тоже три</h4>
-    <ul>
-      <li>+ аккузатив, «сходить за чем-то»: <i class="sr">Idem po hleb. Dođi po mene.</i> — Заедь за мной.</li>
-      <li>+ локатив, «по поверхности»: <i class="sr">šetamo po gradu.</i></li>
-      <li>«По-моему»: <i class="sr">po meni, po mom mišljenju.</i></li>
-    </ul>
-    <h4>od — не только «от»</h4>
-    <p>Ещё «из чего» (<i class="sr">od drveta</i>), «с какого момента» (<i class="sr">od ponedeljka</i>) и «уже столько-то» (<i class="sr">Živimo ovde od 2024.</i>).</p>
-    <h4>sa — с кем или откуда</h4>
-    <p>+ инструментал — «вместе с»: <i class="sr">sa Anom.</i> + генитив — «с поверхности»: <i class="sr">sa stola, sa posla.</i> Перед большинством слов можно короче — <i class="sr">s</i>: <i class="sr">s njim, s Anom</i>; перед <i class="sr">s, z, š, ž</i> и <i class="sr">mn</i> — только <i class="sr">sa</i>: <i class="sr">sa sestrom, sa mnom</i>.</p>
-  </section>
+  <div class="grp-h">Кому</div>
 
   <section>
-    <h3>kod: «у» и «к» человеку</h3>
-    <p class="lead"><i class="sr">kod</i> + генитив — одно из самых частых слов в речи. Оно значит и «у кого-то», и «к кому-то».</p>
-    <ul>
-      <li>Где: <i class="sr">Bio sam kod lekara.</i> — Был у врача. <i class="sr">Večeramo kod Ane.</i></li>
-      <li>Куда: <i class="sr">Idem kod lekara.</i> — Иду к врачу. <i class="sr">Dođi kod nas.</i> — Приходи к нам.</li>
-      <li>Дома: <i class="sr">kod kuće</i> — дома, <i class="sr">kod nas</i> — у нас (и «в нашей стране»).</li>
-      <li>«У меня» в смысле «по-моему, в моём случае»: <i class="sr">Kod mene je to drugačije.</i></li>
-    </ul>
-    <div class="trap"><b>Ловушка</b>«У меня есть машина» — <i class="sr">Imam auto</i>, а не <s class="sr">Kod mene je auto</s> (последнее значит «машина сейчас у меня, я её взял»).</div>
-  </section>
-
-  <section>
-    <h3>među и između</h3>
-    <p class="lead"><i class="sr">među</i> идёт с двумя падежами, как русские «между / среди» в значении «где» и «куда».</p>
+    <h3>Кому: дать, сказать, помочь</h3>
+    <p class="lead">Глаголы передачи и общения: <i class="sr">dati, reći, pisati, poslati, pokazati, objasniti, pomoći, verovati, zahvaliti</i>.</p>
     <div class="tbl"><table>
-      <tr><th>Вопрос</th><th>Падеж</th><th>Примеры</th></tr>
-      <tr><td>где?</td><td>инструментал</td><td class="sr">Među nama. Sedi među prijateljima. Među ostalim(a)…</td></tr>
-      <tr><td>куда?</td><td>аккузатив</td><td class="sr">Sedi među nas. Otišao je među ljude.</td></tr>
+      <tr><th>Кому</th><th>Пример</th><th>Перевод</th></tr>
+      <tr><td class="sr">mi</td><td class="sr">Pošalji mi poruku.</td><td>Пришли мне сообщение.</td></tr>
+      <tr><td class="sr">ti</td><td class="sr">Reći ću ti sutra.</td><td>Скажу тебе завтра.</td></tr>
+      <tr><td class="sr">mu</td><td class="sr">Dao sam mu ključ.</td><td>Я дал ему ключ.</td></tr>
+      <tr><td class="sr">joj</td><td class="sr">Kupio sam joj cveće.</td><td>Я купил ей цветы.</td></tr>
+      <tr><td class="sr">nam</td><td class="sr">Pomozite nam, molim vas.</td><td>Помогите нам, пожалуйста.</td></tr>
+      <tr><td class="sr">vam</td><td class="sr">Objasniću vam.</td><td>Я вам объясню.</td></tr>
+      <tr><td class="sr">im</td><td class="sr">Napiši im da kasnimo.</td><td>Напиши им, что мы опаздываем.</td></tr>
     </table></div>
-    <p><i class="sr">između</i> всегда с генитивом и значит «между двумя точками»: <i class="sr">između kuće i škole</i>, <i class="sr">između nas</i>. Ориентир: <i class="sr">između</i> — «между A и B», <i class="sr">među</i> — «среди, в кругу».</p>
+    <p>С местоимением «это» (аккузатив) датив идёт первым: <i class="sr">Daj mi ga. Pokazala sam mu ga. Poslaću vam ih.</i></p>
+  </section>
+
+  <div class="grp-h">Состояния</div>
+
+  <section>
+    <h3>Мне холодно, тебе скучно</h3>
+    <p class="lead">«Кому + как + je». По-русски точно так же: «мне холодно» — <i class="sr">hladno mi je</i>.</p>
+    <div class="tbl"><table>
+      <tr><th>Кому</th><th>Пример</th><th>Перевод</th></tr>
+      <tr><td class="sr">mi</td><td class="sr">Hladno mi je.</td><td>Мне холодно.</td></tr>
+      <tr><td class="sr">ti</td><td class="sr">Je l' ti toplo?</td><td>Тебе тепло?</td></tr>
+      <tr><td class="sr">mu</td><td class="sr">Muka mu je.</td><td>Его тошнит.</td></tr>
+      <tr><td class="sr">joj</td><td class="sr">Dosadno joj je.</td><td>Ей скучно.</td></tr>
+      <tr><td class="sr">nam</td><td class="sr">Lepo nam je ovde.</td><td>Нам здесь хорошо.</td></tr>
+      <tr><td class="sr">vam</td><td class="sr">Da li vam je vruće?</td><td>Вам жарко?</td></tr>
+      <tr><td class="sr">im</td><td class="sr">Teško im je.</td><td>Им тяжело.</td></tr>
+    </table></div>
+    <h4>Слова для состояний</h4>
+    <div class="tbl"><table>
+      <tr><th>Фраза</th><th>Значение</th></tr>
+      <tr><td class="sr">hladno / toplo / vruće mi je</td><td>мне холодно / тепло / жарко</td></tr>
+      <tr><td class="sr">dosadno mi je</td><td>мне скучно</td></tr>
+      <tr><td class="sr">muka mi je</td><td>меня тошнит; мне тошно</td></tr>
+      <tr><td class="sr">žao mi je</td><td>мне жаль, извини</td></tr>
+      <tr><td class="sr">drago mi je</td><td>мне приятно; «очень приятно» при знакомстве</td></tr>
+      <tr><td class="sr">svejedno mi je</td><td>мне всё равно</td></tr>
+      <tr><td class="sr">jasno mi je</td><td>мне понятно</td></tr>
+      <tr><td class="sr">krivo mi je</td><td>мне обидно</td></tr>
+      <tr><td class="sr">teško / lako mi je</td><td>мне тяжело / легко</td></tr>
+      <tr><td class="sr">lepo mi je</td><td>мне хорошо (приятно провожу время)</td></tr>
+      <tr><td class="sr">dobro mi je</td><td>мне хорошо, я в порядке</td></tr>
+    </table></div>
+    <h4>В других временах</h4>
+    <p>Меняется только <i class="sr">je</i>: <i class="sr">Bilo mi je hladno.</i> — Мне было холодно. <i class="sr">Biće ti dosadno.</i> — Тебе будет скучно. <i class="sr">Nije nam bilo lako.</i> — Нам было нелегко.</p>
+  </section>
+
+  <div class="grp-h">Нравится, нужно, хочется</div>
+
+  <section>
+    <h3>sviđati se: нравиться</h3>
+    <p class="lead">Как в русском: то, что нравится, — подлежащее, а кому — датив. Не забудьте <i class="sr">se</i>.</p>
+    <div class="tbl"><table>
+      <tr><th>Кому</th><th>Пример</th><th>Перевод</th></tr>
+      <tr><td class="sr">mi</td><td class="sr">Sviđa mi se Novi Sad.</td><td>Мне нравится Нови-Сад.</td></tr>
+      <tr><td class="sr">ti</td><td class="sr">Kako ti se sviđa?</td><td>Как тебе?</td></tr>
+      <tr><td class="sr">mu</td><td class="sr">Ne sviđa mu se posao.</td><td>Ему не нравится работа.</td></tr>
+      <tr><td class="sr">joj</td><td class="sr">Svideo joj se film.</td><td>Ей понравился фильм.</td></tr>
+      <tr><td class="sr">nam</td><td class="sr">Sviđaju nam se komšije.</td><td>Нам нравятся соседи.</td></tr>
+      <tr><td class="sr">vam</td><td class="sr">Da li vam se sviđa stan?</td><td>Вам нравится квартира?</td></tr>
+      <tr><td class="sr">im</td><td class="sr">Svidelo im se more.</td><td>Им понравилось море.</td></tr>
+    </table></div>
+    <p>Глагол согласуется с тем, что нравится: <i class="sr">sviđa mi se</i> (одно), <i class="sr">sviđaju mi se</i> (несколько), <i class="sr">svideo / svidela / svidelo mi se</i> — по роду предмета.</p>
   </section>
 
   <section>
-    <h3>u или na</h3>
-    <p class="lead">Оба значат «в / на». С аккузативом — куда, с локативом — где.</p>
+    <h3>trebati: нужно</h3>
     <div class="tbl"><table>
-      <tr><th><span class="sr">na</span></th><th><span class="sr">u</span></th></tr>
-      <tr><td>Открытые места: <span class="sr">na ulici, na trgu, na moru, na plaži</span></td><td>Помещения: <span class="sr">u sobi, u prodavnici, u kafiću</span></td></tr>
-      <tr><td>События: <span class="sr">na koncertu, na sastanku, na rođendanu</span></td><td>Города и страны: <span class="sr">u Novom Sadu, u Srbiji</span></td></tr>
-      <tr><td>Многие учреждения: <span class="sr">na poslu, na fakultetu, na pošti, na pijaci, na šalteru</span></td><td>Другие учреждения: <span class="sr">u banci, u školi, u bolnici, u opštini</span></td></tr>
+      <tr><th>Кому</th><th>Пример</th><th>Перевод</th></tr>
+      <tr><td class="sr">mi</td><td class="sr">Treba mi pomoć.</td><td>Мне нужна помощь.</td></tr>
+      <tr><td class="sr">ti</td><td class="sr">Šta ti treba?</td><td>Что тебе нужно?</td></tr>
+      <tr><td class="sr">mu</td><td class="sr">Treba mu odmor.</td><td>Ему нужен отдых.</td></tr>
+      <tr><td class="sr">joj</td><td class="sr">Treba joj vremena.</td><td>Ей нужно время.</td></tr>
+      <tr><td class="sr">nam</td><td class="sr">Treba nam veći stan.</td><td>Нам нужна квартира побольше.</td></tr>
+      <tr><td class="sr">vam</td><td class="sr">Treba li vam nešto?</td><td>Вам что-нибудь нужно?</td></tr>
+      <tr><td class="sr">im</td><td class="sr">Trebaju im dokumenti.</td><td>Им нужны документы.</td></tr>
     </table></div>
-    <p>Если сомневаетесь, вспомните русское: «на работе», «на почте», «на концерте» обычно совпадают. Расхождения стоит просто запоминать: <i class="sr">na fakultetu</i> (в университете), <i class="sr">na selu</i> (в деревне).</p>
+    <p>«Мне нужно что-то сделать» чаще звучит через <i class="sr">moram</i>: <i class="sr">Moram da idem.</i></p>
+  </section>
+
+  <section>
+    <h3>nedostajati: скучать</h3>
+    <p class="lead">«Я скучаю по тебе» по-сербски — «ты мне недостаёшь»: <i class="sr">Nedostaješ mi.</i> Подлежащее — тот, по кому скучают.</p>
+    <div class="tbl"><table>
+      <tr><th>Фраза</th><th>Перевод</th></tr>
+      <tr><td class="sr">Nedostaješ mi.</td><td>Я скучаю по тебе.</td></tr>
+      <tr><td class="sr">Nedostajem li ti?</td><td>Ты по мне скучаешь?</td></tr>
+      <tr><td class="sr">Nedostaje mu mama.</td><td>Он скучает по маме.</td></tr>
+      <tr><td class="sr">Nedostaje joj more.</td><td>Она скучает по морю.</td></tr>
+      <tr><td class="sr">Nedostajete nam.</td><td>Мы по вам скучаем.</td></tr>
+      <tr><td class="sr">Nedostaje nam još sto evra.</td><td>Нам не хватает ещё ста евро.</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <h3>Хочется и получается: spava mi se, ide mi</h3>
+    <p class="lead">Очень живая конструкция: глагол + <i class="sr">mi se</i> = «мне хочется». Отрицание — «неохота».</p>
+    <div class="tbl"><table>
+      <tr><th>Фраза</th><th>Перевод</th></tr>
+      <tr><td class="sr">Spava mi se.</td><td>Хочется спать.</td></tr>
+      <tr><td class="sr">Jede mi se nešto slatko.</td><td>Хочется чего-нибудь сладкого.</td></tr>
+      <tr><td class="sr">Pije mi se kafa.</td><td>Хочется кофе.</td></tr>
+      <tr><td class="sr">Ne radi mi se danas.</td><td>Сегодня неохота работать.</td></tr>
+      <tr><td class="sr">Ne da mi se.</td><td>Неохота.</td></tr>
+      <tr><td class="sr">Ide ti se u šetnju?</td><td>Хочешь прогуляться?</td></tr>
+      <tr><td class="sr">Dobro mi ide.</td><td>У меня хорошо получается.</td></tr>
+      <tr><td class="sr">Kako ti ide srpski?</td><td>Как у тебя с сербским?</td></tr>
+      <tr><td class="sr">Ne ide mu matematika.</td><td>Ему не даётся математика.</td></tr>
+    </table></div>
+    <h4>Ещё глаголы с дативом</h4>
+    <ul>
+      <li><i class="sr">odgovara mi</i> — мне подходит: <i class="sr">Odgovara li ti u pet?</i> — Тебе удобно в пять?</li>
+      <li><i class="sr">prija mi</i> — мне приятно, идёт на пользу: <i class="sr">Prija mi ova šetnja.</i></li>
+      <li><i class="sr">smeta mi</i> — мне мешает: <i class="sr">Smeta li vam muzika?</i></li>
+      <li><i class="sr">dopada mi se</i> — нравится (синоним <i class="sr">sviđa</i>).</li>
+    </ul>
+  </section>
+
+  <div class="grp-h">Посессивный датив</div>
+
+  <section>
+    <h3>Curi mi nos: датив вместо «мой»</h3>
+    <p class="lead">Краткий датив вместо «мой / твой / его». По-русски это чаще всего «у меня…»: <i class="sr">Curi mi nos</i> — у меня течёт из носа. Звучит естественнее, чем <i class="sr">moj nos curi</i>.</p>
+    <div class="tbl"><table>
+      <tr><th>Кому</th><th>Тело</th><th>Семья</th><th>Вещи</th></tr>
+      <tr><td class="sr">mi</td><td class="sr">Curi mi nos.</td><td class="sr">Žena mi se zove Anja.</td><td class="sr">Pokvario mi se telefon.</td></tr>
+      <tr><td class="sr">ti</td><td class="sr">Crven ti je nos.</td><td class="sr">Kako ti je mama?</td><td class="sr">Zvoni ti telefon.</td></tr>
+      <tr><td class="sr">mu</td><td class="sr">Otekla mu je noga.</td><td class="sr">Brat mu živi u Beogradu.</td><td class="sr">Ukrali su mu bicikl.</td></tr>
+      <tr><td class="sr">joj</td><td class="sr">Hladne su joj ruke.</td><td class="sr">Muž joj je lekar.</td><td class="sr">Ispao joj je ključ.</td></tr>
+      <tr><td class="sr">nam</td><td class="sr">Trnu nam noge.</td><td class="sr">Mačak nam se zove Timi.</td><td class="sr">Ističe nam boravak.</td></tr>
+      <tr><td class="sr">vam</td><td class="sr">Drhte vam ruke.</td><td class="sr">Kako vam je sin?</td><td class="sr">Stan vam je baš svetao.</td></tr>
+      <tr><td class="sr">im</td><td class="sr">Umorne su im noge.</td><td class="sr">Roditelji im žive u Rusiji.</td><td class="sr">Pokvario im se auto.</td></tr>
+    </table></div>
+    <p>Перевод: «течёт из носа / у тебя красный нос / у него опухла нога / у неё холодные руки / у нас затекли ноги / у вас дрожат руки / у них устали ноги». И дальше по колонкам: «мою жену зовут Аня», «у него украли велосипед», «у нас истекает ВНЖ».</p>
+  </section>
+
+  <section>
+    <h3>Порядок слов и времена</h3>
+    <ul>
+      <li>Датив стоит вторым, <i class="sr">je</i> в конце: <i class="sr">Kuća vam je prelepa</i> = <i class="sr">Prelepa vam je kuća</i>.</li>
+      <li>С <i class="sr">se</i>: сначала датив, потом <i class="sr">se</i>: <i class="sr">Pokvario mi se telefon. Razbolelo nam se dete.</i></li>
+      <li>Прошедшее: <i class="sr">Pukla mi je guma.</i> — У меня лопнула шина. <i class="sr">Pao joj je telefon u vodu.</i></li>
+      <li>Будущее: <i class="sr">Ohladiće ti se kafa.</i> — У тебя остынет кофе.</li>
+      <li>Отрицание: <i class="sr">Ne radi mi internet.</i> — У меня не работает интернет.</li>
+      <li>Вопрос: <i class="sr">Šta ti je?</i> — Что с тобой? <i class="sr">Šta mu je bilo?</i> — Что с ним случилось?</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Полная форма для контраста</h3>
+    <div class="tbl"><table>
+      <tr><th>Фраза</th><th>Перевод</th></tr>
+      <tr><td class="sr">Meni curi nos, a njemu boli grlo.</td><td>У меня течёт из носа, а у него болит горло.</td></tr>
+      <tr><td class="sr">I njoj se pokvario telefon.</td><td>И у неё сломался телефон.</td></tr>
+      <tr><td class="sr">Ni nama se ne sviđa.</td><td>Нам тоже не нравится.</td></tr>
+      <tr><td class="sr">Njima je stan veliki, a nama mali.</td><td>У них квартира большая, а у нас маленькая.</td></tr>
+      <tr><td class="sr">Tebi je lako da pričaš.</td><td>Тебе легко говорить.</td></tr>
+    </table></div>
+  </section>
+
+  <div class="grp-h">Ловушка: аккузатив</div>
+
+  <section>
+    <h3>Boli me, strah me je, mrzi me</h3>
+    <p class="lead">Несколько очень частых конструкций выглядят как датив, но требуют <b>аккузатива</b>: <i class="sr">me, te, ga, je, nas, vas, ih</i>.</p>
+    <div class="tbl"><table>
+      <tr><th>Кого</th><th>Пример</th><th>Перевод</th></tr>
+      <tr><td class="sr">me</td><td class="sr">Boli me glava.</td><td>У меня болит голова.</td></tr>
+      <tr><td class="sr">te</td><td class="sr">Boli li te grlo?</td><td>У тебя болит горло?</td></tr>
+      <tr><td class="sr">ga</td><td class="sr">Boli ga zub.</td><td>У него болит зуб.</td></tr>
+      <tr><td class="sr">je</td><td class="sr">Bole je leđa.</td><td>У неё болит спина.</td></tr>
+      <tr><td class="sr">nas</td><td class="sr">Bole nas noge.</td><td>У нас болят ноги.</td></tr>
+      <tr><td class="sr">vas</td><td class="sr">Šta vas boli?</td><td>Что у вас болит?</td></tr>
+      <tr><td class="sr">ih</td><td class="sr">Bole ih uši.</td><td>У них болят уши.</td></tr>
+    </table></div>
+    <h4>Датив или аккузатив</h4>
+    <div class="tbl"><table>
+      <tr><th>С дативом (mi, ti…)</th><th>С аккузативом (me, te…)</th></tr>
+      <tr><td class="sr">Hladno mi je.</td><td class="sr">Boli me glava.</td></tr>
+      <tr><td class="sr">Žao mi je.</td><td class="sr">Strah me je.</td></tr>
+      <tr><td class="sr">Drago mi je.</td><td class="sr">Sramota me je.</td></tr>
+      <tr><td class="sr">Dosadno mi je.</td><td class="sr">Mrzi me.</td></tr>
+      <tr><td class="sr">Sviđa mi se.</td><td class="sr">Zanima me.</td></tr>
+      <tr><td class="sr">Curi mi nos.</td><td class="sr">Svrbi me ruka. Peče me grlo.</td></tr>
+      <tr><td class="sr">Treba mi.</td><td class="sr">Briga me.</td></tr>
+    </table></div>
+    <ul>
+      <li><i class="sr">Strah me je.</i> — Мне страшно. <i class="sr">Sramota me je.</i> — Мне стыдно.</li>
+      <li><i class="sr">Mrzi me da idem.</i> — Мне лень идти. Очень частая фраза!</li>
+      <li><i class="sr">Zanima me.</i> — Мне интересно. <i class="sr">Briga me.</i> — Мне плевать.</li>
+    </ul>
+  </section>
+
+  <div class="grp-h">Проверь себя</div>
+
+  <section>
+    <h3>Как сказать по-сербски?</h3>
+    <p class="lead">Попробуйте сказать вслух, потом откройте ответ.</p>
+    <details class="flash"><summary>Мне холодно.</summary><div class="ans"><i class="sr">Hladno mi je.</i></div></details>
+    <details class="flash"><summary>Тебе нравится?</summary><div class="ans"><i class="sr">Da li ti se sviđa?</i> / <i class="sr">Sviđa li ti se?</i></div></details>
+    <details class="flash"><summary>Я скучаю по тебе.</summary><div class="ans"><i class="sr">Nedostaješ mi.</i></div></details>
+    <details class="flash"><summary>У меня сломался телефон.</summary><div class="ans"><i class="sr">Pokvario mi se telefon.</i></div></details>
+    <details class="flash"><summary>У неё болит голова.</summary><div class="ans"><i class="sr">Boli je glava.</i> (аккузатив!)</div></details>
+    <details class="flash"><summary>Нам здесь хорошо.</summary><div class="ans"><i class="sr">Lepo nam je ovde.</i></div></details>
+    <details class="flash"><summary>Ему нужен отдых.</summary><div class="ans"><i class="sr">Treba mu odmor.</i></div></details>
+    <details class="flash"><summary>Мне лень.</summary><div class="ans"><i class="sr">Mrzi me.</i> / <i class="sr">Ne da mi se.</i></div></details>
+    <details class="flash"><summary>Как зовут вашего сына?</summary><div class="ans"><i class="sr">Kako vam se zove sin?</i></div></details>
+    <details class="flash"><summary>Что с тобой?</summary><div class="ans"><i class="sr">Šta ti je?</i></div></details>
+    <details class="flash"><summary>У них истекает ВНЖ.</summary><div class="ans"><i class="sr">Ističe im boravak.</i></div></details>
+    <details class="flash"><summary>Мне тоже жаль.</summary><div class="ans"><i class="sr">I meni je žao.</i></div></details>
+    <details class="flash"><summary>Хочется кофе.</summary><div class="ans"><i class="sr">Pije mi se kafa.</i></div></details>
+    <details class="flash"><summary>Вам удобно в пять?</summary><div class="ans"><i class="sr">Odgovara li vam u pet?</i></div></details>
+    <details class="flash"><summary>Мне страшно.</summary><div class="ans"><i class="sr">Strah me je.</i> (аккузатив!)</div></details>
+    <details class="flash"><summary>Очень приятно (при знакомстве).</summary><div class="ans"><i class="sr">Drago mi je.</i></div></details>
   </section>
 </div>
 
 <div class="panel" id="panel-izuzeci" role="tabpanel" aria-labelledby="t-izuzeci" hidden>
   <h2>Исключения и слова-ловушки</h2>
   <p class="intro">Слова, которые выглядят как обычные, но склоняются, согласуются или живут во множественном числе по-своему. Большинство ошибок в роде и падеже — именно из этого списка.</p>
+
+
+  <div class="grp-h">Род</div>
 
   <section>
     <h3>Женский род на согласный: reč, ljubav, umetnost</h3>
@@ -1185,6 +1731,25 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
       </ul>
     </div>
   </section>
+  <section>
+    <h3>Мужской род на -a: tata, kolega, komšija</h3>
+    <p class="lead">Склоняются как женский род (<i class="sr">sa tatom, kod kolege</i>), но прилагательные и глаголы — мужского: <i class="sr">naš komšija, dobar kolega, tata je došao</i>.</p>
+    <p>Самые частые: <i class="sr">tata, deda, kolega, komšija, sudija, gazda</i> (хозяин, арендодатель). <i class="sr">Gazda je rekao da možemo da ostanemo.</i></p>
+  </section>
+  <section>
+    <h3>Род не как в русском</h3>
+    <div class="tbl"><table>
+      <tr><th>Сербский</th><th>Род</th><th>По-русски</th><th>Пример</th></tr>
+      <tr><td class="sr">kafa</td><td>ж.р.</td><td>кофе (м.р.)</td><td class="sr">dobra kafa</td></tr>
+      <tr><td class="sr">torta</td><td>ж.р.</td><td>торт (м.р.)</td><td class="sr">čokoladna torta</td></tr>
+      <tr><td class="sr">auto</td><td>м.р.</td><td>авто (ср.р.)</td><td class="sr">moj novi auto</td></tr>
+      <tr><td class="sr">bol</td><td>м.р.</td><td>боль (ж.р.)</td><td class="sr">jak bol u leđima</td></tr>
+      <tr><td class="sr">glad</td><td>ж.р.</td><td>голод (м.р.)</td><td class="sr">umirem od gladi</td></tr>
+      <tr><td class="sr">metro, radio, taksi</td><td>м.р.</td><td>ср.р.</td><td class="sr">taksi je stigao</td></tr>
+    </table></div>
+  </section>
+
+  <div class="grp-h">Особые основы</div>
 
   <section>
     <h3>-ao на месте l: posao, sto, misao</h3>
@@ -1198,7 +1763,6 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
     </table></div>
     <p>Тот же механизм в прошедшем времени: <i class="sr">radio, video, rekao</i> — из старых <i class="sr">radil, videl, rekal</i>.</p>
   </section>
-
   <section>
     <h3>Средний род с наращением: dugme, dete, ime</h3>
     <p class="lead">Короткие слова среднего рода в других падежах «вырастают» на слог, как русские «имя → имени», «время → времени».</p>
@@ -1217,6 +1781,8 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
     <p><i class="sr">Klikni na dugme.</i> — Нажми на кнопку. <i class="sr">Kakvo je vreme?</i> — Какая погода?</p>
   </section>
 
+  <div class="grp-h">Множественное число</div>
+
   <section>
     <h3>Собирательные: deca, braća, dugmad</h3>
     <p class="lead">По смыслу это множественное, а по грамматике — <b>женский род единственного числа</b>. Глагол при этом во множественном.</p>
@@ -1228,13 +1794,6 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
     <p>Так же: <i class="sr">braća</i> (братья, от <i class="sr">brat</i>), <i class="sr">gospoda</i> (господа), <i class="sr">telad, prasad, štenad</i>.</p>
     <div class="trap"><b>Ловушка</b><s class="sr">Moji deca</s> → <i class="sr">moja deca</i>. <s class="sr">sa decama</s> → <i class="sr">sa decom</i>.</div>
   </section>
-
-  <section>
-    <h3>Мужской род на -a: tata, kolega, komšija</h3>
-    <p class="lead">Склоняются как женский род (<i class="sr">sa tatom, kod kolege</i>), но прилагательные и глаголы — мужского: <i class="sr">naš komšija, dobar kolega, tata je došao</i>.</p>
-    <p>Самые частые: <i class="sr">tata, deda, kolega, komšija, sudija, gazda</i> (хозяин, арендодатель). <i class="sr">Gazda je rekao da možemo da ostanemo.</i></p>
-  </section>
-
   <section>
     <h3>Неправильное множественное число</h3>
     <div class="tbl"><table>
@@ -1259,7 +1818,6 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
       <tr><td class="sr">prst (палец)</td><td class="sr">pet prstiju</td></tr>
     </table></div>
   </section>
-
   <section>
     <h3>Только множественное: vrata, kola, naočare</h3>
     <p class="lead">Как русские «двери» (в смысле одной двери), «очки», «брюки». Прилагательное и глагол — во множественном.</p>
@@ -1275,18 +1833,7 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
     </table></div>
   </section>
 
-  <section>
-    <h3>Род не как в русском</h3>
-    <div class="tbl"><table>
-      <tr><th>Сербский</th><th>Род</th><th>По-русски</th><th>Пример</th></tr>
-      <tr><td class="sr">kafa</td><td>ж.р.</td><td>кофе (м.р.)</td><td class="sr">dobra kafa</td></tr>
-      <tr><td class="sr">torta</td><td>ж.р.</td><td>торт (м.р.)</td><td class="sr">čokoladna torta</td></tr>
-      <tr><td class="sr">auto</td><td>м.р.</td><td>авто (ср.р.)</td><td class="sr">moj novi auto</td></tr>
-      <tr><td class="sr">bol</td><td>м.р.</td><td>боль (ж.р.)</td><td class="sr">jak bol u leđima</td></tr>
-      <tr><td class="sr">glad</td><td>ж.р.</td><td>голод (м.р.)</td><td class="sr">umirem od gladi</td></tr>
-      <tr><td class="sr">metro, radio, taksi</td><td>м.р.</td><td>ср.р.</td><td class="sr">taksi je stigao</td></tr>
-    </table></div>
-  </section>
+  <div class="grp-h">Ложные друзья</div>
 
   <section>
     <h3>Ложные друзья</h3>
@@ -1305,9 +1852,160 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
 </div>
 
 <div class="panel" id="panel-reci" role="tabpanel" aria-labelledby="t-reci" hidden>
-  <h2>Слова и живая речь</h2>
-  <p class="intro">Короткие слова, которые делают речь сербской: частицы, усилители и фразы на каждый день. Учебники их почти не объясняют, а в разговоре они звучат постоянно.</p>
+  <h2>Живая речь</h2>
+  <p class="intro">Частицы, короткие фразы, устойчивые выражения и диалоги — то, что делает речь сербской и чего почти нет в учебниках.</p>
 
+  <div class="grp-h">Частицы</div>
+
+  <section>
+    <h3>Частицы и усилители</h3>
+    <div class="tbl"><table>
+      <tr><th>Слово</th><th>Значение</th><th>Как звучит</th></tr>
+      <tr><td class="sr">baš</td><td>прям, именно, очень</td><td class="sr">Baš lepo! Baš tako. Baš me briga.</td></tr>
+      <tr><td class="sr">bre</td><td>«ну, эй» — очень сербское, между своими</td><td class="sr">Ajde bre! Šta bre?</td></tr>
+      <tr><td class="sr">ma</td><td>да ну, да ладно</td><td class="sr">Ma nema veze. Ma daj!</td></tr>
+      <tr><td class="sr">daj</td><td>ну что ты; ну давай</td><td class="sr">Daj, molim te. Ma daj, ne zezaj.</td></tr>
+      <tr><td class="sr">ajde / hajde</td><td>давай, пошли; ладно</td><td class="sr">Ajde, idemo! Ajde, važi.</td></tr>
+      <tr><td class="sr">valjda</td><td>наверное, надеюсь</td><td class="sr">Valjda će doći.</td></tr>
+      <tr><td class="sr">možda</td><td>может быть</td><td class="sr">Možda sutra.</td></tr>
+      <tr><td class="sr">sigurno</td><td>наверняка; точно</td><td class="sr">Sigurno je zaboravio.</td></tr>
+      <tr><td class="sr">već</td><td>уже</td><td class="sr">Već sam tu.</td></tr>
+      <tr><td class="sr">još</td><td>ещё</td><td class="sr">Još malo. Još nisam.</td></tr>
+      <tr><td class="sr">tek</td><td>только (не раньше)</td><td class="sr">Tek sad. Tek u ponedeljak.</td></tr>
+      <tr><td class="sr">čak</td><td>даже</td><td class="sr">Čak i ja znam.</td></tr>
+      <tr><td class="sr">ipak</td><td>всё-таки</td><td class="sr">Ipak ću doći.</td></tr>
+      <tr><td class="sr">uopšte</td><td>вообще, совсем</td><td class="sr">Uopšte ne znam.</td></tr>
+      <tr><td class="sr">skroz</td><td>совсем, полностью</td><td class="sr">Skroz sam zaboravio.</td></tr>
+      <tr><td class="sr">inače</td><td>вообще-то, кстати; иначе</td><td class="sr">Inače, gde radiš?</td></tr>
+      <tr><td class="sr">znači</td><td>значит, то есть</td><td class="sr">Znači, vidimo se u osam?</td></tr>
+      <tr><td class="sr">kao</td><td>типа, как бы</td><td class="sr">On je kao zauzet.</td></tr>
+      <tr><td class="sr">ono</td><td>это самое (заполнитель паузы)</td><td class="sr">Bili smo, ono, kod Ane.</td></tr>
+      <tr><td class="sr">vala</td><td>честное слово</td><td class="sr">Vala ne znam.</td></tr>
+      <tr><td class="sr">bar / barem</td><td>хотя бы</td><td class="sr">Bar mi javi.</td></tr>
+      <tr><td class="sr">zar</td><td>неужели, разве</td><td class="sr">Zar ne?</td></tr>
+      <tr><td class="sr">jok</td><td>не-а (шутливо)</td><td class="sr">— Ideš? — Jok.</td></tr>
+      <tr><td class="sr">aha</td><td>ага, понятно</td><td class="sr">Aha, sad kapiram.</td></tr>
+      <tr><td class="sr">e</td><td>эй; ну</td><td class="sr">E, slušaj… E, to!</td></tr>
+    </table></div>
+    <div class="tip"><b>Про bre</b>Звучит дружески и эмоционально, между своими. С незнакомыми и в учреждениях лучше без него.</div>
+  </section>
+
+  <section>
+    <h3>Междометия</h3>
+    <div class="tbl"><table>
+      <tr><th>Слово</th><th>Когда</th></tr>
+      <tr><td class="sr">Jao! / Joj!</td><td>ой (боль, сожаление, удивление)</td></tr>
+      <tr><td class="sr">Opa!</td><td>опа! ого! (и на празднике)</td></tr>
+      <tr><td class="sr">Uh!</td><td>уф (усталость, облегчение)</td></tr>
+      <tr><td class="sr">Ajme!</td><td>ох, боже мой</td></tr>
+      <tr><td class="sr">Ej!</td><td>эй! (позвать)</td></tr>
+      <tr><td class="sr">Bravo!</td><td>молодец!</td></tr>
+      <tr><td class="sr">Ups!</td><td>упс</td></tr>
+    </table></div>
+  </section>
+
+  <div class="grp-h">Короткие фразы</div>
+
+  <section>
+    <h3>Ответы и реакции</h3>
+    <div class="tbl"><table>
+      <tr><th>Фраза</th><th>Значение и когда</th></tr>
+      <tr><td class="sr">Važi.</td><td>Договорились, ок</td></tr>
+      <tr><td class="sr">Može.</td><td>Давай, пойдёт. <span class="sr">— Može kafa? — Može!</span></td></tr>
+      <tr><td class="sr">Naravno.</td><td>Конечно</td></tr>
+      <tr><td class="sr">Kako da ne.</td><td>Конечно (вежливо); ага, щас (с иронией)</td></tr>
+      <tr><td class="sr">Nema veze.</td><td>Ничего страшного, неважно</td></tr>
+      <tr><td class="sr">Nema problema.</td><td>Без проблем</td></tr>
+      <tr><td class="sr">Nema šanse.</td><td>Ни за что, без шансов</td></tr>
+      <tr><td class="sr">Zavisi.</td><td>Смотря как, зависит</td></tr>
+      <tr><td class="sr">Nemam pojma.</td><td>Понятия не имею</td></tr>
+      <tr><td class="sr">Šta ja znam.</td><td>Да кто его знает</td></tr>
+      <tr><td class="sr">Svejedno mi je.</td><td>Мне всё равно</td></tr>
+      <tr><td class="sr">Briga me.</td><td>Мне плевать</td></tr>
+      <tr><td class="sr">Ne mogu da verujem!</td><td>Не могу поверить!</td></tr>
+      <tr><td class="sr">Ma daj!</td><td>Да ладно! Да брось!</td></tr>
+      <tr><td class="sr">Svaka čast!</td><td>Респект, молодец</td></tr>
+      <tr><td class="sr">Nije loše.</td><td>Неплохо</td></tr>
+      <tr><td class="sr">To je to.</td><td>Вот и всё; то, что надо</td></tr>
+      <tr><td class="sr">Malo sutra!</td><td>Ага, щас! (ирония)</td></tr>
+      <tr><td class="sr">Ne da mi se.</td><td>Неохота</td></tr>
+      <tr><td class="sr">Mrzi me.</td><td>Мне лень</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <h3>В разговоре и в городе</h3>
+    <div class="tbl"><table>
+      <tr><th>Фраза</th><th>Значение и когда</th></tr>
+      <tr><td class="sr">Šta ima?</td><td>Как дела, что нового?</td></tr>
+      <tr><td class="sr">Kako si? — Dobro, a ti?</td><td>Как ты? — Хорошо, а ты?</td></tr>
+      <tr><td class="sr">Polako.</td><td>Потихоньку (ответ на «как дела»); не спеши</td></tr>
+      <tr><td class="sr">Evo, …</td><td>«Вот, …» в начале ответа: <span class="sr">Evo, stižem.</span></td></tr>
+      <tr><td class="sr">Samo malo.</td><td>Минутку</td></tr>
+      <tr><td class="sr">Molim?</td><td>Простите, что? (переспросить)</td></tr>
+      <tr><td class="sr">Izvini / Izvinite.</td><td>Извини / извините</td></tr>
+      <tr><td class="sr">Izvinite, gde je…?</td><td>Извините, где…?</td></tr>
+      <tr><td class="sr">Koliko košta?</td><td>Сколько стоит?</td></tr>
+      <tr><td class="sr">Može karticom?</td><td>Можно картой?</td></tr>
+      <tr><td class="sr">Račun, molim.</td><td>Счёт, пожалуйста</td></tr>
+      <tr><td class="sr">Nema na čemu.</td><td>Не за что</td></tr>
+      <tr><td class="sr">Izvolite.</td><td>Пожалуйста (подавая); проходите; что желаете?</td></tr>
+      <tr><td class="sr">Vidimo se!</td><td>Увидимся!</td></tr>
+      <tr><td class="sr">Ćao!</td><td>И «привет», и «пока»</td></tr>
+      <tr><td class="sr">Čujemo se.</td><td>Созвонимся / спишемся</td></tr>
+    </table></div>
+  </section>
+
+  <div class="grp-h">Устойчивые выражения</div>
+
+  <section>
+    <h3>Словосочетания</h3>
+    <div class="tbl"><table>
+      <tr><th>Выражение</th><th>Значение</th><th>Пример</th></tr>
+      <tr><td class="sr">ići na kafu</td><td>встретиться поболтать (не обязательно ради кофе)</td><td class="sr">Ajde na kafu ove nedelje.</td></tr>
+      <tr><td class="sr">biti u pravu</td><td>быть правым</td><td class="sr">U pravu si.</td></tr>
+      <tr><td class="sr">imati sreće</td><td>повезти</td><td class="sr">Imali smo sreće.</td></tr>
+      <tr><td class="sr">ići na živce</td><td>действовать на нервы</td><td class="sr">Ideš mi na živce.</td></tr>
+      <tr><td class="sr">praviti se lud</td><td>прикидываться дурачком</td><td class="sr">Ne pravi se lud.</td></tr>
+      <tr><td class="sr">baciti pogled</td><td>взглянуть</td><td class="sr">Baci pogled na ovo.</td></tr>
+      <tr><td class="sr">zakazati termin</td><td>записаться на приём</td><td class="sr">Zakazao sam termin kod zubara.</td></tr>
+      <tr><td class="sr">stati u red</td><td>встать в очередь</td><td class="sr">Stanite u red, molim vas.</td></tr>
+      <tr><td class="sr">dati otkaz</td><td>уволиться; уволить</td><td class="sr">Dao je otkaz.</td></tr>
+      <tr><td class="sr">uzeti slobodan dan</td><td>взять выходной</td><td class="sr">Sutra uzimam slobodan dan.</td></tr>
+      <tr><td class="sr">platiti račun</td><td>оплатить счёт</td><td class="sr">Platio sam račun za struju.</td></tr>
+      <tr><td class="sr">nije mi do toga</td><td>мне не до этого</td><td class="sr">Danas mi nije do izlaska.</td></tr>
+      <tr><td class="sr">ne pada mi na pamet</td><td>и не подумаю</td><td class="sr">Ne pada mi na pamet!</td></tr>
+      <tr><td class="sr">sve u svemu</td><td>в общем и целом</td><td class="sr">Sve u svemu, bilo je lepo.</td></tr>
+      <tr><td class="sr">s vremena na vreme</td><td>время от времени</td><td class="sr">Idemo u Beograd s vremena na vreme.</td></tr>
+      <tr><td class="sr">na kraju krajeva</td><td>в конце концов</td><td class="sr">Na kraju krajeva, tvoja odluka.</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <h3>Пожелания и вежливость</h3>
+    <div class="tbl"><table>
+      <tr><th>Фраза</th><th>Когда</th></tr>
+      <tr><td class="sr">Dobro jutro / Dobar dan / Dobro veče</td><td>Доброе утро / день / вечер</td></tr>
+      <tr><td class="sr">Laku noć!</td><td>Спокойной ночи</td></tr>
+      <tr><td class="sr">Prijatno!</td><td>Приятного аппетита — и «всего доброго», уходя из магазина</td></tr>
+      <tr><td class="sr">Živeli!</td><td>Ваше здоровье! (тост)</td></tr>
+      <tr><td class="sr">Na zdravlje!</td><td>Будь здоров (когда чихнули); тост</td></tr>
+      <tr><td class="sr">Srećno!</td><td>Удачи!</td></tr>
+      <tr><td class="sr">Srećan put!</td><td>Счастливого пути</td></tr>
+      <tr><td class="sr">Srećan rođendan! / Sve najbolje!</td><td>С днём рождения! / Всего наилучшего!</td></tr>
+      <tr><td class="sr">Čestitam!</td><td>Поздравляю!</td></tr>
+      <tr><td class="sr">Uživajte!</td><td>Наслаждайтесь, хорошо отдохнуть</td></tr>
+      <tr><td class="sr">Lepo se provedite!</td><td>Хорошо вам провести время</td></tr>
+      <tr><td class="sr">Brzo ozdravi!</td><td>Выздоравливай скорее</td></tr>
+      <tr><td class="sr">Pozdravi Anu!</td><td>Передай привет Ане</td></tr>
+      <tr><td class="sr">Dobrodošli!</td><td>Добро пожаловать</td></tr>
+      <tr><td class="sr">Drago mi je.</td><td>Очень приятно (при знакомстве)</td></tr>
+      <tr><td class="sr">Hvala lepo / Hvala puno</td><td>Большое спасибо</td></tr>
+      <tr><td class="sr">Izvinite što smetam.</td><td>Извините, что беспокою</td></tr>
+    </table></div>
+  </section>
+
+  <div class="grp-h">Похожие слова</div>
   <section>
     <h3>zaista, stvarno, sigurno, definitivno</h3>
     <p class="lead"><i class="sr">zaista</i> и <i class="sr">stvarno</i> — «действительно», <i class="sr">sigurno</i> — «наверняка, точно», <i class="sr">definitivno</i> — «однозначно, окончательно».</p>
@@ -1327,61 +2025,85 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
     <div class="trap"><b>Ловушка</b><i class="sr">sigurno</i> о чужих действиях или о том, чего не видели, почти всегда значит «наверное», а не «точно».</div>
   </section>
 
-  <section>
-    <h3>Частицы и усилители</h3>
-    <div class="tbl"><table>
-      <tr><th>Слово</th><th>Значение</th><th>Как звучит</th></tr>
-      <tr><td class="sr">baš</td><td>прям, именно, очень</td><td class="sr">Baš lepo! Baš tako. Baš me briga.</td></tr>
-      <tr><td class="sr">bre</td><td>«ну, эй» — очень сербское, по-дружески</td><td class="sr">Ajde bre! Šta bre?</td></tr>
-      <tr><td class="sr">ma</td><td>да ну, да ладно</td><td class="sr">Ma nema veze. Ma daj!</td></tr>
-      <tr><td class="sr">valjda</td><td>наверное, надеюсь</td><td class="sr">Valjda će doći.</td></tr>
-      <tr><td class="sr">već</td><td>уже; «а» после отрицания</td><td class="sr">Već sam tu. Nije on, već ona.</td></tr>
-      <tr><td class="sr">tek</td><td>только, лишь; не раньше</td><td class="sr">Tek sad. Tek u ponedeljak.</td></tr>
-      <tr><td class="sr">inače</td><td>вообще-то, кстати; иначе</td><td class="sr">Inače, gde radiš?</td></tr>
-      <tr><td class="sr">znači</td><td>значит, то есть (слово-паразит)</td><td class="sr">Znači, vidimo se u osam?</td></tr>
-    </table></div>
-    <div class="tip"><b>Про bre</b>Звучит дружески и эмоционально, между своими. С незнакомыми и в учреждениях лучше без него.</div>
-  </section>
+  <div class="grp-h">Диалоги</div>
 
   <section>
-    <h3>Фразы на каждый день</h3>
-    <div class="tbl"><table>
-      <tr><th>Фраза</th><th>Значение и когда</th></tr>
-      <tr><td class="sr">Važi.</td><td>Договорились, ок</td></tr>
-      <tr><td class="sr">Može.</td><td>Давай, пойдёт. <span class="sr">— Može kafa? — Može!</span></td></tr>
-      <tr><td class="sr">Nema veze.</td><td>Ничего страшного, неважно</td></tr>
-      <tr><td class="sr">Polako.</td><td>Не спеши, спокойно; ответ на «как дела?» — «потихоньку»</td></tr>
-      <tr><td class="sr">Samo malo.</td><td>Минутку</td></tr>
-      <tr><td class="sr">Molim?</td><td>Простите, что? (переспросить)</td></tr>
-      <tr><td class="sr">Prijatno!</td><td>Приятного аппетита — и «всего доброго» на прощание в магазине</td></tr>
-      <tr><td class="sr">Šta ima?</td><td>Как дела, что нового?</td></tr>
-      <tr><td class="sr">Ćao!</td><td>И «привет», и «пока»</td></tr>
-      <tr><td class="sr">Ne da mi se.</td><td>Неохота</td></tr>
-      <tr><td class="sr">Malo sutra!</td><td>Ага, щас! (ирония)</td></tr>
-    </table></div>
-  </section>
-
-  <section>
-    <h3>Мини-диалоги</h3>
-    <div class="live"><b>В кафе</b>
+    <h3>В кафе</h3>
+    <div class="live"><b>Заказ</b>
       <ul class="dlg">
         <li><i class="sr">— Dobar dan, izvolite.</i> <span class="ru">— Добрый день, что желаете?</span></li>
         <li><i class="sr">— Ja bih jedan espreso sa mlekom, a za nju čaj od nane.</i> <span class="ru">— Мне эспрессо с молоком, а ей мятный чай.</span></li>
         <li><i class="sr">— Može. Još nešto?</i> <span class="ru">— Хорошо. Что-то ещё?</span></li>
-        <li><i class="sr">— To je to, hvala. Možemo li da platimo karticom?</i> <span class="ru">— Это всё, спасибо. Можно картой?</span></li>
+        <li><i class="sr">— To je to, hvala. Može li karticom?</i> <span class="ru">— Это всё, спасибо. Можно картой?</span></li>
+        <li><i class="sr">— Može, naravno.</i> <span class="ru">— Конечно.</span></li>
       </ul>
     </div>
-    <div class="live"><b>Договориться о встрече</b>
+  </section>
+
+  <section>
+    <h3>На рынке</h3>
+    <div class="live"><b>Na pijaci</b>
+      <ul class="dlg">
+        <li><i class="sr">— Koliko košta paradajz?</i> <span class="ru">— Сколько стоят помидоры?</span></li>
+        <li><i class="sr">— Dvesta dinara kilo.</i> <span class="ru">— Двести динаров за кило.</span></li>
+        <li><i class="sr">— Dajte mi kilo i po, molim vas. I malo peršuna.</i> <span class="ru">— Дайте полтора кило, пожалуйста. И немного петрушки.</span></li>
+        <li><i class="sr">— Evo, izvolite. Nešto drugo?</i> <span class="ru">— Вот, пожалуйста. Что-то ещё?</span></li>
+        <li><i class="sr">— Ne, hvala. Prijatno!</i> <span class="ru">— Нет, спасибо. Всего доброго!</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h3>С соседом</h3>
+    <div class="live"><b>U zgradi</b>
+      <ul class="dlg">
+        <li><i class="sr">— Komšija, šta ima?</i> <span class="ru">— Сосед, как дела?</span></li>
+        <li><i class="sr">— Evo, polako. Kod vas?</i> <span class="ru">— Да потихоньку. А у вас?</span></li>
+        <li><i class="sr">— Sve po starom. Baš je lepo vreme danas.</i> <span class="ru">— Всё по-старому. Погода сегодня прям хорошая.</span></li>
+        <li><i class="sr">— Jeste, valjda će da potraje.</i> <span class="ru">— Да, надеюсь, продержится.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h3>Запись по телефону</h3>
+    <div class="live"><b>Zakazivanje</b>
+      <ul class="dlg">
+        <li><i class="sr">— Dobar dan, želeo bih da zakažem termin.</i> <span class="ru">— Добрый день, я бы хотел записаться.</span></li>
+        <li><i class="sr">— Može. Da li vam odgovara četvrtak u deset?</i> <span class="ru">— Хорошо. Вам удобно в четверг в десять?</span></li>
+        <li><i class="sr">— Može li malo kasnije, posle podne?</i> <span class="ru">— А можно чуть позже, после обеда?</span></li>
+        <li><i class="sr">— Imamo slobodan termin u tri.</i> <span class="ru">— Есть свободное время в три.</span></li>
+        <li><i class="sr">— Odlično, hvala. Doviđenja.</i> <span class="ru">— Отлично, спасибо. До свидания.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h3>Договориться с друзьями</h3>
+    <div class="live"><b>Izlazak</b>
       <ul class="dlg">
         <li><i class="sr">— Je l' može sutra u osam?</i> <span class="ru">— Завтра в восемь пойдёт?</span></li>
         <li><i class="sr">— Ne mogu u osam, može li malo kasnije?</i> <span class="ru">— В восемь не могу, можно чуть позже?</span></li>
         <li><i class="sr">— Važi, onda u devet kod Katedrale.</i> <span class="ru">— Договорились, тогда в девять у Собора.</span></li>
-        <li><i class="sr">— Super, vidimo se!</i> <span class="ru">— Отлично, увидимся!</span></li>
+        <li><i class="sr">— Super, vidimo se! Javi ako kasniš.</i> <span class="ru">— Отлично, увидимся! Напиши, если опаздываешь.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h3>В такси</h3>
+    <div class="live"><b>Taksi</b>
+      <ul class="dlg">
+        <li><i class="sr">— Dobro veče. Na Detelinaru, molim vas.</i> <span class="ru">— Добрый вечер. На Детелинару, пожалуйста.</span></li>
+        <li><i class="sr">— Koja ulica?</i> <span class="ru">— Какая улица?</span></li>
+        <li><i class="sr">— Možete me ostaviti kod pekare na uglu.</i> <span class="ru">— Можете высадить меня у пекарни на углу.</span></li>
+        <li><i class="sr">— Može. To je sedamsto dinara.</i> <span class="ru">— Хорошо. С вас семьсот динаров.</span></li>
+        <li><i class="sr">— Izvolite, u redu je.</i> <span class="ru">— Возьмите, сдачи не надо.</span></li>
       </ul>
     </div>
   </section>
 </div>
-
+</div>
 </main>
 
 <footer>Собрано из разговора с Claude, октябрь 2026. Если нашли ошибку, проверьте у преподавателя: живой язык всегда шире правил.</footer>
@@ -1425,6 +2147,46 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
   setTbH(); window.addEventListener("resize", setTbH);
   if("ResizeObserver" in window && tb){ new ResizeObserver(setTbH).observe(tb); }
 
+
+  /* Table of contents */
+  var toc=document.getElementById("toc"), tocList=document.getElementById("toc-list"), tocBtn=toc.querySelector(".toc-toggle");
+  var io=null;
+  function buildToc(panel){
+    tocList.innerHTML="";
+    if(io){ io.disconnect(); io=null; }
+    var key=panel.id.replace("panel-",""), n=0, links=[];
+    var items=panel.querySelectorAll(".grp-h, section > h3");
+    items.forEach(function(el){
+      var target = el.classList.contains("grp-h") ? el : el.parentElement;
+      if(!target.id){ target.id = key+"-"+(++n); }
+      var a=document.createElement("a");
+      a.href="#"+target.id;
+      a.textContent=el.textContent;
+      a.className = el.classList.contains("grp-h") ? "toc-g" : "toc-s";
+      a.addEventListener("click",function(e){
+        e.preventDefault();
+        target.scrollIntoView({behavior:"smooth",block:"start"});
+        toc.classList.remove("open"); tocBtn.setAttribute("aria-expanded","false");
+      });
+      tocList.appendChild(a);
+      if(a.className==="toc-s") links.push({a:a,t:target});
+    });
+    if("IntersectionObserver" in window && links.length){
+      io=new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){
+            links.forEach(function(l){ l.a.classList.toggle("on", l.t===en.target); });
+          }
+        });
+      },{rootMargin:"-25% 0px -65% 0px"});
+      links.forEach(function(l){ io.observe(l.t); });
+    }
+  }
+  tocBtn.addEventListener("click",function(){
+    var open=!toc.classList.contains("open");
+    toc.classList.toggle("open",open); tocBtn.setAttribute("aria-expanded",open?"true":"false");
+  });
+
   /* Tabs */
   var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
   var panels=[].slice.call(document.querySelectorAll('[role="tabpanel"]'));
@@ -1439,8 +2201,9 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
         if(focus) t.focus();
       }
     });
-    if(!found) return select("vremena", focus, false);
+    if(!found) return select("padezi", focus, false);
     panels.forEach(function(p){ p.hidden = p.id!=="panel-"+id; });
+    var cur=document.getElementById("panel-"+id); if(cur) buildToc(cur);
     if(push){ try{ history.replaceState(null,"","#"+id); }catch(e){} }
     try{ localStorage.setItem("sr-tab",id); }catch(e){}
     var bar=document.querySelector(".tabbar");
@@ -1461,7 +2224,7 @@ footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
   });
   var start=(location.hash||"").slice(1);
   if(!start){ try{ start=localStorage.getItem("sr-tab")||""; }catch(e){} }
-  select(start||"vremena", false, false);
+  select(start||"padezi", false, false);
   window.addEventListener("hashchange",function(){ select(location.hash.slice(1), false, false); });
 })();
 </script>
